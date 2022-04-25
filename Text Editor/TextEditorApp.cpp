@@ -1,14 +1,10 @@
 #include <iostream>
-#include <cctype>
 #include <string>
-#include <cstring>
-#include <ifstream>
-#include <ofstream>
+#include <cctype>
+#include <fstream>
 #include "TextEditorFunc.h"
-#include "TextEditorFunc.cpp"
 using namespace std;
-
-int main ()
+int main()
 {
     mainMenu();
     return 0;
