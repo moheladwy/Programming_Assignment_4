@@ -1,3 +1,17 @@
+/*
+This the Functions that we will work on it.
+amr have the functions [1:5]
+eladwy have the functions [6:10]
+bdr have the functions [11:15]
+*/
+//____________________________________________________________________________________________
+string getFileName()
+{
+    string fileName;
+    cout << "Enter the Name of the File with it's Extention: ";
+    cin >> fileName;    
+    return fileName;
+}
 //____________________________________________________________________________________________
 void mainMenu()
 {
@@ -17,5 +31,12 @@ void mainMenu()
     cout << "14. Turn file content to 1st caps (1st char of each word is capital)." << endl;
     cout << "15. Save." << endl;
     cout << "16. Exit." << endl;
+}
+//____________________________________________________________________________________________
+void clearScreen()
+{
+    system("CLS");
+    cout << flush;
+    system("CLS");
 }
 //____________________________________________________________________________________________

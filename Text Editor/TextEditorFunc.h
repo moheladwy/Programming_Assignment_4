@@ -1,5 +1,8 @@
 /*
 This the Functions that we will work on it.
+amr have the functions [1:5]
+eladwy have the functions [6:10]
+bdr have the functions [11:15]
 */
 //____________________________________________________________________________________________
 string getFileName();
@@ -37,4 +40,6 @@ void turnContentToLowerCase();
 void turnFileContentToFirstCaps();
 //____________________________________________________________________________________________
 void save();
+//____________________________________________________________________________________________
+void clearScreen(); //Done.
 //____________________________________________________________________________________________
