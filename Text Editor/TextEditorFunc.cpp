@@ -4,6 +4,8 @@
 #include <fstream>
 #include <regex>
 using namespace std;
+// your functions must be added in this file
+
 //____________________________________________________________________________________________
 bool checkFileName(string fileName)
 {

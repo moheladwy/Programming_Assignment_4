@@ -5,6 +5,8 @@ amr have the functions [1:5]
 eladwy have the functions [6:10]
 bdr have the functions [11:15]
 */
+
+// only function headers with a brief comment is allowed in this file.
 using namespace std;
 //____________________________________________________________________________________________
 
