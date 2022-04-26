@@ -1,39 +1,40 @@
 #include <Windows.h>
 #include <iostream>
+#include <cctype>
 #include <fstream>
 #include <regex>
 using namespace std;
 //____________________________________________________________________________________________
-string getFileName()
+bool checkFileName(string fileName)
 {
-    string fileName;
+    regex isValid("[a-zA-Z0-9()]+(.txt)");
+    return regex_match(fileName, isValid);
+}
+//____________________________________________________________________________________________
+string getFileName(string turn)
+{
+    string fileName; bool checker; 
     while (true)
     {
         fileName = "";
         while (fileName.empty())
         {
-            cout << "Enter the File Name: ";
+            cout << "Enter the " << turn << " File Name : ";
             cin >> fileName;
             cin.clear();
         }
-        break;
-        /*if (checkFileName(fileName))
+        checker = checkFileName(fileName);
+        if (checker)
         {
             break;
         }
         else
         {
-            cout << "Wrong Name of the File, Try again.";
-        }*/
+            cout << "Wrong Name of Text File it should be {(letters, numbers or both).txt}, Try again." << endl;
+        }
     }
 
     return fileName;
-}
-//____________________________________________________________________________________________
-bool checkFileName(string fileName)
-{
-    regex isValid("[a-zA-Z0-9(){}#$%~`@^&_-=+,';\t]+[.][(txt)]");
-    return regex_match(fileName, isValid);
 }
 //____________________________________________________________________________________________
 bool checkValidFile(string fileName)
@@ -75,45 +76,12 @@ void clearScreen()
     system("CLS");
 }
 //____________________________________________________________________________________________
-string getSecondFileName()
-{
-    string fileName;
-    while (true)
-    {
-        fileName = "";
-        while (fileName.empty())
-        {
-            cout << "Enter the Second File Name: ";
-            cin >> fileName;
-            cin.clear();
-        }
-        break;
-        /*if (checkFileName(fileName))
-        {
-            break;
-        }
-        else
-        {
-            cout << "Wrong Name of the File, Try again.";
-        }*/
-    }
-
-    return fileName;
-}
-//____________________________________________________________________________________________
 void mergeAnotherFile(fstream& file)
 {
     fstream file2;
-    string secondFileName = getSecondFileName();
+    string secondFileName = getFileName("Second");
     file2.open(secondFileName.c_str(), ios::in);
-    file.put(file2.get());
-    while (!file2.eof())
-    {
-        if (file2.get() != EOF)
-        {
-            file.put(file2.get());
-        }
-    }
+    file << file2.rdbuf();
     file2.close();
 }
 //____________________________________________________________________________________________
@@ -161,3 +129,30 @@ int countNumberOfCharacters(fstream& file)
     return numberOfCharacters;
 }
 //____________________________________________________________________________________________
+string makeWordLowerCase(string word)
+{
+    for (int index = 0; index < word.size(); index++)
+    {
+        word[index] = tolower(word[index]);
+    }
+    return word;
+}
+//____________________________________________________________________________________________
+string getWordForSearching()
+{
+    string word;
+    word = "";
+    while (word.empty())
+    {
+        cout << "Enter the word you want to search about in the file: ";
+        cin >> word;
+        cin.clear();
+    }
+    word = makeWordLowerCase(word);
+    return word;
+}
+//____________________________________________________________________________________________
+void searchForWordInFile()
+{
+
+}
