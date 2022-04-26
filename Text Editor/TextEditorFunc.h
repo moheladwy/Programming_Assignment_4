@@ -10,7 +10,7 @@ bdr have the functions [11:15]
 using namespace std;
 //____________________________________________________________________________________________
 
-string getFileName(string turn); // Done.
+string getValidFileName(string turn); // Done.
 //____________________________________________________________________________________________
 
 bool checkFileName(string fileName); // Done.
