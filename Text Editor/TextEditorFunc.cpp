@@ -2,9 +2,11 @@
 #include <iostream>
 #include <cctype>
 #include <fstream>
-#include <sstream>
 #include <regex>
+#include <string>
 using namespace std;
+// your functions must be added in this file
+
 //____________________________________________________________________________________________
 bool checkFileName(string fileName)
 {
@@ -12,28 +14,32 @@ bool checkFileName(string fileName)
     return regex_match(fileName, isValid);
 }
 //____________________________________________________________________________________________
-string getFileName(string turn = "")
+string getValidFileName(string turn = "")
 {
-    string fileName; bool checker;
+    string fileName; bool checker; 
     while (true)
     {
         fileName = "";
         while (fileName.empty())
         {
-            cout << "Enter the " << turn << " file Name: ";
+            cout << "Enter the" << turn << " file Name : ";
             getline(cin, fileName);
         }
         checker = checkFileName(fileName);
         if (checker)
         {
-            return fileName;
+            break;
         }
         else
         {
             cout << "Wrong Name of Text File it should be {(letters, numbers or both).txt}, Try again." << endl;
         }
     }
+
+    return fileName;
 }
+
+
 //____________________________________________________________________________________________
 bool checkValidFile(string fileName)
 {
@@ -77,58 +83,54 @@ void clearScreen()
 void mergeAnotherFile(fstream& file)
 {
     fstream file2;
-    string secondFileName = getFileName("Second");
+    string secondFileName = getValidFileName(" Second");
     file2.open(secondFileName.c_str(), ios::in);
     file << file2.rdbuf();
     file2.close();
 }
 //____________________________________________________________________________________________
-int countNumberOfWords(string fileName)
+int countNumberOfWords(fstream& file)
 {
-    fstream file;
-    file.open(fileName.c_str(), ios::in);
-    int numberOfWords = 0; 
-    string inputLine;
-    while (getline(file, inputLine))
+    int numberOfWords = 0; char inputWord[30];
+    /*firstLetter = file.get();
+    if (firstLetter == ' ')
     {
-        stringstream strLine(inputLine);
-        string word;
-        while (strLine >> word)
-        {
-            numberOfWords++;
-        }
+        numberOfWords = 0;
+    }*/
+    file.getline(inputWord, 30, ' ');
+    while (isspace(cin.peek())) cin.ignore(' ');
+
+    while (!file.eof())
+    {
+        ++numberOfWords;
+        file.getline(inputWord, 30, ' ');
     }
-    file.close();
+
     return numberOfWords;
 }
 //____________________________________________________________________________________________
-int countNumberOfLines(string fileName)
+int countNumberOfLines(fstream& file)
 {
-    fstream file;
-    int numberOfLines = 0;
-    file.open(fileName.c_str(), ios::in);
-    string inputLine;
-    while (getline(file, inputLine))
+    char inputLine[100]; int numberOfLines = 0;
+    file.getline(inputLine, 100, '\n');
+    while (!file.eof())
     {
-        numberOfLines++;
+        ++numberOfLines;
+        file.getline(inputLine, 100, '\n');
     }
-    file.close();
     return numberOfLines;
 }
 //____________________________________________________________________________________________
-int countNumberOfCharacters(string fileName)
+int countNumberOfCharacters(fstream& file) 
 {
-    fstream file;
-    file.open(fileName.c_str(), ios::in);
     int numberOfCharacters = 0;
     file.get();
-    while (!file.eof() && !file.fail())
+    while (!file.eof())
     {
         numberOfCharacters++;
         file.get();
     }
-    file.close();
-    return numberOfCharacters + 1;
+    return numberOfCharacters;
 }
 //____________________________________________________________________________________________
 string makeWordLowerCase(string word)
@@ -153,23 +155,67 @@ string getWordForSearching()
     return word;
 }
 //____________________________________________________________________________________________
-bool searchForWordInFile(string fileName, string wordWanted)
+void searchForWordInFile()
 {
-    fstream file;
-    file.open(fileName.c_str(), ios::in);
-    string inputLine, word;
-    while (getline(file, inputLine))
-    {
-        stringstream s(inputLine);
-        while (s >> word)
-        {
-            word = makeWordLowerCase(word);
-            if (wordWanted == word)
-            {
-                return true;
-            }
+
+}
+
+//____________________________________________________________________________________________
+
+string lowerString(string word){
+    for (int i = 0; i < word.length(); ++i) {
+        if (isalpha(word[i])){
+            word[i] = tolower(word[i]);
         }
     }
-    file.close();
-    return false;
+    return word;
 }
+
+// counting the number of times a word exists in a file // very strict counter
+int countWordOccurences(fstream& file, string searchWord){ // read only
+    searchWord = lowerString(searchWord);
+    char letter;
+    int counter = 0;
+    while(!file.eof()){
+        string word;
+        while (file.peek()!=' ' && file.peek()!='\n' && file.peek()!=EOF){
+            file.get(letter);
+            if (isalpha(letter)){
+                letter = tolower(letter);
+            }
+            word += letter;
+        }
+        if (word == searchWord){
+            counter += 1;
+        }
+        file.ignore(1);
+    }
+    return counter;
+}
+
+// ------------------------
+// =========================ORIGINAL FILE IS OPENED THEN CLOSED TAKE CARE=======================
+//void allFileToUpperCase(fstream& file) { // read and write
+//    while (!file.eof()) {
+//        fstream file2;
+//        file2.open("tempfile.txt", ios::out);
+//
+//        char letter;
+//        file.get(letter);
+//        letter = toupper(letter);
+//        file2 << letter;
+//    }
+//    file.close()
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//    }

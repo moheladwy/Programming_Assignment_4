@@ -5,10 +5,12 @@ amr have the functions [1:5]
 eladwy have the functions [6:10]
 bdr have the functions [11:15]
 */
+
+// only function headers with a brief comment is allowed in this file.
 using namespace std;
 //____________________________________________________________________________________________
 
-string getFileName(string turn = ""); // Done.
+string getValidFileName(string turn); // Done.
 //____________________________________________________________________________________________
 
 bool checkFileName(string fileName); // Done.
@@ -38,13 +40,13 @@ void decryptingFileContent();
 void mergeAnotherFile(fstream& file); // Done.
 //____________________________________________________________________________________________
 
-int countNumberOfWords(string fileName); // Done.
+int countNumberOfWords(fstream& file);
 //____________________________________________________________________________________________
 
-int countNumberOfCharacters(string fileName); // Done.
+int countNumberOfCharacters(fstream& file); // Done.
 //____________________________________________________________________________________________
 
-int countNumberOfLines(string fileName); // Done.
+int countNumberOfLines(fstream& file); // Done.
 //____________________________________________________________________________________________
 
 string makeWordLowerCase(string word); // Done.
@@ -53,7 +55,7 @@ string makeWordLowerCase(string word); // Done.
 string getWordForSearching(); // Done.
 //____________________________________________________________________________________________
 
-bool searchForWordInFile(string fileName, string wordWanted);
+void searchForWordInFile();
 //____________________________________________________________________________________________
 
 void countNumberOfTimesWordExistsInFile();
