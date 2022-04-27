@@ -324,17 +324,12 @@ void save(fstream& file) // Almost Done By Mohamed.
     file.flush();
 }
 //____________________________________________________________________________________________
-void append(fstream& file)
+void addingContent(string filename)
 {
-    char fileName[100];
     fstream myfile;
     string userMessage;
 
-    cout << "Enter file name: ";
-    cin >> fileName;
-    cin.ignore();
-    strcat(fileName,".txt");
-    myfile.open(fileName,ios::app);
+    myfile.open(filename,ios::app);
     if (myfile.is_open())
     {
       cout<<"Write: ";
@@ -345,13 +340,23 @@ void append(fstream& file)
   
 }
 //__________________________________________________________________________________________
-void terminal_print()
+void displayContent(string filename);
 {
-    char fileName[100];
-    cout << "Enter file name: ";
-    cin >> fileName;
-    cin.ignore();
-    strcat(fileName,".txt");
-    ifstream myfile(fileName);
-    cout << myfile.rdbuf();
+    string line;
+    ifstream myfile(filename,ios::in);
+   if (myfile.is_open())
+   {
+      while (getline(myfile,line))
+      {
+          cout<<line<<endl;
+      }
+      
+      myfile.close();
+  }
+}
+//_________________________________________________________________________________________
+void emptyFileContent()
+{
+    ofstream myfile(filename,ios::trunc);
+    myfile.close();
 }
