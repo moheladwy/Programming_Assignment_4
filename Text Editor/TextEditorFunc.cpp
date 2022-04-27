@@ -329,23 +329,27 @@ void save(fstream& file) // Almost Done By Mohamed.
     file.flush();
 }
 //____________________________________________________________________________________________
-void addingContent(string fileName)
+void addingContent(string fileName) //Done by Amr
 {
-    fstream myFile;
-    string userMessage;
-    myFile.open(fileName.c_str(),ios::app);
-
-    if (myFile.is_open())
-    {
-      cout<<"Write: ";
-      getline(cin, userMessage);
-      myFile << userMessage << "\n";
-      myFile.close();
-    }
-  
+  string line;
+  ofstream myfile(fileName.c_str(),ios::app);
+  cout<<"##################"<<"\n";
+  cout<<"### write here ###"<<"\n";
+  cout<<"##################"<<"\n";
+  while (true)
+  {
+     getline(cin,line);
+     if(cin.eof())
+      {
+        cout << "text added";
+        break;
+      }
+      myfile<<line<<"\n";
+ 
+  }
 }
 //__________________________________________________________________________________________
-void displayContent(string fileName)
+void displayContent(string fileName) //Done by Amr
 {
     string line;
     fstream myFile;
@@ -362,7 +366,7 @@ void displayContent(string fileName)
     }
 }
 //_________________________________________________________________________________________
-void emptyFileContent(string fileName)
+void emptyFileContent(string fileName) //Done by Amr
 {
     fstream myFile;
     myFile.open(fileName.c_str(), ios::trunc);
