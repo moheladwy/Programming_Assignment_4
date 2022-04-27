@@ -75,12 +75,17 @@ void clearScreen()
     system("CLS");
 }
 //____________________________________________________________________________________________
-void mergeAnotherFile(fstream& file)
+void mergeAnotherFile(string fileName)
 {
-    fstream file2;
-    string secondFileName = getFileName("Second");
+    fstream file, file2;
+    string inputLine, secondFileName = getFileName("Second");
+    file.open(fileName.c_str(), ios::app);
     file2.open(secondFileName.c_str(), ios::in);
-    file << file2.rdbuf();
+    while (getline(file2, inputLine))
+    {
+        file << inputLine << "\n";
+    }
+    file.close();
     file2.close();
 }
 //____________________________________________________________________________________________
@@ -324,39 +329,42 @@ void save(fstream& file) // Almost Done By Mohamed.
     file.flush();
 }
 //____________________________________________________________________________________________
-void addingContent(string filename)
+void addingContent(string fileName)
 {
-    fstream myfile;
+    fstream myFile;
     string userMessage;
+    myFile.open(fileName.c_str(),ios::app);
 
-    myfile.open(filename,ios::app);
-    if (myfile.is_open())
+    if (myFile.is_open())
     {
       cout<<"Write: ";
-      getline(cin,userMessage);
-      myfile<<userMessage<<endl;
-      myfile.close();
+      getline(cin, userMessage);
+      myFile << userMessage << "\n";
+      myFile.close();
     }
   
 }
 //__________________________________________________________________________________________
-void displayContent(string filename);
+void displayContent(string fileName)
 {
     string line;
-    ifstream myfile(filename,ios::in);
-   if (myfile.is_open())
-   {
-      while (getline(myfile,line))
-      {
-          cout<<line<<endl;
-      }
+    fstream myFile;
+    myFile.open(fileName.c_str(), ios::in);
+
+    if (myFile.is_open())
+    {
+       while (getline(myFile, line))
+       {
+           cout << line << "\n";
+       }
       
-      myfile.close();
-  }
+       myFile.close();
+    }
 }
 //_________________________________________________________________________________________
-void emptyFileContent()
+void emptyFileContent(string fileName)
 {
-    ofstream myfile(filename,ios::trunc);
-    myfile.close();
+    fstream myFile;
+    myFile.open(fileName.c_str(), ios::trunc);
+    myFile.close();
 }

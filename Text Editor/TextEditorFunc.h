@@ -29,13 +29,13 @@ int getUserChoice(); // Done.
 void executeUserChoice(int choice);
 //____________________________________________________________________________________________
 
-void addingContent();
+void addingContent(string fileName);
 //____________________________________________________________________________________________
 
-void displayContent();
+void displayContent(string fileName);
 //____________________________________________________________________________________________
 
-void emptyFileContent();
+void emptyFileContent(string fileName);
 //____________________________________________________________________________________________
 
 void encryptFileContent();
@@ -44,7 +44,7 @@ void encryptFileContent();
 void decryptingFileContent();
 //____________________________________________________________________________________________
 
-void mergeAnotherFile(fstream& file); // Done.
+void mergeAnotherFile(string fileName); // Done.
 //____________________________________________________________________________________________
 
 int countNumberOfWords(string fileName); // Done.
@@ -65,7 +65,7 @@ string getWordForSearching(); // Done.
 bool searchForWordInFile(string fileName, string wordWanted); // Done.
 //____________________________________________________________________________________________
 
-int countWordOccurences(fstream& file, string searchWord); // Done.
+int countWordOccurences(string filename, string searchWord); // Done.
 //____________________________________________________________________________________________
 
 void allFileToUpperCase(string filename); // Done.
