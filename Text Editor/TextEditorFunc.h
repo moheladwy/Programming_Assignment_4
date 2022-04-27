@@ -29,13 +29,13 @@ int getUserChoice(); // Done.
 void executeUserChoice(int choice);
 //____________________________________________________________________________________________
 
-void addingContent(string fileName);
+void addingContent(string fileName); //Done
 //____________________________________________________________________________________________
 
-void displayContent(string fileName);
+void displayContent(string fileName); //Done
 //____________________________________________________________________________________________
 
-void emptyFileContent(string fileName);
+void emptyFileContent(string fileName); //Done
 //____________________________________________________________________________________________
 
 void encryptFileContent();
