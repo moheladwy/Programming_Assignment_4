@@ -323,3 +323,24 @@ void save(fstream& file) // Almost Done By Mohamed.
 {
     file.flush();
 }
+//____________________________________________________________________________________________
+void append(fstream& file)
+{
+    char fileName[100];
+    fstream myfile;
+    string userMessage;
+
+  cout << "Enter file name: ";
+  cin >> fileName;
+  cin.ignore();
+  strcat(fileName,".txt");
+  myfile.open(fileName,ios::app);
+  if (myfile.is_open())
+  {
+      cout<<"Write: ";
+      getline(cin,userMessage);
+      myfile<<userMessage<<endl;
+      myfile.close();
+  }
+  
+}
