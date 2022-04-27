@@ -178,6 +178,7 @@ bool searchForWordInFile(string fileName, string wordWanted)
             word = makeWordLowerCase(word);
             if (wordWanted == word)
             {
+                file.close();
                 return true;
             }
         }
@@ -186,7 +187,9 @@ bool searchForWordInFile(string fileName, string wordWanted)
     return false;
 }//____________________________________________________________________________________________
 // counting the number of times a word exists in a file // very strict counter
-int countWordOccurences(fstream& file, string searchWord){ // read only
+int countWordOccurences(string filename, string searchWord){ // read only
+    fstream file;
+    file.open(filename, ios::in);
     searchWord = makeWordLowerCase(searchWord);
     char letter;
     int counter = 0;
@@ -204,6 +207,8 @@ int countWordOccurences(fstream& file, string searchWord){ // read only
         }
         file.ignore(1);
     }
+
+    file.close();
     return counter;
 }
 //____________________________________________________________________________________________
