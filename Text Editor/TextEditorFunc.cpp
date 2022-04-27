@@ -332,19 +332,20 @@ void save(fstream& file) // Almost Done By Mohamed.
 void addingContent(string fileName) //Done by Amr
 {
   string line;
-  ofstream myfile(fileName.c_str(),ios::app);
-  cout<<"##################"<<"\n";
-  cout<<"### write here ###"<<"\n";
-  cout<<"##################"<<"\n";
+  fstream myFile;
+  myFile.open(fileName.c_str(), ios::app);
+  cout << "##################" << "\n";
+  cout << "### write here ###" << "\n";
+  cout << "##################" << "\n";
   while (true)
   {
-     getline(cin,line);
+     getline(cin, line);
      if(cin.eof())
       {
-        cout << "text added";
+        cout << "\n" << "text added." << "\n";
         break;
       }
-      myfile<<line<<"\n";
+      myFile << line << "\n";
  
   }
 }
