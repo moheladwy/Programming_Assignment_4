@@ -2,16 +2,10 @@
 #include <iostream>
 #include <cctype>
 #include <fstream>
+#include <sstream>
 #include <regex>
 #include <string>
 using namespace std;
-// your functions must be added in this file
-// READ FIRST
-// VERY IMPORTANT
-// OPEN AND CLOSE FILES INSIDE YOUR FUNCTION
-// YOU SHOULD TAKE A PARAMETER OF THE FILENAME ONLY AS A STRING
-// EG LOOK AT allFilesToLowerCase function below.
-
 //____________________________________________________________________________________________
 bool checkFileName(string fileName)
 {
@@ -19,32 +13,28 @@ bool checkFileName(string fileName)
     return regex_match(fileName, isValid);
 }
 //____________________________________________________________________________________________
-string getValidFileName(string turn = "")
+string getFileName(string turn = "")
 {
-    string fileName; bool checker; 
+    string fileName; bool checker;
     while (true)
     {
         fileName = "";
         while (fileName.empty())
         {
-            cout << "Enter the " << turn << " file Name : ";
+            cout << "Enter the " << turn << " file Name: ";
             getline(cin, fileName);
         }
         checker = checkFileName(fileName);
         if (checker)
         {
-            break;
+            return fileName;
         }
         else
         {
             cout << "Wrong Name of Text File it should be {(letters, numbers or both).txt}, Try again." << endl;
         }
     }
-
-    return fileName;
 }
-
-
 //____________________________________________________________________________________________
 bool checkValidFile(string fileName)
 {
@@ -88,12 +78,11 @@ void clearScreen()
 void mergeAnotherFile(fstream& file)
 {
     fstream file2;
-    string secondFileName = getValidFileName("Second");
+    string secondFileName = getFileName("Second");
     file2.open(secondFileName.c_str(), ios::in);
     file << file2.rdbuf();
     file2.close();
 }
-//____________________________________________________________________________________________
 //____________________________________________________________________________________________
 int countNumberOfWords(string fileName)
 {
@@ -132,7 +121,7 @@ int countNumberOfCharacters(string fileName)
 {
     fstream file;
     file.open(fileName.c_str(), ios::in);
-    int numberOfCharacters = 1;
+    int numberOfCharacters = 0;
     file.get();
     while (!file.eof() && !file.fail())
     {
@@ -140,7 +129,7 @@ int countNumberOfCharacters(string fileName)
         file.get();
     }
     file.close();
-    return numberOfCharacters;
+    return numberOfCharacters + 1;
 }
 //____________________________________________________________________________________________
 string makeWordLowerCase(string word)
@@ -178,28 +167,30 @@ bool searchForWordInFile(string fileName, string wordWanted)
             word = makeWordLowerCase(word);
             if (wordWanted == word)
             {
+                file.close();
                 return true;
             }
         }
     }
     file.close();
     return false;
-}//____________________________________________________________________________________________
+}
+//____________________________________________________________________________________________
 // counting the number of times a word exists in a file // very strict counter
-int countWordOccurences(fstream& file, string searchWord){ // read only
+int countWordOccurences(fstream& file, string searchWord) { // read only
     searchWord = makeWordLowerCase(searchWord);
     char letter;
     int counter = 0;
-    while(!file.eof()){
+    while (!file.eof() && !file.fail()) {
         string word;
-        while (file.peek()!=' ' && file.peek()!='\n' && file.peek()!=EOF){
+        while (file.peek() != ' ' && file.peek() != '\n' && file.peek() != EOF) {
             file.get(letter);
-            if (isalpha(letter)){
+            if (isalpha(letter)) {
                 letter = tolower(letter);
             }
             word += letter;
         }
-        if (word == searchWord){
+        if (word == searchWord) {
             counter += 1;
         }
         file.ignore(1);
@@ -211,7 +202,7 @@ int countWordOccurences(fstream& file, string searchWord){ // read only
 void allFileToUpperCase(string filename) { // read and write
     fstream originalFile, newFile;
     char letter;
-    originalFile.open(filename, ios::in);
+    originalFile.open(filename.c_str(), ios::in);
     newFile.open("newTemp.txt", ios::out);
     while (originalFile.peek() != EOF) {
         originalFile.get(letter);
@@ -230,7 +221,7 @@ void allFileToUpperCase(string filename) { // read and write
 void allFileToLowerCase(string filename) { // read and write
     fstream originalFile, newFile;
     char letter;
-    originalFile.open(filename, ios::in);
+    originalFile.open(filename.c_str(), ios::in);
     newFile.open("newTemp.txt", ios::out);
     while (originalFile.peek() != EOF) {
         originalFile.get(letter);
@@ -246,29 +237,30 @@ void allFileToLowerCase(string filename) { // read and write
 }
 //____________________________________________________________________________________________
 // converts the first letter of every word in the text file to capital letter
-void allFileToFirstCaps(string filename){
+void allFileToFirstCaps(string filename) {
     fstream originalFile, newFile;
     char letter;
-    originalFile.open(filename, ios::in);
+    originalFile.open(filename.c_str(), ios::in);
     newFile.open("newTemp.txt", ios::out);
-    if (originalFile.peek()!=EOF){
+    if (originalFile.peek() != EOF) {
         originalFile.get(letter);
         letter = toupper(letter);
         newFile << letter;
     }
-    while (originalFile.peek()!=EOF){
+    while (originalFile.peek() != EOF) {
         char nextChar = originalFile.get();
-        if ((nextChar == ' ' or nextChar == '\n') and isalpha(originalFile.peek())){
+        if ((nextChar == ' ' or nextChar == '\n') and isalpha(originalFile.peek())) {
             originalFile.unget();
             originalFile.get(letter);
             newFile << letter;
             originalFile.get(letter);
             letter = toupper(letter);
             newFile << letter;
-        } else {
+        }
+        else {
             originalFile.unget();
             originalFile.get(letter);
-            newFile << letter ;
+            newFile << letter;
         }
     }
     newFile.close();
@@ -277,4 +269,53 @@ void allFileToFirstCaps(string filename){
     remove(filename.c_str());
     rename("newTemp.txt", filename.c_str());
 }
+//____________________________________________________________________________________________
+bool checkUserChoice(string choice) // Done. By Mohamed.
+{
+    if ((choice.length() == 1 || choice.length() == 2))
+    {
+        // check if all the letters in the input is digit. 
+        for (auto letter : choice)
+        {
+            if (!isdigit(letter))
+            {
+                return false;
+            }
+        }
 
+        // check the range of the user choice. 
+        int userChoice = stoi(choice);
+        if (userChoice > 0 && userChoice < 17)
+        {
+            return true;
+        }
+    }
+    
+    return false;
+}
+//____________________________________________________________________________________________
+int getUserChoice() // Done By Mohamed.
+{
+    string getChoice = ""; 
+    int setChoice;
+    bool checker = true;
+    
+    while (checker)
+    {
+        while (getChoice.empty())
+        {
+            cout << "Enter your choice from the list above from [1:16] ya user ya habeby: ";
+            getline(cin, getChoice);
+        }
+
+        checker = checkUserChoice(getChoice);
+    }
+
+    setChoice = stoi(getChoice);
+    return setChoice;
+}
+//____________________________________________________________________________________________
+void save(fstream& file) // Almost Done By Mohamed.
+{
+    file.flush();
+}

@@ -5,12 +5,10 @@ amr have the functions [1:5]
 eladwy have the functions [6:10]
 bdr have the functions [11:15]
 */
-
-// only function headers with a brief comment is allowed in this file.
 using namespace std;
 //____________________________________________________________________________________________
 
-string getValidFileName(string turn = ""); // Done.
+string getFileName(string turn = ""); // Done.
 //____________________________________________________________________________________________
 
 bool checkFileName(string fileName); // Done.
@@ -20,6 +18,15 @@ bool checkValidFile(string fileName); // Done.
 //____________________________________________________________________________________________
 
 void mainMenu(); // Done.
+//____________________________________________________________________________________________
+
+bool checkUserChoice(string choice); // Done.
+//____________________________________________________________________________________________
+
+int getUserChoice(); // Done.
+//____________________________________________________________________________________________
+
+void executeUserChoice(int choice);
 //____________________________________________________________________________________________
 
 void addingContent();
@@ -55,22 +62,22 @@ string makeWordLowerCase(string word); // Done.
 string getWordForSearching(); // Done.
 //____________________________________________________________________________________________
 
-bool searchForWordInFile(string fileName, string wordWanted);
+bool searchForWordInFile(string fileName, string wordWanted); // Done.
 //____________________________________________________________________________________________
 
-void countNumberOfTimesWordExistsInFile();
+int countWordOccurences(fstream& file, string searchWord); // Done.
 //____________________________________________________________________________________________
 
-void turnContentToUpperCase();
+void allFileToUpperCase(string filename); // Done.
 //____________________________________________________________________________________________
 
-void turnContentToLowerCase();
+void allFileToLowerCase(string filename); // Done.
 //____________________________________________________________________________________________
 
-void turnFileContentToFirstCaps();
+void allFileToFirstCaps(string filename); // Done.
 //____________________________________________________________________________________________
 
-void save();
+void save(fstream& file); // Almost Done.
 //____________________________________________________________________________________________
 
 void clearScreen(); //Done.
