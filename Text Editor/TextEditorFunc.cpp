@@ -6,6 +6,11 @@
 #include <string>
 using namespace std;
 // your functions must be added in this file
+// READ FIRST
+// VERY IMPORTANT
+// OPEN AND CLOSE FILES INSIDE YOUR FUNCTION
+// YOU SHOULD TAKE A PARAMETER OF THE FILENAME ONLY AS A STRING
+// EG LOOK AT allFilesToLowerCase function below.
 
 //____________________________________________________________________________________________
 bool checkFileName(string fileName)
