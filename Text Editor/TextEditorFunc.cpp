@@ -194,28 +194,74 @@ int countWordOccurences(fstream& file, string searchWord){ // read only
 }
 
 // ------------------------
-// =========================ORIGINAL FILE IS OPENED THEN CLOSED TAKE CARE=======================
-//void allFileToUpperCase(fstream& file) { // read and write
-//    while (!file.eof()) {
-//        fstream file2;
-//        file2.open("tempfile.txt", ios::out);
-//
-//        char letter;
-//        file.get(letter);
-//        letter = toupper(letter);
-//        file2 << letter;
-//    }
-//    file.close()
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//    }
+// open and closing file done in the function
+void allFileToUpperCase(string filename) { // read and write
+    fstream originalFile, newFile;
+    char letter;
+    originalFile.open(filename, ios::in);
+    newFile.open("newTemp.txt", ios::out);
+    while (originalFile.peek() != EOF) {
+        originalFile.get(letter);
+        letter = toupper(letter);
+        newFile << letter;
+    }
+    newFile.close();
+    originalFile.close();
+
+    remove(filename.c_str());
+    rename("newTemp.txt", filename.c_str());
+
+}
+
+// open and closing file done in the function
+void allFileToLowerCase(string filename) { // read and write
+    fstream originalFile, newFile;
+    char letter;
+    originalFile.open(filename, ios::in);
+    newFile.open("newTemp.txt", ios::out);
+    while (originalFile.peek() != EOF) {
+        originalFile.get(letter);
+        letter = tolower(letter);
+        newFile << letter;
+    }
+    newFile.close();
+    originalFile.close();
+
+    remove(filename.c_str());
+    rename("newTemp.txt", filename.c_str());
+
+}
+
+// converts the first letter of every word in the text file to capital letter
+void allFileToFirstCaps(string filename){
+    fstream originalFile, newFile;
+    char letter;
+    originalFile.open(filename, ios::in);
+    newFile.open("newTemp.txt", ios::out);
+    if (originalFile.peek()!=EOF){
+        originalFile.get(letter);
+        letter = toupper(letter);
+        newFile << letter;
+    }
+    while (originalFile.peek()!=EOF){
+        char nextChar = originalFile.get();
+        if ((nextChar == ' ' or nextChar == '\n') and isalpha(originalFile.peek())){
+            originalFile.unget();
+            originalFile.get(letter);
+            newFile << letter;
+            originalFile.get(letter);
+            letter = toupper(letter);
+            newFile << letter;
+        } else {
+            originalFile.unget();
+            originalFile.get(letter);
+            newFile << letter ;
+        }
+    }
+    newFile.close();
+    originalFile.close();
+
+    remove(filename.c_str());
+    rename("newTemp.txt", filename.c_str());
+}
+
