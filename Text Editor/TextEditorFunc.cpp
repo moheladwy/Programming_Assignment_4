@@ -372,3 +372,91 @@ void emptyFileContent(string fileName) //Done by Amr
     myFile.open(fileName.c_str(), ios::trunc);
     myFile.close();
 }
+//__________________________________________________________________________________________
+void encryptFileContent(string fileName) //Done by Amr
+{
+
+    string  line,newline;
+    int stage1,stage2;
+    fstream myfile(fileName.c_str(),ios::in);
+    fstream newfile("newTemp.txt",ios::out);
+  if (myfile.is_open())
+  {
+      while (getline(myfile,line))
+      {
+        newline="";
+        for (int i = 0; i < line.length(); i++)
+        {
+        if (isupper(line[i]))
+        {           
+          stage1 = line[i] - 28;
+          stage2 = 127 - stage2;
+        }
+        else if (islower(line[i]))
+        {
+            stage1 = line[i] - 60;
+            stage2= 159 - stage2;
+        }
+        else if (isspace(line[i]))
+        {
+            stage2 = ' ';
+        }
+        
+         cout<<char(stage2);
+         newline+=char(stage2);
+        }
+        newfile<< newline<<"\n";
+        cout<<endl;
+      }
+       myfile.close();
+       newfile.close();
+      remove(fileName.c_str());
+      rename("newTemp.txt", fileName.c_str());
+     
+  }
+  
+}
+//___________________________________________________________________
+void decryptingFileContent(string fileName) //Done by Amr
+{
+
+    string  line,newline;
+    int stage1,stage2;
+    fstream myfile(fileName.c_str(),ios::in);
+    fstream newfile("newTemp.txt",ios::out);
+  if (myfile.is_open())
+  {
+      while (getline(myfile,line))
+      {
+        newline="";
+        for (int i = 0; i < line.length(); i++)
+        {
+        if (isupper(line[i]))
+        {           
+          stage1 = 127 - line[i];
+          stage2 = stage1 + 28;
+        }
+        else if (islower(line[i]))
+        {
+            stage1 = 159-line[i];
+            stage2= stage1 + 60;
+        }
+        else if (isspace(line[i]))
+        {
+            stage2 = ' ';
+        }
+        
+         cout<<char(stage2);
+         newline+=char(stage2);
+        }
+        newfile<< newline<<"\n";
+        cout<<endl;
+      }
+       myfile.close();
+       newfile.close();
+      remove(fileName.c_str());
+      rename("newTemp.txt", fileName.c_str());
+     
+  }
+  
+}
