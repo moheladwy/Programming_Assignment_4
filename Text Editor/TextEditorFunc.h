@@ -38,10 +38,10 @@ void displayContent(string fileName); //Done
 void emptyFileContent(string fileName); //Done
 //____________________________________________________________________________________________
 
-void encryptFileContent();
+void encryptFileContent(); //Done
 //____________________________________________________________________________________________
 
-void decryptingFileContent();
+void decryptingFileContent(); //Done
 //____________________________________________________________________________________________
 
 void mergeAnotherFile(string fileName); // Done.
