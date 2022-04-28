@@ -388,23 +388,9 @@ void encryptFileContent(string fileName) //Done by Amr
         newline="";
         for (int i = 0; i < line.length(); i++)
         {
-        if (isupper(line[i]))
-        {           
-          stage1 = line[i] - 28;
-          stage2 = 127 - stage2;
-        }
-        else if (islower(line[i]))
-        {
-            stage1 = line[i] - 60;
-            stage2= 159 - stage2;
-        }
-        else if (isspace(line[i]))
-        {
-            stage2 = ' ';
-        }
-        
-         cout<<char(stage2);
-         newline+=char(stage2);
+         line[i]++;
+         cout<<line[i];
+         newline+=line[i];
         }
         newfile<< newline<<"\n";
         cout<<endl;
@@ -432,23 +418,9 @@ void decryptingFileContent(string fileName) //Done by Amr
         newline="";
         for (int i = 0; i < line.length(); i++)
         {
-        if (isupper(line[i]))
-        {           
-          stage1 = 127 - line[i];
-          stage2 = stage1 + 28;
-        }
-        else if (islower(line[i]))
-        {
-            stage1 = 159-line[i];
-            stage2= stage1 + 60;
-        }
-        else if (isspace(line[i]))
-        {
-            stage2 = ' ';
-        }
-        
-         cout<<char(stage2);
-         newline+=char(stage2);
+         line[i]--;
+         cout<<line[i];
+         newline+=line[i];
         }
         newfile<< newline<<"\n";
         cout<<endl;
