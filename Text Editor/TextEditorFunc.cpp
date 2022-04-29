@@ -389,11 +389,9 @@ void encryptFileContent(string fileName) //Done by Amr
         for (int i = 0; i < line.length(); i++)
         {
          line[i]++;
-         cout<<line[i];
          newline+=line[i];
         }
         newfile<< newline<<"\n";
-        cout<<endl;
       }
        myfile.close();
        newfile.close();
@@ -419,11 +417,9 @@ void decryptingFileContent(string fileName) //Done by Amr
         for (int i = 0; i < line.length(); i++)
         {
          line[i]--;
-         cout<<line[i];
          newline+=line[i];
         }
         newfile<< newline<<"\n";
-        cout<<endl;
       }
        myfile.close();
        newfile.close();
