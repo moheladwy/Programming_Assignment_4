@@ -8,28 +8,22 @@ bdr have the functions [11:15]
 using namespace std;
 //____________________________________________________________________________________________
 
-string getAValidFileName(string turn = ""); //DONE
+string getAValidFileName(string turn = ""); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-
-// NOTE: Must be removed as it is a function used only once in the getAValidFileName() function
-// therefore it should not be included in the file. - Yusuf Badr
-//bool checkFileName(string fileName); // Done.
+bool checkValidFile(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-bool checkValidFile(string fileName); // Done.
+void printMainMenu(); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-void printMainMenu(); // DONE
+bool checkUserChoice(string choice); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-bool checkUserChoice(string choice); // Done.
+int getUserChoice(); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int getUserChoice(); // Done.
-//____________________________________________________________________________________________
-
-void executeUserChoice(int choice);
+void executeUserChoice(int choice, string fileName, string searchWord); // Done - Eladwy.
 //____________________________________________________________________________________________
 
 void addingContent(string fileName); //Done
@@ -41,31 +35,31 @@ void displayContent(string fileName); //Done
 void emptyFileContent(string fileName); //Done
 //____________________________________________________________________________________________
 
-void encryptFileContent(); //Done
+void encryptFileContent(string fileName); //Done
 //____________________________________________________________________________________________
 
-void decryptingFileContent(); //Done
+void decryptFileContent(string fileName); //Done
 //____________________________________________________________________________________________
 
-void mergeAnotherFile(string fileName); // Done.
+void mergeAnotherFile(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int countNumberOfWords(string fileName); // Done.
+int countNumberOfWords(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int countNumberOfCharacters(string fileName); // Done.
+int countNumberOfCharacters(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int countNumberOfLines(string fileName); // Done.
+int countNumberOfLines(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-string makeWordLowerCase(string word); // Done.
+string makeWordLowerCase(string word); // Done - Eladwy.
 //____________________________________________________________________________________________
  
-string getWordForSearching(); // Done.
+string getWordForSearching(); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-bool searchForWordInFile(string fileName, string wordWanted); // Done.
+bool searchForWordInFile(string fileName, string wordWanted); // Done - Eladwy.
 //____________________________________________________________________________________________
 
 int countWordOccurences(string filename, string searchWord); // DONE - Yusuf Badr
@@ -80,17 +74,8 @@ void allFileToLowerCase(string filename); // DONE - Yusuf Badr
 void allFileToFirstCaps(string filename); //DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
-
-
-/*
-consider deleting - no need for this function - Yusuf Badr
-
-void save(fstream& file); // Almost Done.
-//____________________________________________________________________________________________
-*/
-
-
 void saveFile(string existingFileName); //DONE - Yusuf Badr
+//____________________________________________________________________________________________
 
 void clearScreen(); //Done.
 //____________________________________________________________________________________________
