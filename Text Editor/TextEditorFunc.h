@@ -8,16 +8,19 @@ bdr have the functions [11:15]
 using namespace std;
 //____________________________________________________________________________________________
 
-string getFileName(string turn = ""); // Done.
+string getAValidFileName(string turn = ""); //DONE
 //____________________________________________________________________________________________
 
-bool checkFileName(string fileName); // Done.
+
+// NOTE: Must be removed as it is a function used only once in the getAValidFileName() function
+// therefore it should not be included in the file. - Yusuf Badr
+//bool checkFileName(string fileName); // Done.
 //____________________________________________________________________________________________
 
 bool checkValidFile(string fileName); // Done.
 //____________________________________________________________________________________________
 
-void mainMenu(); // Done.
+void printMainMenu(); // DONE
 //____________________________________________________________________________________________
 
 bool checkUserChoice(string choice); // Done.
@@ -65,20 +68,29 @@ string getWordForSearching(); // Done.
 bool searchForWordInFile(string fileName, string wordWanted); // Done.
 //____________________________________________________________________________________________
 
-int countWordOccurences(string filename, string searchWord); // Done.
+int countWordOccurences(string filename, string searchWord); // DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
-void allFileToUpperCase(string filename); // Done.
+void allFileToUpperCase(string filename); // DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
-void allFileToLowerCase(string filename); // Done.
+void allFileToLowerCase(string filename); // DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
-void allFileToFirstCaps(string filename); // Done.
+void allFileToFirstCaps(string filename); //DONE - Yusuf Badr
 //____________________________________________________________________________________________
+
+
+
+/*
+consider deleting - no need for this function - Yusuf Badr
 
 void save(fstream& file); // Almost Done.
 //____________________________________________________________________________________________
+*/
+
+
+void saveFile(string existingFileName); //DONE - Yusuf Badr
 
 void clearScreen(); //Done.
 //____________________________________________________________________________________________

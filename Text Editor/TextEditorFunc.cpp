@@ -9,11 +9,11 @@ using namespace std;
 //____________________________________________________________________________________________
 bool checkFileName(string fileName)
 {
-    regex isValid("^[\\w\\-. ]+\\.txt$");
+    regex isValid("^[\\w\\-. ]+\\.txt$"); // done by Yusuf
     return regex_match(fileName, isValid);
 }
 //____________________________________________________________________________________________
-string getFileName(string turn = "")
+string getAValidFileName(string turn = "")
 {
     string fileName; bool checker;
     while (true)
@@ -21,7 +21,7 @@ string getFileName(string turn = "")
         fileName = "";
         while (fileName.empty())
         {
-            cout << "Enter the " << turn << " file Name: ";
+            cout << "Enter the" << turn << " file Name:\n";
             getline(cin, fileName);
         }
         checker = checkFileName(fileName);
@@ -31,7 +31,7 @@ string getFileName(string turn = "")
         }
         else
         {
-            cout << "Wrong Name of Text File it should be {(letters, numbers or both).txt}, Try again." << endl;
+            cout << "Incorrect format\nMust contain only: letters, numbers, \'_\', \'-\', \'.\', \' \', followed by .txt\n" << endl;
         }
     }
 }
@@ -48,7 +48,7 @@ bool checkValidFile(string fileName)
     return checker;
 }
 //____________________________________________________________________________________________
-void mainMenu()
+void printMainMenu()
 {
     cout << "1.  Add new text to the end of the file." << endl;
     cout << "2.  Display the content of the file." << endl;
@@ -78,7 +78,7 @@ void clearScreen()
 void mergeAnotherFile(string fileName)
 {
     fstream file, file2;
-    string inputLine, secondFileName = getFileName("Second");
+    string inputLine, secondFileName = getAValidFileName(" Second");
     file.open(fileName.c_str(), ios::app);
     file2.open(secondFileName.c_str(), ios::in);
     while (getline(file2, inputLine))
@@ -182,7 +182,7 @@ bool searchForWordInFile(string fileName, string wordWanted)
 }
 //____________________________________________________________________________________________
 // counting the number of times a word exists in a file // very strict counter
-int countWordOccurences(string filename, string searchWord){ // read only
+int countWordOccurences(string filename, string searchWord){ // read only //DONE - Yusuf Badr
     fstream file;
     file.open(filename, ios::in);
     searchWord = makeWordLowerCase(searchWord);
@@ -208,7 +208,7 @@ int countWordOccurences(string filename, string searchWord){ // read only
 }
 //____________________________________________________________________________________________
 // open and closing file done in the function
-void allFileToUpperCase(string filename) { // read and write
+void allFileToUpperCase(string filename) { // read and write //DONE - Yusuf Badr
     fstream originalFile, newFile;
     char letter;
     originalFile.open(filename.c_str(), ios::in);
@@ -227,7 +227,7 @@ void allFileToUpperCase(string filename) { // read and write
 }
 //____________________________________________________________________________________________
 // open and closing file done in the function
-void allFileToLowerCase(string filename) { // read and write
+void allFileToLowerCase(string filename) { // read and write //DONE - Yusuf Badr
     fstream originalFile, newFile;
     char letter;
     originalFile.open(filename.c_str(), ios::in);
@@ -246,7 +246,7 @@ void allFileToLowerCase(string filename) { // read and write
 }
 //____________________________________________________________________________________________
 // converts the first letter of every word in the text file to capital letter
-void allFileToFirstCaps(string filename) {
+void allFileToFirstCaps(string filename) { //DONE - Yusuf Badr
     fstream originalFile, newFile;
     char letter;
     originalFile.open(filename.c_str(), ios::in);
@@ -278,6 +278,59 @@ void allFileToFirstCaps(string filename) {
     remove(filename.c_str());
     rename("newTemp.txt", filename.c_str());
 }
+
+//____________________________________________________________________________________________
+
+void saveFile(string existingFileName){ //DONE - Yusuf Badr
+    string choice;
+    // getting yes or no with defensive programming
+    bool validInput = false;
+    while (!validInput){
+        cout << "Would you like to save the file AGAIN with a different name (y)|(n):\n";
+
+        getline(cin, choice);
+        if (choice.length() == 1){
+            switch (choice[0]){
+                case 'y':
+                case 'Y':
+                    validInput = true;
+                    break;
+                case 'n':
+                case 'N':
+                    validInput = true;
+                    break;
+                default:
+                    cout << "invalid character try again.\n";
+            }
+        } else {
+            cout << "Please enter one CHARACTER y/n\n";
+        }
+    }
+
+
+    choice[0] = tolower(choice[0]);
+    if (choice[0] == 'y') {
+        string newFilename = getAValidFileName(" other new");
+        while (newFilename == existingFileName){
+            cout << "The new name should be different from the old one\n";
+            newFilename = getAValidFileName(" other new");
+        }
+        fstream newFile;
+        newFile.open(newFilename.c_str(), ios::out);
+        fstream oldFile;
+        oldFile.open(existingFileName.c_str(), ios::in);
+        if (newFile.is_open()) {
+            //copy
+            newFile << oldFile.rdbuf();
+        }
+        newFile.close();
+        oldFile.close();
+        cout << "Saved a copy as new file successfully!";
+    } else {
+        cout << "OK, saved original file only successfully!";
+    }
+}
+
 //____________________________________________________________________________________________
 bool checkUserChoice(string choice) // Done. By Mohamed.
 {
