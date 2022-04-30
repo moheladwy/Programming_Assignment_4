@@ -44,25 +44,25 @@ void decryptFileContent(string fileName); //Done
 void mergeAnotherFile(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int countNumberOfWords(string fileName); // Done - Eladwy.
+void countNumberOfWords(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int countNumberOfCharacters(string fileName); // Done - Eladwy.
+void countNumberOfCharacters(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int countNumberOfLines(string fileName); // Done - Eladwy.
+void countNumberOfLines(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
 string makeWordLowerCase(string word); // Done - Eladwy.
 //____________________________________________________________________________________________
- 
+
 string getWordForSearching(); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-bool searchForWordInFile(string fileName, string wordWanted); // Done - Eladwy.
+void searchForWordInFile(string fileName, string wordWanted); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int countWordOccurences(string filename, string searchWord); // DONE - Yusuf Badr
+void countWordOccurences(string filename, string searchWord); // DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
 void allFileToUpperCase(string filename); // DONE - Yusuf Badr

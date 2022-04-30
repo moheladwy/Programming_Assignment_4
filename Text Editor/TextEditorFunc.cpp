@@ -33,13 +33,13 @@ string getAValidFileName(string turn = "")
 //____________________________________________________________________________________________
 bool checkValidFile(string fileName)
 {
-    fstream outfile; bool checker = false;
-    outfile.open(fileName.c_str(), ios::in);
-    if (outfile.is_open())
+    fstream theFile; bool checker = false;
+    theFile.open(fileName.c_str(), ios::in);
+    if (theFile.is_open())
     {
         checker = true;
     }
-    outfile.close();
+    theFile.close();
     return checker;
 }
 //____________________________________________________________________________________________
@@ -73,7 +73,16 @@ void clearScreen()
 void mergeAnotherFile(string fileName)
 {
     fstream file, file2;
-    string inputLine, secondFileName = getAValidFileName(" Second");
+    bool isValidFile = false;
+    string inputLine, secondFileName;
+    while (!isValidFile) {
+        secondFileName = getAValidFileName(" Second");
+        isValidFile = checkValidFile(secondFileName);
+        if (!isValidFile)
+        {
+            cout << "The file name is wrong or the file does not exist in the directory, Try again.\n";
+        }
+    }
     file.open(fileName.c_str(), ios::app);
     file2.open(secondFileName.c_str(), ios::in);
     while (getline(file2, inputLine))
@@ -82,9 +91,10 @@ void mergeAnotherFile(string fileName)
     }
     file.close();
     file2.close();
+    cout << "Merging files done.\n";
 }
 //____________________________________________________________________________________________
-int countNumberOfWords(string fileName)
+void countNumberOfWords(string fileName)
 {
     fstream file;
     file.open(fileName.c_str(), ios::in);
@@ -99,10 +109,15 @@ int countNumberOfWords(string fileName)
         }
     }
     file.close();
-    return numberOfWords;
+    if (numberOfWords == 0) {
+        cout << "There is no words in this file.\n";
+    }
+    else {
+        cout << "The number of Words in the file = " << numberOfWords << "\n";
+    }
 }
 //____________________________________________________________________________________________
-int countNumberOfLines(string fileName)
+void countNumberOfLines(string fileName)
 {
     fstream file;
     int numberOfLines = 0;
@@ -113,10 +128,10 @@ int countNumberOfLines(string fileName)
         numberOfLines++;
     }
     file.close();
-    return numberOfLines;
+    cout << "The number of the Lines in the file = " << numberOfLines << "\n";
 }
 //____________________________________________________________________________________________
-int countNumberOfCharacters(string fileName)
+void countNumberOfCharacters(string fileName)
 {
     fstream file;
     file.open(fileName.c_str(), ios::in);
@@ -129,7 +144,7 @@ int countNumberOfCharacters(string fileName)
         file.get();
     }
     file.close();
-    return numberOfCharacters;
+    cout << "The number of the characters in the file = " << numberOfCharacters << "\n";
 }
 //____________________________________________________________________________________________
 string makeWordLowerCase(string word)
@@ -153,10 +168,11 @@ string getWordForSearching()
     return word;
 }
 //____________________________________________________________________________________________
-bool searchForWordInFile(string fileName, string searchWord)
+void searchForWordInFile(string fileName, string searchWord)
 {
     fstream file;
     string inputLine, word;
+    bool checkWord = false;
     file.open(fileName.c_str(), ios::in);
     while (getline(file, inputLine))
     {
@@ -166,22 +182,27 @@ bool searchForWordInFile(string fileName, string searchWord)
             word = makeWordLowerCase(word);
             if (searchWord == word)
             {
-                file.close();
-                return true;
+                checkWord = true;
+                break;
             }
         }
     }
     file.close();
-    return false;
+    if (checkWord) {
+        cout << "\n" << "the word exists in the file.\n";
+    }
+    else {
+        cout << "\n" << "the word does not exist in the file.\n";
+    }
 }
 //____________________________________________________________________________________________
 // counting the number of times a word exists in a file. // very strict counter. // read only. // DONE - Yusuf Badr.
-int countWordOccurences(string filename, string searchWord) {
+void countWordOccurences(string filename, string searchWord) {
     fstream file;
     searchWord = makeWordLowerCase(searchWord);
     char letter;
     string word;
-    int counter = 0;
+    int numberOfOccurences = 0;
     file.open(filename, ios::in);
     while (!file.eof() && !file.fail()) {
         word = "";
@@ -193,15 +214,15 @@ int countWordOccurences(string filename, string searchWord) {
             word += letter;
         }
         if (word == searchWord) {
-            counter += 1;
+            numberOfOccurences += 1;
         }
         file.ignore(1);
     }
     file.close();
-    return counter;
+    cout << "The Number of the occurences of the word {" << searchWord << "} in the file = " << numberOfOccurences << "\n";
 }
 //____________________________________________________________________________________________
-// open and closing file done in the function. // read and write. // DONE - Yusuf Badr.
+// DONE - Yusuf Badr.
 void allFileToUpperCase(string filename) {
     fstream originalFile, newFile;
     char letter;
@@ -222,7 +243,7 @@ void allFileToUpperCase(string filename) {
     rename("newTemp.txt", filename.c_str());
 }
 //____________________________________________________________________________________________
-// open and closing file done in the function. // read and write. // DONE - Yusuf Badr.
+// DONE - Yusuf Badr.
 void allFileToLowerCase(string filename) {
     fstream originalFile, newFile;
     char letter;
@@ -520,42 +541,31 @@ void executeUserChoice(int choice, string fileName, string searchWord) // Done -
 
         case 6: {
             mergeAnotherFile(fileName);
-            cout << "Merging files is done.\n";
             break;
         }
 
         case 7: {
-            int numberOfWords = countNumberOfWords(fileName);
-            cout << "The number of the Words in the file = " << numberOfWords << "\n";
+            countNumberOfWords(fileName);
             break;
         }
 
         case 8: {
-            int numberOfChars = countNumberOfCharacters(fileName);
-            cout << "The number of the characters in the file = " << numberOfChars << "\n";
+            countNumberOfCharacters(fileName);
             break;
         }
 
         case 9: {
-            int numberOfLines = countNumberOfLines(fileName);
-            cout << "The number of the Lines in the file = " << numberOfLines << "\n";
+            countNumberOfLines(fileName);
             break;
         }
 
         case 10: {
-            bool checkWord = searchForWordInFile(fileName, searchWord);
-            if (checkWord) {
-                cout << "\n" << "the word exists in the file.\n";
-            }
-            else {
-                cout << "\n" << "the word does not exist in the file.\n";
-            }
+            searchForWordInFile(fileName, searchWord);
             break;
         }
 
         case 11: {
-            int numberOfOccurences = countWordOccurences(fileName, searchWord);
-            cout << "The Number of the occurences of the word {" << searchWord << "} in the file = " << numberOfOccurences << "\n";
+            countWordOccurences(fileName, searchWord);
             break;
         }
 
