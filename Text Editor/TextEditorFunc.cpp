@@ -70,9 +70,27 @@ void clearScreen()
     system("CLS");
 }
 //____________________________________________________________________________________________
-void openFile(){
-
+void createOriginalFile(string fileName){
+    fstream originalFile;
+    originalFile.open(fileName.c_str(), ios::in);
+    if (originalFile.is_open()){
+        cout << "This file does indeed exists and will be used for your preferred operations\n";
+    } else {
+        originalFile.open(fileName.c_str(), ios::out);
+        cout << "This is a new file that have been created for you!";
+    }
+    originalFile.close();
 }
+
+
+string createTempOriginalFile(){
+    fstream file;
+    string fileName = "tempOfOriginal.txt";
+    file.open(fileName.c_str(), ios::out);
+    file.close();
+    return fileName;
+}
+
 
 //____________________________________________________________________________________________
 void mergeAnotherFile(string fileName)
@@ -208,7 +226,7 @@ void countWordOccurences(string fileName, string searchWord) {
     char letter;
     string word;
     int numberOfOccurences = 0;
-    file.open(fileName, ios::in);
+    file.open(fileName.c_str(), ios::in);
     while (!file.eof() && !file.fail()) {
         word = "";
         while (file.peek() != ' ' && file.peek() != '\n' && file.peek() != EOF) {
@@ -311,12 +329,13 @@ void allFileToFirstCaps(string fileName) {
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
-void saveFile(string existingFileName, string tempFileName) {
-    string choice = "";
+void saveFile(string originalFileName, string tempOriginalFileName) {
+
     // getting yes or no with defensive programming.
+    string choice = "";
     bool validInput = false;
     while (!validInput) {
-        cout << "Would you like to save the file AGAIN with a different name (y)|(n): ";
+        cout << "Would you like to save the current changes of this file? (y)|(n): ";
         getline(cin, choice);
 
         if (choice.length() == 1) {
@@ -337,11 +356,48 @@ void saveFile(string existingFileName, string tempFileName) {
             cout << "Please enter one CHARACTER y/n\n";
         }
     }
-
     choice[0] = tolower(choice[0]);
+
+    if (choice[0] == 'y') {
+        remove(originalFileName.c_str());
+        rename(tempOriginalFileName.c_str(), originalFileName.c_str());
+    }
+    else {
+        remove(tempOriginalFileName.c_str());
+        cout << "Changes not saved!\n";
+    }
+
+    // ------
+
+    // getting yes or no with defensive programming.
+    choice = "";
+    validInput = false;
+    while (!validInput) {
+        cout << "Would you like to save the current changes of this file? (y)|(n): ";
+        getline(cin, choice);
+        if (choice.length() == 1) {
+            switch (choice[0]) {
+                case 'y':
+                case 'Y':
+                    validInput = true;
+                    break;
+                case 'n':
+                case 'N':
+                    validInput = true;
+                    break;
+                default:
+                    cout << "invalid character try again.\n";
+            }
+        }
+        else {
+            cout << "Please enter one CHARACTER y/n\n";
+        }
+    }
+    choice[0] = tolower(choice[0]);
+
     if (choice[0] == 'y') {
         string newFileName = getAValidFileName(" other new");
-        while (newFileName == existingFileName) {
+        while (newFileName == originalFileName) {
             cout << "The new name should be different from the old one.\n";
             newFileName = getAValidFileName(" other new");
         }
@@ -349,7 +405,7 @@ void saveFile(string existingFileName, string tempFileName) {
         fstream newFile;
         fstream oldFile;
         newFile.open(newFileName.c_str(), ios::out);
-        oldFile.open(existingFileName.c_str(), ios::in);
+        oldFile.open(originalFileName.c_str(), ios::in);
 
         if (newFile.is_open()) {
             //copying the content from the old one.
