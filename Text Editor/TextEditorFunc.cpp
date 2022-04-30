@@ -602,7 +602,7 @@ void executeUserChoice(int choice, string fileName, string searchWord) // Done -
         }
     }
     else {
-        cout << "Thanks for using our Text File Program.\n";
+        cout << "Thanks for using our Text File Editor Program.\n";
     }
 }
 //____________________________________________________________________________________________
