@@ -8,6 +8,6 @@ using namespace std;
 
 int main()
 {
-	cout << "Fuckkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk Exaaaaaaaaaaaaaaaaaaaaaams أعععععععععععععععععععععععععععععععععععع";
+	cout << "Fuckkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk Exaaaaaaaaaaaaaaaaaaaaaams";
 	return 0;
 }
