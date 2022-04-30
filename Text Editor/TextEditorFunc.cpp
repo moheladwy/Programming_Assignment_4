@@ -411,7 +411,7 @@ void addingContent(string fileName) //Done by Amr.
     fstream myFile;
     myFile.open(fileName.c_str(), ios::app);
     cout << "###############################################\n";
-    cout << "### write here or type Ctrl+Z+Enter to stop ###\n";
+    cout << "### write here or press Ctrl+Z+Enter to stop ###\n";
     cout << "###############################################\n";
     while (true)
     {
