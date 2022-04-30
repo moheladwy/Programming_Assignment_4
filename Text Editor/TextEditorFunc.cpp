@@ -517,7 +517,7 @@ void decryptFileContent(string fileName) //Done by Amr
     }
 }
 //____________________________________________________________________________________________
-void executeUserChoice(int choice, string fileName, string searchWord) // Done - Eladwy.
+void executeUserChoice(int choice, string fileName, string searchWord, string originalFileName) // Done - Eladwy.
 {
     if (choice != 16) {
         switch (choice) {
@@ -593,7 +593,7 @@ void executeUserChoice(int choice, string fileName, string searchWord) // Done -
         }
 
         case 15: {
-            saveFile(fileName);
+            saveFile(originalFileName, fileName);
             break;
         }
 
