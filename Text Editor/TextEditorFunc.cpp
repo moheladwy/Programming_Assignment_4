@@ -79,7 +79,7 @@ void mergeAnotherFile(string fileName)
     isValidFile = checkValidFile(secondFileName);
     if (!isValidFile)
     {
-        cout << "the file does not exist in the directory, I created for you.\n";
+        cout << "the file does not exist in the directory, I created for you with the Name that you entered.\n";
         file2.open(secondFileName.c_str(), ios::out);
         file2.close();
     }
@@ -189,10 +189,10 @@ void searchForWordInFile(string fileName, string searchWord)
     }
     file.close();
     if (checkWord) {
-        cout << "\n" << "the word exists in the file.\n";
+        cout << "\n" << "the word {"<< searchWord <<"} exists in the file.\n";
     }
     else {
-        cout << "\n" << "the word does not exist in the file.\n";
+        cout << "\n" << "the word {"<< searchWord <<"} does not exist in the file.\n";
     }
 }
 //____________________________________________________________________________________________
@@ -219,7 +219,7 @@ void countWordOccurences(string fileName, string searchWord) {
         file.ignore(1);
     }
     file.close();
-    cout << "The Number of the occurences of the word in the file = " << numberOfOccurences << "\n";
+    cout << "The Number of the occurences of the word {" << searchWord << "} in the file = " << numberOfOccurences << "\n";
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
