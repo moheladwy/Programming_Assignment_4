@@ -70,6 +70,11 @@ void clearScreen()
     system("CLS");
 }
 //____________________________________________________________________________________________
+void openFile(){
+
+}
+
+//____________________________________________________________________________________________
 void mergeAnotherFile(string fileName)
 {
     fstream file, file2;
@@ -606,3 +611,4 @@ void executeUserChoice(int choice, string fileName, string searchWord) // Done -
     }
 }
 //____________________________________________________________________________________________
+
