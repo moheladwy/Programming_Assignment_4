@@ -73,15 +73,15 @@ void clearScreen()
 void mergeAnotherFile(string fileName)
 {
     fstream file, file2;
-    bool isValidFile = false;
+    bool isValidFile;
     string inputLine, secondFileName;
-    while (!isValidFile) {
-        secondFileName = getAValidFileName(" Second");
-        isValidFile = checkValidFile(secondFileName);
-        if (!isValidFile)
-        {
-            cout << "The file name is wrong or the file does not exist in the directory, Try again.\n";
-        }
+    secondFileName = getAValidFileName(" Second");
+    isValidFile = checkValidFile(secondFileName);
+    if (!isValidFile)
+    {
+        cout << "the file does not exist in the directory, I created for you.\n";
+        file2.open(secondFileName.c_str(), ios::out);
+        file2.close();
     }
     file.open(fileName.c_str(), ios::app);
     file2.open(secondFileName.c_str(), ios::in);
