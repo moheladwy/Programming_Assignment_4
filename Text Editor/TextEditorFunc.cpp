@@ -410,9 +410,9 @@ void addingContent(string fileName) //Done by Amr.
     string line;
     fstream myFile;
     myFile.open(fileName.c_str(), ios::app);
-    cout << "###############################################\n";
+    cout << "################################################\n";
     cout << "### write here or press Ctrl+Z+Enter to stop ###\n";
-    cout << "###############################################\n";
+    cout << "################################################\n";
     while (true)
     {
         getline(cin, line);
