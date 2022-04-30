@@ -428,7 +428,6 @@ void encryptFileContent(string fileName) // Done by Amr.
 {
 
     string line, newline;
-    int stage1, stage2;
     fstream myFile;
     fstream newFile;
 
@@ -461,7 +460,6 @@ void decryptFileContent(string fileName) //Done by Amr
 {
 
     string line, newline;
-    int stage1, stage2;
     fstream myFile;
     fstream newFile;
 
