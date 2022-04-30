@@ -81,8 +81,7 @@ void createOriginalFile(string fileName){
     }
     originalFile.close();
 }
-
-
+//____________________________________________________________________________________________
 string createTempOriginalFile(){
     fstream file;
     string fileName = "tempOfOriginal.txt";
@@ -90,8 +89,6 @@ string createTempOriginalFile(){
     file.close();
     return fileName;
 }
-
-
 //____________________________________________________________________________________________
 void mergeAnotherFile(string fileName)
 {

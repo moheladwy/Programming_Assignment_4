@@ -68,7 +68,6 @@ void countWordOccurences(string filename, string searchWord); // DONE - Yusuf Ba
 void allFileToUpperCase(string filename); // DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
-
 void allFileToLowerCase(string filename); // DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
@@ -80,6 +79,9 @@ void saveFile(string originalFileName, string tempOriginalFileName); //DONE - Yu
 
 void createOriginalFile(string fileName);
 //____________________________________________________________________________________________
+
 void clearScreen(); //Done.
 //____________________________________________________________________________________________
+
 string createTempOriginalFile(); // Done
+//____________________________________________________________________________________________
