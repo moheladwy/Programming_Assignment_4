@@ -10,7 +10,7 @@ using namespace std;
 string getAValidFileName(string turn = "")
 {
     string fileName; bool checker;
-    regex isValid("^[\\w\\-. ]+\\.txt$"); // Done. by Eladwy.
+    regex isValid("^[\\w\\-. ]+\\.txt$"); // Done. by Yusuf
     while (true)
     {
         fileName = "";
@@ -204,7 +204,7 @@ void countWordOccurences(string fileName, string searchWord) {
     string word;
     int numberOfOccurences = 0;
     file.open(fileName, ios::in);
-    while (!file.eof() && !file.fail()) {
+    while (!file.eof()) {
         word = "";
         while (file.peek() != ' ' && file.peek() != '\n' && file.peek() != EOF) {
             file.get(letter);

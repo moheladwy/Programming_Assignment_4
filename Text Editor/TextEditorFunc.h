@@ -8,7 +8,7 @@ bdr have the functions [11:15]
 using namespace std;
 //____________________________________________________________________________________________
 
-string getAValidFileName(string turn = ""); // Done - Eladwy.
+string getAValidFileName(string turn = ""); // Done - Eladwy. Regex - by Yusuf
 //____________________________________________________________________________________________
 
 bool checkValidFile(string fileName); // Done - Eladwy.
