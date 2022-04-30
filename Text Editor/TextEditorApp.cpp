@@ -8,6 +8,7 @@ using namespace std;
 
 int main()
 {
+
     cout << "Welcome to YusufAmrMohammed Text Editor!!\n\n";
     cout << "Please enter the filename that you want to deal with below\n";
 	string originalFileName = getAValidFileName();
@@ -15,6 +16,5 @@ int main()
     string tempOriginalFileName = createTempOriginalFile();
 
 
-    saveFile()
 	return 0;
 }
