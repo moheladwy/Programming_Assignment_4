@@ -82,4 +82,4 @@ void createOriginalFile(string fileName);
 //____________________________________________________________________________________________
 void clearScreen(); //Done.
 //____________________________________________________________________________________________
-string createTempOriginalFile(); // Done
+string createTempOfOriginalFile (string originalFileName); // returns name of temp filename

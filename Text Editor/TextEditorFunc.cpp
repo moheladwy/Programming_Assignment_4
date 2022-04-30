@@ -83,12 +83,23 @@ void createOriginalFile(string fileName){
 }
 
 
-string createTempOriginalFile(){
-    fstream file;
-    string fileName = "tempOfOriginal.txt";
-    file.open(fileName.c_str(), ios::out);
-    file.close();
-    return fileName;
+string createTempOfOriginalFile(string originalFileName){
+
+    string tempFileName = "tempOfOriginal.txt";
+    fstream newFile;
+    fstream oldFile;
+    newFile.open(tempFileName.c_str(), ios::out);
+    oldFile.open(originalFileName.c_str(), ios::in);
+
+    if (newFile.is_open()) {
+        //copying the content from the old one.
+        newFile << oldFile.rdbuf();
+    }
+
+    newFile.close();
+    oldFile.close();
+
+    return tempFileName;
 }
 
 

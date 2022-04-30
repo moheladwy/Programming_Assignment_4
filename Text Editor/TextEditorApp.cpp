@@ -13,7 +13,7 @@ int main()
     cout << "Please enter the filename that you want to deal with below\n";
 	string originalFileName = getAValidFileName();
     createOriginalFile(originalFileName);
-    string tempOriginalFileName = createTempOriginalFile();
+    string tempOriginalFileName = createTempOfOriginalFile(originalFileName);
 
 
 	return 0;
