@@ -74,7 +74,7 @@ void allFileToLowerCase(string filename); // DONE - Yusuf Badr
 void allFileToFirstCaps(string filename); //DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
-void saveFile(string existingFileName); //DONE - Yusuf Badr
+void saveFile(string existingFileName, string tempFileName); //DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
 void clearScreen(); //Done.

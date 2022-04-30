@@ -219,7 +219,7 @@ void countWordOccurences(string fileName, string searchWord) {
         file.ignore(1);
     }
     file.close();
-    cout << "The Number of the occurences of the word {" << searchWord << "} in the file = " << numberOfOccurences << "\n";
+    cout << "The Number of the occurences of the word in the file = " << numberOfOccurences << "\n";
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
@@ -241,7 +241,7 @@ void allFileToUpperCase(string fileName) {
 
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
-    cout << "The content of the file {" << fileName << "} have turned to upper case succefully.\n";
+    cout << "The content of the file have turned to upper case succefully.\n";
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
@@ -263,7 +263,7 @@ void allFileToLowerCase(string fileName) {
 
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
-    cout << "The content of the file {" << fileName << "} have turned to lower case succefully.\n";
+    cout << "The content of the file have turned to lower case succefully.\n";
 }
 //____________________________________________________________________________________________
 // converts the first letter of every word in the text file to capital letter. // DONE - Yusuf Badr.
@@ -302,11 +302,11 @@ void allFileToFirstCaps(string fileName) {
 
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
-    cout << "all words in the file {" << fileName << "} have turned to 1st caps (1st char of each word is capital) succefully.\n";
+    cout << "all words in the file have turned to 1st caps (1st char of each word is capital) succefully.\n";
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
-void saveFile(string existingFileName) {
+void saveFile(string existingFileName, string tempFileName) {
     string choice = "";
     // getting yes or no with defensive programming.
     bool validInput = false;
@@ -440,7 +440,7 @@ void displayContent(string fileName) //Done by Amr
 
         myFile.close();
     }
-    cout << "\n" << "The content of the file {" << fileName << "} have displayed succefully.\n";
+    cout << "\n" << "The content of the file have displayed succefully.\n";
 }
 //____________________________________________________________________________________________
 void emptyFileContent(string fileName) //Done by Amr
@@ -448,7 +448,7 @@ void emptyFileContent(string fileName) //Done by Amr
     fstream myFile;
     myFile.open(fileName.c_str(), ios::trunc);
     myFile.close();
-    cout << "\n" << "The content of the file {" << fileName << "} have cleared succefully.\n";
+    cout << "\n" << "The content of the file have cleared succefully.\n";
 }
 //____________________________________________________________________________________________
 void encryptFileContent(string fileName) // Done by Amr.
@@ -480,7 +480,7 @@ void encryptFileContent(string fileName) // Done by Amr.
 
         remove(fileName.c_str());
         rename("newTemp.txt", fileName.c_str());
-        cout << "The content of the file {" << fileName << "} have encrypted succefully.\n";
+        cout << "The content of the file have encrypted succefully.\n";
     }
 }
 //____________________________________________________________________________________________
@@ -513,7 +513,7 @@ void decryptFileContent(string fileName) //Done by Amr
 
         remove(fileName.c_str());
         rename("newTemp.txt", fileName.c_str());
-        cout << "The content of the file {" << fileName << "} have decrypted succefully.\n";
+        cout << "The content of the file have decrypted succefully.\n";
     }
 }
 //____________________________________________________________________________________________
