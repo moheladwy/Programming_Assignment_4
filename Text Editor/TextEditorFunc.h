@@ -23,7 +23,7 @@ bool checkUserChoice(string choice); // Done - Eladwy.
 int getUserChoice(); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-void executeUserChoice(int choice, string fileName, string searchWord, string originalFileName); // Done - Eladwy.
+void executeUserChoice(int choice, string fileName, string originalFileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
 void addingContent(string fileName); //Done
@@ -59,10 +59,10 @@ string makeWordLowerCase(string word); // Done - Eladwy.
 string getWordForSearching(); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-void searchForWordInFile(string fileName, string wordWanted); // Done - Eladwy.
+void searchForWordInFile(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-void countWordOccurences(string filename, string searchWord); // DONE - Yusuf Badr
+void countWordOccurences(string filename); // DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
 void allFileToUpperCase(string filename); // DONE - Yusuf Badr
@@ -82,6 +82,5 @@ void createOriginalFile(string fileName);
 
 void clearScreen(); //Done.
 //____________________________________________________________________________________________
-
-string createTempOriginalFile(); // Done
+string createTempOfOriginalFile(string originalFileName); // returns name of temp filename
 //____________________________________________________________________________________________

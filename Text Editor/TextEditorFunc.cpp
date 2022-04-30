@@ -16,7 +16,7 @@ string getAValidFileName(string turn = "")
         fileName = "";
         while (fileName.empty())
         {
-            cout << "Enter the" << turn << " file Name:\n";
+            cout << "Enter the" << turn << " file Name: ";
             getline(cin, fileName);
         }
         checker = regex_match(fileName, isValid);
@@ -26,7 +26,7 @@ string getAValidFileName(string turn = "")
         }
         else
         {
-            cout << "Incorrect format\n" << "Must contain only: letters, numbers, \'_\', \'-\', \'.\', \' \', followed by .txt\n" << endl;
+            cout << "Incorrect format.\n" << "Must contain only: letters, numbers, \'_\', \'-\', \'.\', \' \', followed by .txt\n";
         }
     }
 }
@@ -65,29 +65,42 @@ void printMainMenu()
 //____________________________________________________________________________________________
 void clearScreen()
 {
+    Sleep(5000);
     system("CLS");
     cout << flush;
     system("CLS");
 }
 //____________________________________________________________________________________________
-void createOriginalFile(string fileName){
+void createOriginalFile(string fileName) {
     fstream originalFile;
     originalFile.open(fileName.c_str(), ios::in);
-    if (originalFile.is_open()){
+    if (originalFile.is_open()) {
         cout << "This file does indeed exists and will be used for your preferred operations\n";
-    } else {
+    }
+    else {
         originalFile.open(fileName.c_str(), ios::out);
         cout << "This is a new file that have been created for you!";
     }
     originalFile.close();
 }
 //____________________________________________________________________________________________
-string createTempOriginalFile(){
-    fstream file;
-    string fileName = "tempOfOriginal.txt";
-    file.open(fileName.c_str(), ios::out);
-    file.close();
-    return fileName;
+string createTempOfOriginalFile(string originalFileName) {
+
+    string tempFileName = "tempOfOriginal.txt";
+    fstream newFile;
+    fstream oldFile;
+    newFile.open(tempFileName.c_str(), ios::out);
+    oldFile.open(originalFileName.c_str(), ios::in);
+
+    if (newFile.is_open()) {
+        //copying the content from the old one.
+        newFile << oldFile.rdbuf();
+    }
+
+    newFile.close();
+    oldFile.close();
+
+    return tempFileName;
 }
 //____________________________________________________________________________________________
 void mergeAnotherFile(string fileName)
@@ -188,10 +201,10 @@ string getWordForSearching()
     return word;
 }
 //____________________________________________________________________________________________
-void searchForWordInFile(string fileName, string searchWord)
+void searchForWordInFile(string fileName)
 {
     fstream file;
-    string inputLine, word;
+    string inputLine, word, searchWord = getWordForSearching();
     bool checkWord = false;
     file.open(fileName.c_str(), ios::in);
     while (getline(file, inputLine))
@@ -209,19 +222,19 @@ void searchForWordInFile(string fileName, string searchWord)
     }
     file.close();
     if (checkWord) {
-        cout << "\n" << "the word {"<< searchWord <<"} exists in the file.\n";
+        cout << "\n" << "the word {" << searchWord << "} exists in the file.\n";
     }
     else {
-        cout << "\n" << "the word {"<< searchWord <<"} does not exist in the file.\n";
+        cout << "\n" << "the word {" << searchWord << "} does not exist in the file.\n";
     }
 }
 //____________________________________________________________________________________________
 // counting the number of times a word exists in a file. // very strict counter. // read only. // DONE - Yusuf Badr.
-void countWordOccurences(string fileName, string searchWord) {
+void countWordOccurences(string fileName) {
     fstream file;
-    searchWord = makeWordLowerCase(searchWord);
     char letter;
-    string word;
+    string word, searchWord = getWordForSearching();
+    searchWord = makeWordLowerCase(searchWord);
     int numberOfOccurences = 0;
     file.open(fileName.c_str(), ios::in);
     while (!file.eof() && !file.fail()) {
@@ -370,20 +383,20 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     choice = "";
     validInput = false;
     while (!validInput) {
-        cout << "Would you like to save the current changes of this file? (y)|(n): ";
+        cout << "Would you like to save the file again with a different name? (y)|(n): ";
         getline(cin, choice);
         if (choice.length() == 1) {
             switch (choice[0]) {
-                case 'y':
-                case 'Y':
-                    validInput = true;
-                    break;
-                case 'n':
-                case 'N':
-                    validInput = true;
-                    break;
-                default:
-                    cout << "invalid character try again.\n";
+            case 'y':
+            case 'Y':
+                validInput = true;
+                break;
+            case 'n':
+            case 'N':
+                validInput = true;
+                break;
+            default:
+                cout << "invalid character try again.\n";
             }
         }
         else {
@@ -414,7 +427,7 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
         cout << "Saved a copy as new file successfully!\n";
     }
     else {
-        cout << "OK, saved original file only successfully!\n";
+        cout << "OK.\n";
     }
 }
 //____________________________________________________________________________________________
@@ -430,35 +443,32 @@ bool checkUserChoice(string choice) // Done. // By Mohamed.
                 return false;
             }
         }
-
         // check the range of the user choice. 
         int userChoice = stoi(choice);
-        if (userChoice > 0 && userChoice < 17)
+        if (userChoice >= 1 && userChoice <= 16)
         {
             return true;
         }
     }
-
     return false;
 }
 //____________________________________________________________________________________________
 int getUserChoice() // Done By Mohamed.
 {
-    string getChoice = "";
+    string getChoice;
     int setChoice;
-    bool checker = true;
+    bool isValidChoice = false;
 
-    while (checker)
+    while (!isValidChoice)
     {
+        getChoice = "";
         while (getChoice.empty())
         {
             cout << "Enter your choice from the list above from [1:16] ya user ya habeby: ";
             getline(cin, getChoice);
         }
-
-        checker = checkUserChoice(getChoice);
+        isValidChoice = checkUserChoice(getChoice);
     }
-
     setChoice = stoi(getChoice);
     return setChoice;
 }
@@ -468,13 +478,13 @@ void addingContent(string fileName) //Done by Amr.
     string line;
     fstream myFile;
     myFile.open(fileName.c_str(), ios::app);
-    cout << "################################################\n";
-    cout << "### write here or press Ctrl+Z+Enter to stop ###\n";
-    cout << "################################################\n";
+    cout << "######################################################\n";
+    cout << "### write here or press Enter+0000+Enter to stop ###\n";
+    cout << "######################################################\n";
     while (true)
     {
         getline(cin, line);
-        if (cin.eof())
+        if (line == "0000")
         {
             cout << "\n" << "text added.\n";
             break;
@@ -575,10 +585,9 @@ void decryptFileContent(string fileName) //Done by Amr
     }
 }
 //____________________________________________________________________________________________
-void executeUserChoice(int choice, string fileName, string searchWord, string originalFileName) // Done - Eladwy.
+void executeUserChoice(int choice, string fileName, string originalFileName) // Done - Eladwy.
 {
-    if (choice != 16) {
-        switch (choice) {
+    switch (choice) {
 
         case 1: {
             addingContent(fileName);
@@ -626,12 +635,12 @@ void executeUserChoice(int choice, string fileName, string searchWord, string or
         }
 
         case 10: {
-            searchForWordInFile(fileName, searchWord);
+            searchForWordInFile(fileName);
             break;
         }
 
         case 11: {
-            countWordOccurences(fileName, searchWord);
+            countWordOccurences(fileName);
             break;
         }
 
@@ -658,10 +667,5 @@ void executeUserChoice(int choice, string fileName, string searchWord, string or
         default:
             break;
         }
-    }
-    else {
-        cout << "Thanks for using our Text File Editor Program.\n";
-    }
 }
 //____________________________________________________________________________________________
-
