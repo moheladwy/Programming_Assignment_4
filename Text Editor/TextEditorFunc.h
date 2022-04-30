@@ -23,7 +23,7 @@ bool checkUserChoice(string choice); // Done - Eladwy.
 int getUserChoice(); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-void executeUserChoice(int choice, string fileName, string searchWord); // Done - Eladwy.
+void executeUserChoice(int choice, string fileName, string searchWord, string originalFileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
 void addingContent(string fileName); //Done
@@ -74,7 +74,7 @@ void allFileToLowerCase(string filename); // DONE - Yusuf Badr
 void allFileToFirstCaps(string filename); //DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
-void saveFile(string existingFileName); //DONE - Yusuf Badr
+void saveFile(string existingFileName, string tempFileName); //DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
 void clearScreen(); //Done.

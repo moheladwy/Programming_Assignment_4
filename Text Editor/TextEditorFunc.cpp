@@ -84,7 +84,7 @@ void mergeAnotherFile(string fileName)
     isValidFile = checkValidFile(secondFileName);
     if (!isValidFile)
     {
-        cout << "the file does not exist in the directory, I created for you.\n";
+        cout << "the file does not exist in the directory, I created for you with the Name that you entered.\n";
         file2.open(secondFileName.c_str(), ios::out);
         file2.close();
     }
@@ -194,10 +194,10 @@ void searchForWordInFile(string fileName, string searchWord)
     }
     file.close();
     if (checkWord) {
-        cout << "\n" << "the word exists in the file.\n";
+        cout << "\n" << "the word {"<< searchWord <<"} exists in the file.\n";
     }
     else {
-        cout << "\n" << "the word does not exist in the file.\n";
+        cout << "\n" << "the word {"<< searchWord <<"} does not exist in the file.\n";
     }
 }
 //____________________________________________________________________________________________
@@ -209,7 +209,7 @@ void countWordOccurences(string fileName, string searchWord) {
     string word;
     int numberOfOccurences = 0;
     file.open(fileName, ios::in);
-    while (!file.eof()) {
+    while (!file.eof() && !file.fail()) {
         word = "";
         while (file.peek() != ' ' && file.peek() != '\n' && file.peek() != EOF) {
             file.get(letter);
@@ -246,7 +246,7 @@ void allFileToUpperCase(string fileName) {
 
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
-    cout << "The content of the file {" << fileName << "} have turned to upper case succefully.\n";
+    cout << "The content of the file have turned to upper case succefully.\n";
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
@@ -268,7 +268,7 @@ void allFileToLowerCase(string fileName) {
 
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
-    cout << "The content of the file {" << fileName << "} have turned to lower case succefully.\n";
+    cout << "The content of the file have turned to lower case succefully.\n";
 }
 //____________________________________________________________________________________________
 // converts the first letter of every word in the text file to capital letter. // DONE - Yusuf Badr.
@@ -307,11 +307,11 @@ void allFileToFirstCaps(string fileName) {
 
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
-    cout << "all words in the file {" << fileName << "} have turned to 1st caps (1st char of each word is capital) succefully.\n";
+    cout << "all words in the file have turned to 1st caps (1st char of each word is capital) succefully.\n";
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
-void saveFile(string existingFileName) {
+void saveFile(string existingFileName, string tempFileName) {
     string choice = "";
     // getting yes or no with defensive programming.
     bool validInput = false;
@@ -445,7 +445,7 @@ void displayContent(string fileName) //Done by Amr
 
         myFile.close();
     }
-    cout << "\n" << "The content of the file {" << fileName << "} have displayed succefully.\n";
+    cout << "\n" << "The content of the file have displayed succefully.\n";
 }
 //____________________________________________________________________________________________
 void emptyFileContent(string fileName) //Done by Amr
@@ -453,7 +453,7 @@ void emptyFileContent(string fileName) //Done by Amr
     fstream myFile;
     myFile.open(fileName.c_str(), ios::trunc);
     myFile.close();
-    cout << "\n" << "The content of the file {" << fileName << "} have cleared succefully.\n";
+    cout << "\n" << "The content of the file have cleared succefully.\n";
 }
 //____________________________________________________________________________________________
 void encryptFileContent(string fileName) // Done by Amr.
@@ -485,7 +485,7 @@ void encryptFileContent(string fileName) // Done by Amr.
 
         remove(fileName.c_str());
         rename("newTemp.txt", fileName.c_str());
-        cout << "The content of the file {" << fileName << "} have encrypted succefully.\n";
+        cout << "The content of the file have encrypted succefully.\n";
     }
 }
 //____________________________________________________________________________________________
@@ -518,11 +518,11 @@ void decryptFileContent(string fileName) //Done by Amr
 
         remove(fileName.c_str());
         rename("newTemp.txt", fileName.c_str());
-        cout << "The content of the file {" << fileName << "} have decrypted succefully.\n";
+        cout << "The content of the file have decrypted succefully.\n";
     }
 }
 //____________________________________________________________________________________________
-void executeUserChoice(int choice, string fileName, string searchWord) // Done - Eladwy.
+void executeUserChoice(int choice, string fileName, string searchWord, string originalFileName) // Done - Eladwy.
 {
     if (choice != 16) {
         switch (choice) {
@@ -598,7 +598,7 @@ void executeUserChoice(int choice, string fileName, string searchWord) // Done -
         }
 
         case 15: {
-            saveFile(fileName);
+            saveFile(originalFileName, fileName);
             break;
         }
 
