@@ -204,7 +204,7 @@ void countWordOccurences(string fileName, string searchWord) {
     string word;
     int numberOfOccurences = 0;
     file.open(fileName, ios::in);
-    while (!file.eof()) {
+    while (!file.eof() && !file.fail()) {
         word = "";
         while (file.peek() != ' ' && file.peek() != '\n' && file.peek() != EOF) {
             file.get(letter);
