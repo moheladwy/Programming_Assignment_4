@@ -197,13 +197,13 @@ void searchForWordInFile(string fileName, string searchWord)
 }
 //____________________________________________________________________________________________
 // counting the number of times a word exists in a file. // very strict counter. // read only. // DONE - Yusuf Badr.
-void countWordOccurences(string filename, string searchWord) {
+void countWordOccurences(string fileName, string searchWord) {
     fstream file;
     searchWord = makeWordLowerCase(searchWord);
     char letter;
     string word;
     int numberOfOccurences = 0;
-    file.open(filename, ios::in);
+    file.open(fileName, ios::in);
     while (!file.eof() && !file.fail()) {
         word = "";
         while (file.peek() != ' ' && file.peek() != '\n' && file.peek() != EOF) {
@@ -223,11 +223,11 @@ void countWordOccurences(string filename, string searchWord) {
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
-void allFileToUpperCase(string filename) {
+void allFileToUpperCase(string fileName) {
     fstream originalFile, newFile;
     char letter;
 
-    originalFile.open(filename.c_str(), ios::in);
+    originalFile.open(fileName.c_str(), ios::in);
     newFile.open("newTemp.txt", ios::out);
 
     while (originalFile.peek() != EOF) {
@@ -239,16 +239,17 @@ void allFileToUpperCase(string filename) {
     newFile.close();
     originalFile.close();
 
-    remove(filename.c_str());
-    rename("newTemp.txt", filename.c_str());
+    remove(fileName.c_str());
+    rename("newTemp.txt", fileName.c_str());
+    cout << "The content of the file {" << fileName << "} have turned to upper case succefully.\n";
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
-void allFileToLowerCase(string filename) {
+void allFileToLowerCase(string fileName) {
     fstream originalFile, newFile;
     char letter;
 
-    originalFile.open(filename.c_str(), ios::in);
+    originalFile.open(fileName.c_str(), ios::in);
     newFile.open("newTemp.txt", ios::out);
 
     while (originalFile.peek() != EOF) {
@@ -260,16 +261,17 @@ void allFileToLowerCase(string filename) {
     newFile.close();
     originalFile.close();
 
-    remove(filename.c_str());
-    rename("newTemp.txt", filename.c_str());
+    remove(fileName.c_str());
+    rename("newTemp.txt", fileName.c_str());
+    cout << "The content of the file {" << fileName << "} have turned to lower case succefully.\n";
 }
 //____________________________________________________________________________________________
 // converts the first letter of every word in the text file to capital letter. // DONE - Yusuf Badr.
-void allFileToFirstCaps(string filename) {
+void allFileToFirstCaps(string fileName) {
     fstream originalFile, newFile;
     char letter;
 
-    originalFile.open(filename.c_str(), ios::in);
+    originalFile.open(fileName.c_str(), ios::in);
     newFile.open("newTemp.txt", ios::out);
 
     if (originalFile.peek() != EOF) {
@@ -298,8 +300,9 @@ void allFileToFirstCaps(string filename) {
     newFile.close();
     originalFile.close();
 
-    remove(filename.c_str());
-    rename("newTemp.txt", filename.c_str());
+    remove(fileName.c_str());
+    rename("newTemp.txt", fileName.c_str());
+    cout << "all words in the file {" << fileName << "} have turned to 1st caps (1st char of each word is capital) succefully.\n";
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
@@ -350,10 +353,10 @@ void saveFile(string existingFileName) {
 
         newFile.close();
         oldFile.close();
-        cout << "Saved a copy as new file successfully!";
+        cout << "Saved a copy as new file successfully!\n";
     }
     else {
-        cout << "OK, saved original file only successfully!";
+        cout << "OK, saved original file only successfully!\n";
     }
 }
 //____________________________________________________________________________________________
@@ -407,9 +410,9 @@ void addingContent(string fileName) //Done by Amr.
     string line;
     fstream myFile;
     myFile.open(fileName.c_str(), ios::app);
-    cout << "##################\n";
-    cout << "### write here ###\n";
-    cout << "##################\n";
+    cout << "###############################################\n";
+    cout << "### write here or type Ctrl+Z+Enter to stop ###\n";
+    cout << "###############################################\n";
     while (true)
     {
         getline(cin, line);
@@ -420,6 +423,7 @@ void addingContent(string fileName) //Done by Amr.
         }
         myFile << line << "\n";
     }
+    myFile.close();
 }
 //____________________________________________________________________________________________
 void displayContent(string fileName) //Done by Amr
@@ -436,6 +440,7 @@ void displayContent(string fileName) //Done by Amr
 
         myFile.close();
     }
+    cout << "\n" << "The content of the file {" << fileName << "} have displayed succefully.\n";
 }
 //____________________________________________________________________________________________
 void emptyFileContent(string fileName) //Done by Amr
@@ -443,6 +448,7 @@ void emptyFileContent(string fileName) //Done by Amr
     fstream myFile;
     myFile.open(fileName.c_str(), ios::trunc);
     myFile.close();
+    cout << "\n" << "The content of the file {" << fileName << "} have cleared succefully.\n";
 }
 //____________________________________________________________________________________________
 void encryptFileContent(string fileName) // Done by Amr.
@@ -474,6 +480,7 @@ void encryptFileContent(string fileName) // Done by Amr.
 
         remove(fileName.c_str());
         rename("newTemp.txt", fileName.c_str());
+        cout << "The content of the file {" << fileName << "} have encrypted succefully.\n";
     }
 }
 //____________________________________________________________________________________________
@@ -506,6 +513,7 @@ void decryptFileContent(string fileName) //Done by Amr
 
         remove(fileName.c_str());
         rename("newTemp.txt", fileName.c_str());
+        cout << "The content of the file {" << fileName << "} have decrypted succefully.\n";
     }
 }
 //____________________________________________________________________________________________
