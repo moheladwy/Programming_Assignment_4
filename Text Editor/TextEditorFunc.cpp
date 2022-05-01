@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cctype>
 #include <fstream>
-#include <sstream>
+#include <sstream> // it's not used, consider removing it - Yusuf Badr
 #include <regex>
 #include <string>
 using namespace std;
@@ -345,7 +345,7 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     string choice = "";
     bool validInput = false;
     while (!validInput) {
-        cout << "Would you like to save the current changes of this file? (y)|(n): ";
+        cout << "Would you like to save the current changes of this file? (y)|(n):\n";
         getline(cin, choice);
 
         if (choice.length() == 1) {
@@ -383,7 +383,7 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     choice = "";
     validInput = false;
     while (!validInput) {
-        cout << "Would you like to save the file again with a different name? (y)|(n): ";
+        cout << "Would you like to save the file again with a different name? (y)|(n):\n";
         getline(cin, choice);
         if (choice.length() == 1) {
             switch (choice[0]) {
