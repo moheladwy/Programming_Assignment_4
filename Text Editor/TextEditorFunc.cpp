@@ -271,7 +271,6 @@ void searchForWordInFile(string fileName)
     }
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
-
 //____________________________________________________________________________________________
 // counting the number of times a word exists in a file. // very strict counter. // read only. // DONE - Yusuf Badr.
 void countWordOccurences(string fileName) {
