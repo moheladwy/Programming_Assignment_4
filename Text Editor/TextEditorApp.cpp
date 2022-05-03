@@ -14,17 +14,20 @@ int main()
 	string originalFileName = getAValidFileName();
 	createOriginalFile(originalFileName);
 	string tempOriginalFileName = createTempOfOriginalFile(originalFileName);
-	int userChoice;
-	while (true) {
+	int userChoice, isOpen = true;
+	while (isOpen) {
 		printMainMenu();
 		userChoice = getUserChoice();
 		if (userChoice != 16) {
 			executeUserChoice(userChoice, tempOriginalFileName, originalFileName);
-			clearScreen();
+			if (isClearScreen())
+			{
+				clearScreen();
+			}
 		}
 		else {
 			cout << "Thanks for using our Text File Editor Program.\n";
-			break;
+			isOpen = false;
 		}
 	}
 	return 0;

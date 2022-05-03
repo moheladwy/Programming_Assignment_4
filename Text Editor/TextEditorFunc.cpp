@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cctype>
 #include <fstream>
-#include <sstream> // it's not used, consider removing it - Yusuf Badr
+#include <sstream> // it's not used, consider removing it - Yusuf Badr.//Eladwy: I am using it. (sstream == stringstream) that I am using it in my functions 
 #include <regex>
 #include <string>
 using namespace std;
@@ -45,6 +45,7 @@ bool checkValidFile(string fileName)
 //____________________________________________________________________________________________
 void printMainMenu()
 {
+    cout << "--------------------------------------------------------------------------------------" << endl;
     cout << "1.  Add new text to the end of the file." << endl;
     cout << "2.  Display the content of the file." << endl;
     cout << "3.  Empty the file." << endl;
@@ -61,6 +62,7 @@ void printMainMenu()
     cout << "14. Turn file content to 1st caps (1st char of each word is capital)." << endl;
     cout << "15. Save." << endl;
     cout << "16. Exit." << endl;
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 void clearScreen()
@@ -71,9 +73,45 @@ void clearScreen()
     system("CLS");
 }
 //____________________________________________________________________________________________
+bool isClearScreen()
+{
+    int isWant = false;
+    string choice = "";
+    while (!isWant)
+    {
+        cout << "Do you want to clear the screen before continue or not {y:n}: ";
+        getline(cin, choice);
+        isWant = checkYesOrNot(choice);
+        if(!isWant)
+        {
+            cout << "Please enter a choice from (y) or (n) only, Try again.\n";
+        }
+    }
+    return isWant;
+}
+//____________________________________________________________________________________________
+bool checkYesOrNot(string choice)
+{
+    bool isValidInput = true;
+    if (choice.length() == 1) {
+        switch (choice[0]) {
+        case 'y':
+        case 'Y':
+            return isValidInput;
+        case 'n':
+        case 'N':
+            return isValidInput;
+        default:
+            break;
+        }
+    }
+    return !isValidInput;
+}
+//____________________________________________________________________________________________
 void createOriginalFile(string fileName) {
     fstream originalFile;
     originalFile.open(fileName.c_str(), ios::in);
+    cout << "--------------------------------------------------------------------------------------" << endl;
     if (originalFile.is_open()) {
         cout << "This file does indeed exists and will be used for your preferred operations\n";
     }
@@ -125,6 +163,7 @@ void mergeAnotherFile(string fileName)
     file.close();
     file2.close();
     cout << "Merging files done.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 void countNumberOfWords(string fileName)
@@ -148,6 +187,7 @@ void countNumberOfWords(string fileName)
     else {
         cout << "The number of Words in the file = " << numberOfWords << "\n";
     }
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 void countNumberOfLines(string fileName)
@@ -162,6 +202,7 @@ void countNumberOfLines(string fileName)
     }
     file.close();
     cout << "The number of the Lines in the file = " << numberOfLines << "\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 void countNumberOfCharacters(string fileName)
@@ -178,6 +219,7 @@ void countNumberOfCharacters(string fileName)
     }
     file.close();
     cout << "The number of the characters in the file = " << numberOfCharacters << "\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 string makeWordLowerCase(string word)
@@ -227,7 +269,9 @@ void searchForWordInFile(string fileName)
     else {
         cout << "\n" << "the word {" << searchWord << "} does not exist in the file.\n";
     }
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
+
 //____________________________________________________________________________________________
 // counting the number of times a word exists in a file. // very strict counter. // read only. // DONE - Yusuf Badr.
 void countWordOccurences(string fileName) {
@@ -253,6 +297,7 @@ void countWordOccurences(string fileName) {
     }
     file.close();
     cout << "The Number of the occurences of the word {" << searchWord << "} in the file = " << numberOfOccurences << "\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
@@ -275,6 +320,7 @@ void allFileToUpperCase(string fileName) {
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
     cout << "The content of the file have turned to upper case succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
@@ -297,6 +343,7 @@ void allFileToLowerCase(string fileName) {
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
     cout << "The content of the file have turned to lower case succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 // converts the first letter of every word in the text file to capital letter. // DONE - Yusuf Badr.
@@ -336,6 +383,7 @@ void allFileToFirstCaps(string fileName) {
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
     cout << "all words in the file have turned to 1st caps (1st char of each word is capital) succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 // DONE - Yusuf Badr.
@@ -347,24 +395,30 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     while (!validInput) {
         cout << "Would you like to save the current changes of this file? (y)|(n):\n";
         getline(cin, choice);
-
-        if (choice.length() == 1) {
-            switch (choice[0]) {
-            case 'y':
-            case 'Y':
-                validInput = true;
-                break;
-            case 'n':
-            case 'N':
-                validInput = true;
-                break;
-            default:
-                cout << "invalid character try again.\n";
-            }
+        isValidInput = checkYesOrNot(choice);
+        if (!isValidInput)
+        {
+            cout << "Enter a Valid option from (y) or (n), Try again.\n";
         }
-        else {
-            cout << "Please enter one CHARACTER y/n\n";
-        }
+        // Eladwy: I made a Function called CheckYesOrNot that will be used in this function twice and my functions also.
+        // so don't forget to remove the commenting codes from the file dude.
+        // if (choice.length() == 1) {
+        //     switch (choice[0]) {
+        //     case 'y':
+        //     case 'Y':
+        //         validInput = true;
+        //         break;
+        //     case 'n':
+        //     case 'N':
+        //         validInput = true;
+        //         break;
+        //     default:
+        //         cout << "invalid character try again.\n";
+        //     }
+        // }
+        // else {
+        //     cout << "Please enter one CHARACTER y/n\n";
+        // }
     }
     choice[0] = tolower(choice[0]);
 
@@ -376,7 +430,7 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
         remove(tempOriginalFileName.c_str());
         cout << "Changes not saved!\n";
     }
-
+    cout << "--------------------------------------------------------------------------------------" << endl;
     // ------
 
     // getting yes or no with defensive programming.
@@ -385,23 +439,30 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     while (!validInput) {
         cout << "Would you like to save the file again with a different name? (y)|(n):\n";
         getline(cin, choice);
-        if (choice.length() == 1) {
-            switch (choice[0]) {
-            case 'y':
-            case 'Y':
-                validInput = true;
-                break;
-            case 'n':
-            case 'N':
-                validInput = true;
-                break;
-            default:
-                cout << "invalid character try again.\n";
-            }
+        isValidInput = checkYesOrNot(choice);
+        if (!isValidInput)
+        {
+            cout << "Enter a Valid option from (y) or (n), Try again.\n";
         }
-        else {
-            cout << "Please enter one CHARACTER y/n\n";
-        }
+        // Eladwy: I made a Function called CheckYesOrNot that will be used in this function twice and my functions also. 
+        // so don't forget to remove the commenting codes from the file dude.
+        // if (choice.length() == 1) {
+        //     switch (choice[0]) {
+        //     case 'y':
+        //     case 'Y':
+        //         validInput = true;
+        //         break;
+        //     case 'n':
+        //     case 'N':
+        //         validInput = true;
+        //         break;
+        //     default:
+        //         cout << "invalid character try again.\n";
+        //     }
+        // }
+        // else {
+        //     cout << "Please enter one CHARACTER y/n\n";
+        // }
     }
     choice[0] = tolower(choice[0]);
 
@@ -429,6 +490,7 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     else {
         cout << "OK.\n";
     }
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 bool checkUserChoice(string choice) // Done. // By Mohamed.
@@ -470,6 +532,7 @@ int getUserChoice() // Done By Mohamed.
         isValidChoice = checkUserChoice(getChoice);
     }
     setChoice = stoi(getChoice);
+    cout << "--------------------------------------------------------------------------------------" << endl;
     return setChoice;
 }
 //____________________________________________________________________________________________
@@ -486,11 +549,13 @@ void addingContent(string fileName) //Done by Amr.
         getline(cin, line);
         if (line == "0000")
         {
-            cout << "\n" << "text added.\n";
+            cout << "--------------------------------------------------------------------------------------" << endl;
+            cout << "text added succesfully.\n";
             break;
         }
         myFile << line << "\n";
     }
+    cout << "--------------------------------------------------------------------------------------" << endl;
     myFile.close();
 }
 //____________________________________________________________________________________________
@@ -501,6 +566,8 @@ void displayContent(string fileName) //Done by Amr
     myFile.open(fileName.c_str(), ios::in);
     if (myFile.is_open())
     {
+        cout << "The Content of the File:-\n";
+        cout << "-------------------------\n";
         while (getline(myFile, line))
         {
             cout << line << "\n";
@@ -508,15 +575,18 @@ void displayContent(string fileName) //Done by Amr
 
         myFile.close();
     }
-    cout << "\n" << "The content of the file have displayed succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
+    cout << "The content of the file have displayed succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 void emptyFileContent(string fileName) //Done by Amr
 {
     fstream myFile;
-    myFile.open(fileName.c_str(), ios::trunc);
+    myFile.open(fileName.c_str(), ios::out); // Eladwy: I changed the ios::trunc to ios::out bcz it wasn't working in the begnning
     myFile.close();
-    cout << "\n" << "The content of the file have cleared succefully.\n";
+    cout << "The content of the file have cleared succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 void encryptFileContent(string fileName) // Done by Amr.
@@ -528,28 +598,23 @@ void encryptFileContent(string fileName) // Done by Amr.
 
     myFile.open(fileName.c_str(), ios::in);
     newFile.open("newTemp.txt", ios::out);
-
-    if (myFile.is_open())
+    while (getline(myFile, line))
     {
-        while (getline(myFile, line))
+        newline = "";
+        for (int i = 0; i < line.length(); i++)
         {
-            newline = "";
-            for (int i = 0; i < line.length(); i++)
-            {
-                line[i]++;
-                cout << line[i];
-                newline += line[i];
-            }
-            newFile << newline << "\n";
-            cout << "\n"; // Why are you printing the new line amr ?? (Q:from Mohamed)
+            line[i]++;
+            newline += line[i];
         }
-        myFile.close();
-        newFile.close();
-
-        remove(fileName.c_str());
-        rename("newTemp.txt", fileName.c_str());
-        cout << "The content of the file have encrypted succefully.\n";
+        newFile << newline << "\n";
     }
+    myFile.close();
+    newFile.close();
+
+    remove(fileName.c_str());
+    rename("newTemp.txt", fileName.c_str());
+    cout << "The content of the file have encrypted succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 void decryptFileContent(string fileName) //Done by Amr
@@ -562,110 +627,106 @@ void decryptFileContent(string fileName) //Done by Amr
     myFile.open(fileName.c_str(), ios::in);
     newFile.open("newTemp.txt", ios::out);
 
-    if (myFile.is_open())
+    while (getline(myFile, line))
     {
-        while (getline(myFile, line))
+        newline = "";
+        for (int i = 0; i < line.length(); i++)
         {
-            newline = "";
-            for (int i = 0; i < line.length(); i++)
-            {
-                line[i]--;
-                cout << line[i];
-                newline += line[i];
-            }
-            newFile << newline << "\n";
-            cout << "\n"; // Why are you printing the new line amr ?? (Q:from Mohamed)
+            line[i]--;
+            newline += line[i];
         }
-        myFile.close();
-        newFile.close();
-
-        remove(fileName.c_str());
-        rename("newTemp.txt", fileName.c_str());
-        cout << "The content of the file have decrypted succefully.\n";
+        newFile << newline << "\n";
     }
+    myFile.close();
+    newFile.close();
+
+    remove(fileName.c_str());
+    rename("newTemp.txt", fileName.c_str());
+    cout << "The content of the file have decrypted succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 void executeUserChoice(int choice, string fileName, string originalFileName) // Done - Eladwy.
 {
     switch (choice) {
 
-        case 1: {
-            addingContent(fileName);
-            break;
-        }
+    case 1: {
+        addingContent(fileName);
+        break;
+    }
 
-        case 2: {
-            displayContent(fileName);
-            break;
-        }
+    case 2: {
+        displayContent(fileName);
+        break;
+    }
 
-        case 3: {
-            emptyFileContent(fileName);
-            break;
-        }
+    case 3: {
+        emptyFileContent(fileName);
+        break;
+    }
 
-        case 4: {
-            encryptFileContent(fileName);
-            break;
-        }
+    case 4: {
+        encryptFileContent(fileName);
+        break;
+    }
 
-        case 5: {
-            decryptFileContent(fileName);
-            break;
-        }
+    case 5: {
+        decryptFileContent(fileName);
+        break;
+    }
 
-        case 6: {
-            mergeAnotherFile(fileName);
-            break;
-        }
+    case 6: {
+        mergeAnotherFile(fileName);
+        break;
+    }
 
-        case 7: {
-            countNumberOfWords(fileName);
-            break;
-        }
+    case 7: {
+        countNumberOfWords(fileName);
+        break;
+    }
 
-        case 8: {
-            countNumberOfCharacters(fileName);
-            break;
-        }
+    case 8: {
+        countNumberOfCharacters(fileName);
+        break;
+    }
 
-        case 9: {
-            countNumberOfLines(fileName);
-            break;
-        }
+    case 9: {
+        countNumberOfLines(fileName);
+        break;
+    }
 
-        case 10: {
-            searchForWordInFile(fileName);
-            break;
-        }
+    case 10: {
+        searchForWordInFile(fileName);
+        break;
+    }
 
-        case 11: {
-            countWordOccurences(fileName);
-            break;
-        }
+    case 11: {
+        countWordOccurences(fileName);
+        break;
+    }
 
-        case 12: {
-            allFileToUpperCase(fileName);
-            break;
-        }
+    case 12: {
+        allFileToUpperCase(fileName);
+        break;
+    }
 
-        case 13: {
-            allFileToLowerCase(fileName);
-            break;
-        }
+    case 13: {
+        allFileToLowerCase(fileName);
+        break;
+    }
 
-        case 14: {
-            allFileToFirstCaps(fileName);
-            break;
-        }
+    case 14: {
+        allFileToFirstCaps(fileName);
+        break;
+    }
 
-        case 15: {
-            saveFile(originalFileName, fileName);
-            break;
-        }
+    case 15: {
+        saveFile(originalFileName, fileName);
+        break;
+    }
 
-        default:
-            break;
-        }
+    default:
+        break;
+    }
 }
 //____________________________________________________________________________________________

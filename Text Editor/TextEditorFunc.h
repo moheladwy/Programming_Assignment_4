@@ -77,10 +77,14 @@ void allFileToFirstCaps(string filename); //DONE - Yusuf Badr
 void saveFile(string originalFileName, string tempOriginalFileName); //DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
-void createOriginalFile(string fileName);
+void createOriginalFile(string fileName); // Done.
 //____________________________________________________________________________________________
 
 void clearScreen(); //Done.
 //____________________________________________________________________________________________
+
+bool isClearScreen(); // Done - Mohamed Eladwy.
+//____________________________________________________________________________________________
+
 string createTempOfOriginalFile(string originalFileName); // returns name of temp filename
 //____________________________________________________________________________________________
