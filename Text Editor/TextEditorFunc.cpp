@@ -2,54 +2,50 @@
 #include <iostream>
 #include <cctype>
 #include <fstream>
-#include <sstream>
+#include <sstream> // it's not used, consider removing it - Yusuf Badr.//Eladwy: I am using it. (sstream == stringstream) that I am using it in my functions 
 #include <regex>
 #include <string>
 using namespace std;
 //____________________________________________________________________________________________
-bool checkFileName(string fileName)
-{
-    regex isValid("^[\\w\\-. ]+\\.txt$");
-    return regex_match(fileName, isValid);
-}
-//____________________________________________________________________________________________
-string getFileName(string turn = "")
+string getAValidFileName(string turn = "")
 {
     string fileName; bool checker;
+    regex isValid("^[\\w\\-. ]+\\.txt$"); // Done. by Yusuf
     while (true)
     {
         fileName = "";
         while (fileName.empty())
         {
-            cout << "Enter the " << turn << " file Name: ";
+            cout << "Enter the" << turn << " file Name: ";
             getline(cin, fileName);
         }
-        checker = checkFileName(fileName);
+        checker = regex_match(fileName, isValid);
         if (checker)
         {
             return fileName;
         }
         else
         {
-            cout << "Wrong Name of Text File it should be {(letters, numbers or both).txt}, Try again." << endl;
+            cout << "Incorrect format.\n" << "Must contain only: letters, numbers, \'_\', \'-\', \'.\', \' \', followed by .txt\n";
         }
     }
 }
 //____________________________________________________________________________________________
 bool checkValidFile(string fileName)
 {
-    fstream outfile; bool checker = true;
-    outfile.open(fileName.c_str(), ios::in);
-    if (outfile.fail())
+    fstream theFile; bool checker = false;
+    theFile.open(fileName.c_str(), ios::in);
+    if (theFile.is_open())
     {
-        checker = false;
+        checker = true;
     }
-    outfile.close();
+    theFile.close();
     return checker;
 }
 //____________________________________________________________________________________________
-void mainMenu()
+void printMainMenu()
 {
+    cout << "--------------------------------------------------------------------------------------" << endl;
     cout << "1.  Add new text to the end of the file." << endl;
     cout << "2.  Display the content of the file." << endl;
     cout << "3.  Empty the file." << endl;
@@ -66,19 +62,98 @@ void mainMenu()
     cout << "14. Turn file content to 1st caps (1st char of each word is capital)." << endl;
     cout << "15. Save." << endl;
     cout << "16. Exit." << endl;
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 void clearScreen()
 {
+    Sleep(5000);
     system("CLS");
     cout << flush;
     system("CLS");
 }
 //____________________________________________________________________________________________
+bool isClearScreen()
+{
+    int isWant = false;
+    string choice = "";
+    while (!isWant)
+    {
+        cout << "Do you want to clear the screen before continue or not {y:n}: ";
+        getline(cin, choice);
+        isWant = checkYesOrNot(choice);
+        if(!isWant)
+        {
+            cout << "Please enter a choice from (y) or (n) only, Try again.\n";
+        }
+    }
+    return isWant;
+}
+//____________________________________________________________________________________________
+bool checkYesOrNot(string choice)
+{
+    bool isValidInput = true;
+    if (choice.length() == 1) {
+        switch (choice[0]) {
+        case 'y':
+        case 'Y':
+            return isValidInput;
+        case 'n':
+        case 'N':
+            return isValidInput;
+        default:
+            break;
+        }
+    }
+    return !isValidInput;
+}
+//____________________________________________________________________________________________
+void createOriginalFile(string fileName) {
+    fstream originalFile;
+    originalFile.open(fileName.c_str(), ios::in);
+    cout << "--------------------------------------------------------------------------------------" << endl;
+    if (originalFile.is_open()) {
+        cout << "This file does indeed exists and will be used for your preferred operations\n";
+    }
+    else {
+        originalFile.open(fileName.c_str(), ios::out);
+        cout << "This is a new file that have been created for you!";
+    }
+    originalFile.close();
+}
+//____________________________________________________________________________________________
+string createTempOfOriginalFile(string originalFileName) {
+
+    string tempFileName = "tempOfOriginal.txt";
+    fstream newFile;
+    fstream oldFile;
+    newFile.open(tempFileName.c_str(), ios::out);
+    oldFile.open(originalFileName.c_str(), ios::in);
+
+    if (newFile.is_open()) {
+        //copying the content from the old one.
+        newFile << oldFile.rdbuf();
+    }
+
+    newFile.close();
+    oldFile.close();
+
+    return tempFileName;
+}
+//____________________________________________________________________________________________
 void mergeAnotherFile(string fileName)
 {
     fstream file, file2;
-    string inputLine, secondFileName = getFileName("Second");
+    bool isValidFile;
+    string inputLine, secondFileName;
+    secondFileName = getAValidFileName(" Second");
+    isValidFile = checkValidFile(secondFileName);
+    if (!isValidFile)
+    {
+        cout << "the file does not exist in the directory, I created for you with the Name that you entered.\n";
+        file2.open(secondFileName.c_str(), ios::out);
+        file2.close();
+    }
     file.open(fileName.c_str(), ios::app);
     file2.open(secondFileName.c_str(), ios::in);
     while (getline(file2, inputLine))
@@ -87,54 +162,64 @@ void mergeAnotherFile(string fileName)
     }
     file.close();
     file2.close();
+    cout << "Merging files done.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-int countNumberOfWords(string fileName)
+void countNumberOfWords(string fileName)
 {
     fstream file;
     file.open(fileName.c_str(), ios::in);
-    int numberOfWords = 0; 
-    string inputLine;
+    int numberOfWords = 0;
+    string inputLine, word;
     while (getline(file, inputLine))
     {
         stringstream strLine(inputLine);
-        string word;
         while (strLine >> word)
         {
             numberOfWords++;
         }
     }
     file.close();
-    return numberOfWords;
+    if (numberOfWords == 0) {
+        cout << "There is no words in this file.\n";
+    }
+    else {
+        cout << "The number of Words in the file = " << numberOfWords << "\n";
+    }
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-int countNumberOfLines(string fileName)
+void countNumberOfLines(string fileName)
 {
     fstream file;
     int numberOfLines = 0;
-    file.open(fileName.c_str(), ios::in);
     string inputLine;
+    file.open(fileName.c_str(), ios::in);
     while (getline(file, inputLine))
     {
         numberOfLines++;
     }
     file.close();
-    return numberOfLines;
+    cout << "The number of the Lines in the file = " << numberOfLines << "\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-int countNumberOfCharacters(string fileName)
+void countNumberOfCharacters(string fileName)
 {
     fstream file;
     file.open(fileName.c_str(), ios::in);
     int numberOfCharacters = 0;
     file.get();
+    numberOfCharacters++;
     while (!file.eof() && !file.fail())
     {
         numberOfCharacters++;
         file.get();
     }
     file.close();
-    return numberOfCharacters + 1;
+    cout << "The number of the characters in the file = " << numberOfCharacters << "\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 string makeWordLowerCase(string word)
@@ -148,8 +233,7 @@ string makeWordLowerCase(string word)
 //____________________________________________________________________________________________
 string getWordForSearching()
 {
-    string word;
-    word = "";
+    string word = "";
     while (word.empty())
     {
         cout << "Enter the word you want to search about in the file: ";
@@ -159,37 +243,45 @@ string getWordForSearching()
     return word;
 }
 //____________________________________________________________________________________________
-bool searchForWordInFile(string fileName, string wordWanted)
+void searchForWordInFile(string fileName)
 {
     fstream file;
+    string inputLine, word, searchWord = getWordForSearching();
+    bool checkWord = false;
     file.open(fileName.c_str(), ios::in);
-    string inputLine, word;
     while (getline(file, inputLine))
     {
-        stringstream s(inputLine);
-        while (s >> word)
+        stringstream strLine(inputLine);
+        while (strLine >> word)
         {
             word = makeWordLowerCase(word);
-            if (wordWanted == word)
+            if (searchWord == word)
             {
-                file.close();
-                return true;
+                checkWord = true;
+                break;
             }
         }
     }
     file.close();
-    return false;
+    if (checkWord) {
+        cout << "\n" << "the word {" << searchWord << "} exists in the file.\n";
+    }
+    else {
+        cout << "\n" << "the word {" << searchWord << "} does not exist in the file.\n";
+    }
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-// counting the number of times a word exists in a file // very strict counter
-int countWordOccurences(string filename, string searchWord){ // read only
+// counting the number of times a word exists in a file. // very strict counter. // read only. // DONE - Yusuf Badr.
+void countWordOccurences(string fileName) {
     fstream file;
-    file.open(filename, ios::in);
-    searchWord = makeWordLowerCase(searchWord);
     char letter;
-    int counter = 0;
+    string word, searchWord = getWordForSearching();
+    searchWord = makeWordLowerCase(searchWord);
+    int numberOfOccurences = 0;
+    file.open(fileName.c_str(), ios::in);
     while (!file.eof() && !file.fail()) {
-        string word;
+        word = "";
         while (file.peek() != ' ' && file.peek() != '\n' && file.peek() != EOF) {
             file.get(letter);
             if (isalpha(letter)) {
@@ -198,66 +290,77 @@ int countWordOccurences(string filename, string searchWord){ // read only
             word += letter;
         }
         if (word == searchWord) {
-            counter += 1;
+            numberOfOccurences += 1;
         }
         file.ignore(1);
     }
-
     file.close();
-    return counter;
+    cout << "The Number of the occurences of the word {" << searchWord << "} in the file = " << numberOfOccurences << "\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-// open and closing file done in the function
-void allFileToUpperCase(string filename) { // read and write
+// DONE - Yusuf Badr.
+void allFileToUpperCase(string fileName) {
     fstream originalFile, newFile;
     char letter;
-    originalFile.open(filename.c_str(), ios::in);
+
+    originalFile.open(fileName.c_str(), ios::in);
     newFile.open("newTemp.txt", ios::out);
+
     while (originalFile.peek() != EOF) {
         originalFile.get(letter);
         letter = toupper(letter);
         newFile << letter;
     }
+
     newFile.close();
     originalFile.close();
 
-    remove(filename.c_str());
-    rename("newTemp.txt", filename.c_str());
-
+    remove(fileName.c_str());
+    rename("newTemp.txt", fileName.c_str());
+    cout << "The content of the file have turned to upper case succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-// open and closing file done in the function
-void allFileToLowerCase(string filename) { // read and write
+// DONE - Yusuf Badr.
+void allFileToLowerCase(string fileName) {
     fstream originalFile, newFile;
     char letter;
-    originalFile.open(filename.c_str(), ios::in);
+
+    originalFile.open(fileName.c_str(), ios::in);
     newFile.open("newTemp.txt", ios::out);
+
     while (originalFile.peek() != EOF) {
         originalFile.get(letter);
         letter = tolower(letter);
         newFile << letter;
     }
+
     newFile.close();
     originalFile.close();
 
-    remove(filename.c_str());
-    rename("newTemp.txt", filename.c_str());
-
+    remove(fileName.c_str());
+    rename("newTemp.txt", fileName.c_str());
+    cout << "The content of the file have turned to lower case succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-// converts the first letter of every word in the text file to capital letter
-void allFileToFirstCaps(string filename) {
+// converts the first letter of every word in the text file to capital letter. // DONE - Yusuf Badr.
+void allFileToFirstCaps(string fileName) {
     fstream originalFile, newFile;
     char letter;
-    originalFile.open(filename.c_str(), ios::in);
+
+    originalFile.open(fileName.c_str(), ios::in);
     newFile.open("newTemp.txt", ios::out);
+
     if (originalFile.peek() != EOF) {
         originalFile.get(letter);
         letter = toupper(letter);
         newFile << letter;
     }
+    char nextChar;
     while (originalFile.peek() != EOF) {
-        char nextChar = originalFile.get();
+        nextChar = originalFile.get();
         if ((nextChar == ' ' or nextChar == '\n') and isalpha(originalFile.peek())) {
             originalFile.unget();
             originalFile.get(letter);
@@ -272,14 +375,124 @@ void allFileToFirstCaps(string filename) {
             newFile << letter;
         }
     }
+
     newFile.close();
     originalFile.close();
 
-    remove(filename.c_str());
-    rename("newTemp.txt", filename.c_str());
+    remove(fileName.c_str());
+    rename("newTemp.txt", fileName.c_str());
+    cout << "all words in the file have turned to 1st caps (1st char of each word is capital) succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-bool checkUserChoice(string choice) // Done. By Mohamed.
+// DONE - Yusuf Badr.
+void saveFile(string originalFileName, string tempOriginalFileName) {
+
+    // getting yes or no with defensive programming.
+    string choice = "";
+    bool validInput = false;
+    while (!validInput) {
+        cout << "Would you like to save the current changes of this file? (y)|(n):\n";
+        getline(cin, choice);
+        isValidInput = checkYesOrNot(choice);
+        if (!isValidInput)
+        {
+            cout << "Enter a Valid option from (y) or (n), Try again.\n";
+        }
+        // Eladwy: I made a Function called CheckYesOrNot that will be used in this function twice and my functions also.
+        // so don't forget to remove the commenting codes from the file dude.
+        // if (choice.length() == 1) {
+        //     switch (choice[0]) {
+        //     case 'y':
+        //     case 'Y':
+        //         validInput = true;
+        //         break;
+        //     case 'n':
+        //     case 'N':
+        //         validInput = true;
+        //         break;
+        //     default:
+        //         cout << "invalid character try again.\n";
+        //     }
+        // }
+        // else {
+        //     cout << "Please enter one CHARACTER y/n\n";
+        // }
+    }
+    choice[0] = tolower(choice[0]);
+
+    if (choice[0] == 'y') {
+        remove(originalFileName.c_str());
+        rename(tempOriginalFileName.c_str(), originalFileName.c_str());
+    }
+    else {
+        remove(tempOriginalFileName.c_str());
+        cout << "Changes not saved!\n";
+    }
+    cout << "--------------------------------------------------------------------------------------" << endl;
+    // ------
+
+    // getting yes or no with defensive programming.
+    choice = "";
+    validInput = false;
+    while (!validInput) {
+        cout << "Would you like to save the file again with a different name? (y)|(n):\n";
+        getline(cin, choice);
+        isValidInput = checkYesOrNot(choice);
+        if (!isValidInput)
+        {
+            cout << "Enter a Valid option from (y) or (n), Try again.\n";
+        }
+        // Eladwy: I made a Function called CheckYesOrNot that will be used in this function twice and my functions also. 
+        // so don't forget to remove the commenting codes from the file dude.
+        // if (choice.length() == 1) {
+        //     switch (choice[0]) {
+        //     case 'y':
+        //     case 'Y':
+        //         validInput = true;
+        //         break;
+        //     case 'n':
+        //     case 'N':
+        //         validInput = true;
+        //         break;
+        //     default:
+        //         cout << "invalid character try again.\n";
+        //     }
+        // }
+        // else {
+        //     cout << "Please enter one CHARACTER y/n\n";
+        // }
+    }
+    choice[0] = tolower(choice[0]);
+
+    if (choice[0] == 'y') {
+        string newFileName = getAValidFileName(" other new");
+        while (newFileName == originalFileName) {
+            cout << "The new name should be different from the old one.\n";
+            newFileName = getAValidFileName(" other new");
+        }
+
+        fstream newFile;
+        fstream oldFile;
+        newFile.open(newFileName.c_str(), ios::out);
+        oldFile.open(originalFileName.c_str(), ios::in);
+
+        if (newFile.is_open()) {
+            //copying the content from the old one.
+            newFile << oldFile.rdbuf();
+        }
+
+        newFile.close();
+        oldFile.close();
+        cout << "Saved a copy as new file successfully!\n";
+    }
+    else {
+        cout << "OK.\n";
+    }
+    cout << "--------------------------------------------------------------------------------------" << endl;
+}
+//____________________________________________________________________________________________
+bool checkUserChoice(string choice) // Done. // By Mohamed.
 {
     if ((choice.length() == 1 || choice.length() == 2))
     {
@@ -291,141 +504,144 @@ bool checkUserChoice(string choice) // Done. By Mohamed.
                 return false;
             }
         }
-
         // check the range of the user choice. 
         int userChoice = stoi(choice);
-        if (userChoice > 0 && userChoice < 17)
+        if (userChoice >= 1 && userChoice <= 16)
         {
             return true;
         }
     }
-    
     return false;
 }
 //____________________________________________________________________________________________
 int getUserChoice() // Done By Mohamed.
 {
-    string getChoice = ""; 
+    string getChoice;
     int setChoice;
-    bool checker = true;
-    
-    while (checker)
+    bool isValidChoice = false;
+
+    while (!isValidChoice)
     {
+        getChoice = "";
         while (getChoice.empty())
         {
             cout << "Enter your choice from the list above from [1:16] ya user ya habeby: ";
             getline(cin, getChoice);
         }
-
-        checker = checkUserChoice(getChoice);
+        isValidChoice = checkUserChoice(getChoice);
     }
-
     setChoice = stoi(getChoice);
+    cout << "--------------------------------------------------------------------------------------" << endl;
     return setChoice;
 }
 //____________________________________________________________________________________________
-void save(fstream& file) // Almost Done By Mohamed.
+void addingContent(string fileName) //Done by Amr.
 {
-    file.flush();
+    string line;
+    fstream myFile;
+    myFile.open(fileName.c_str(), ios::app);
+    cout << "######################################################\n";
+    cout << "### write here or press Enter+0000+Enter to stop ###\n";
+    cout << "######################################################\n";
+    while (true)
+    {
+        getline(cin, line);
+        if (line == "0000")
+        {
+            cout << "--------------------------------------------------------------------------------------" << endl;
+            cout << "text added succesfully.\n";
+            break;
+        }
+        myFile << line << "\n";
+    }
+    cout << "--------------------------------------------------------------------------------------" << endl;
+    myFile.close();
 }
 //____________________________________________________________________________________________
-void addingContent(string fileName) //Done by Amr
-{
-  string line;
-  fstream myFile;
-  myFile.open(fileName.c_str(), ios::app);
-  cout << "##################" << "\n";
-  cout << "### write here ###" << "\n";
-  cout << "##################" << "\n";
-  while (true)
-  {
-     getline(cin, line);
-     if(cin.eof())
-      {
-        cout << "\n" << "text added." << "\n";
-        break;
-      }
-      myFile << line << "\n";
- 
-  }
-}
-//__________________________________________________________________________________________
 void displayContent(string fileName) //Done by Amr
 {
     string line;
     fstream myFile;
     myFile.open(fileName.c_str(), ios::in);
-
     if (myFile.is_open())
     {
-       while (getline(myFile, line))
-       {
-           cout << line << "\n";
-       }
-      
-       myFile.close();
+        cout << "The Content of the File:-\n";
+        cout << "-------------------------\n";
+        while (getline(myFile, line))
+        {
+            cout << line << "\n";
+        }
+
+        myFile.close();
     }
+    cout << "--------------------------------------------------------------------------------------" << endl;
+    cout << "The content of the file have displayed succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
-//_________________________________________________________________________________________
+//____________________________________________________________________________________________
 void emptyFileContent(string fileName) //Done by Amr
 {
     fstream myFile;
-    myFile.open(fileName.c_str(), ios::trunc);
+    myFile.open(fileName.c_str(), ios::out); // Eladwy: I changed the ios::trunc to ios::out bcz it wasn't working in the begnning
     myFile.close();
+    cout << "The content of the file have cleared succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
-//__________________________________________________________________________________________
-void encryptFileContent(string fileName) //Done by Amr
+//____________________________________________________________________________________________
+void encryptFileContent(string fileName) // Done by Amr.
 {
 
-    string  line,newline;
-    int stage1,stage2;
-    fstream myfile(fileName.c_str(),ios::in);
-    fstream newfile("newTemp.txt",ios::out);
-  if (myfile.is_open())
-  {
-      while (getline(myfile,line))
-      {
-        newline="";
+    string line, newline;
+    fstream myFile;
+    fstream newFile;
+
+    myFile.open(fileName.c_str(), ios::in);
+    newFile.open("newTemp.txt", ios::out);
+    while (getline(myFile, line))
+    {
+        newline = "";
         for (int i = 0; i < line.length(); i++)
         {
-         line[i]++;
-         newline+=line[i];
+            line[i]++;
+            newline += line[i];
         }
-        newfile<< newline<<"\n";
-      }
-       myfile.close();
-       newfile.close();
-      remove(fileName.c_str());
-      rename("newTemp.txt", fileName.c_str());
-     
-  }
-  
+        newFile << newline << "\n";
+    }
+    myFile.close();
+    newFile.close();
+
+    remove(fileName.c_str());
+    rename("newTemp.txt", fileName.c_str());
+    cout << "The content of the file have encrypted succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
-//___________________________________________________________________
-void decryptingFileContent(string fileName) //Done by Amr
+//____________________________________________________________________________________________
+void decryptFileContent(string fileName) //Done by Amr
 {
 
-    string  line,newline;
-    int stage1,stage2;
-    fstream myfile(fileName.c_str(),ios::in);
-    fstream newfile("newTemp.txt",ios::out);
-  if (myfile.is_open())
-  {
-      while (getline(myfile,line))
-      {
-        newline="";
+    string line, newline;
+    fstream myFile;
+    fstream newFile;
+
+    myFile.open(fileName.c_str(), ios::in);
+    newFile.open("newTemp.txt", ios::out);
+
+    while (getline(myFile, line))
+    {
+        newline = "";
         for (int i = 0; i < line.length(); i++)
         {
-         line[i]--;
-         newline+=line[i];
+            line[i]--;
+            newline += line[i];
         }
-        newfile<< newline<<"\n";
-      }
-       myfile.close();
-       newfile.close();
-      remove(fileName.c_str());
-      rename("newTemp.txt", fileName.c_str());
-     
-  }
+        newFile << newline << "\n";
+    }
+    myFile.close();
+    newFile.close();
+
+    remove(fileName.c_str());
+    rename("newTemp.txt", fileName.c_str());
+    cout << "The content of the file have encrypted succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;
   
 }
