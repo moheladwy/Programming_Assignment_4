@@ -8,25 +8,22 @@ bdr have the functions [11:15]
 using namespace std;
 //____________________________________________________________________________________________
 
-string getFileName(string turn = ""); // Done.
+string getAValidFileName(string turn = ""); // Done - Eladwy. Regex - by Yusuf
 //____________________________________________________________________________________________
 
-bool checkFileName(string fileName); // Done.
+bool checkValidFile(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-bool checkValidFile(string fileName); // Done.
+void printMainMenu(); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-void mainMenu(); // Done.
+bool checkUserChoice(string choice); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-bool checkUserChoice(string choice); // Done.
+int getUserChoice(); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int getUserChoice(); // Done.
-//____________________________________________________________________________________________
-
-void executeUserChoice(int choice);
+void executeUserChoice(int choice, string fileName, string originalFileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
 void addingContent(string fileName); //Done
@@ -38,47 +35,56 @@ void displayContent(string fileName); //Done
 void emptyFileContent(string fileName); //Done
 //____________________________________________________________________________________________
 
-void encryptFileContent(); //Done
+void encryptFileContent(string fileName); //Done
 //____________________________________________________________________________________________
 
-void decryptingFileContent(); //Done
+void decryptFileContent(string fileName); //Done
 //____________________________________________________________________________________________
 
-void mergeAnotherFile(string fileName); // Done.
+void mergeAnotherFile(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int countNumberOfWords(string fileName); // Done.
+void countNumberOfWords(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int countNumberOfCharacters(string fileName); // Done.
+void countNumberOfCharacters(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int countNumberOfLines(string fileName); // Done.
+void countNumberOfLines(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-string makeWordLowerCase(string word); // Done.
-//____________________________________________________________________________________________
- 
-string getWordForSearching(); // Done.
+string makeWordLowerCase(string word); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-bool searchForWordInFile(string fileName, string wordWanted); // Done.
+string getWordForSearching(); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-int countWordOccurences(string filename, string searchWord); // Done.
+void searchForWordInFile(string fileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
-void allFileToUpperCase(string filename); // Done.
+void countWordOccurences(string filename); // DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
-void allFileToLowerCase(string filename); // Done.
+void allFileToUpperCase(string filename); // DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
-void allFileToFirstCaps(string filename); // Done.
+void allFileToLowerCase(string filename); // DONE - Yusuf Badr
 //____________________________________________________________________________________________
 
-void save(fstream& file); // Almost Done.
+void allFileToFirstCaps(string filename); //DONE - Yusuf Badr
+//____________________________________________________________________________________________
+
+void saveFile(string originalFileName, string tempOriginalFileName); //DONE - Yusuf Badr
+//____________________________________________________________________________________________
+
+void createOriginalFile(string fileName); // Done.
 //____________________________________________________________________________________________
 
 void clearScreen(); //Done.
+//____________________________________________________________________________________________
+
+bool isClearScreen(); // Done - Mohamed Eladwy.
+//____________________________________________________________________________________________
+
+string createTempOfOriginalFile(string originalFileName); // returns name of temp filename
 //____________________________________________________________________________________________
