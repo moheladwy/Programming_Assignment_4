@@ -23,6 +23,9 @@ bool checkUserChoice(string choice); // Done - Eladwy.
 int getUserChoice(); // Done - Eladwy.
 //____________________________________________________________________________________________
 
+bool isEmptyFile(string fileName); // Done - Eladwy.
+//____________________________________________________________________________________________
+
 void executeUserChoice(int choice, string fileName, string originalFileName); // Done - Eladwy.
 //____________________________________________________________________________________________
 
