@@ -35,7 +35,7 @@ string getAValidFileName(string turn = "")
         fileName = "";
         while (fileName.empty())
         {
-            cout << "Enter the" << turn << " file Name: ";
+            cout << "Enter the" << turn << " file Name:\n";
             getline(cin, fileName);
         }
         checker = regex_match(fileName, isValid);
@@ -49,6 +49,7 @@ string getAValidFileName(string turn = "")
         }
     }
 }
+
 //____________________________________________________________________________________________
 bool checkValidFile(string fileName)
 {
@@ -404,11 +405,22 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     choice[0] = tolower(choice[0]);
 
     if (choice[0] == 'y') {
-        remove(originalFileName.c_str());
-        rename(tempOriginalFileName.c_str(), originalFileName.c_str());
+
+        fstream newFile;
+        fstream oldFile;
+        newFile.open(originalFileName.c_str(), ios::out);
+        oldFile.open(tempOriginalFileName.c_str(), ios::in);
+
+        if (newFile.is_open()) {
+            //copying the content from the old one.
+            newFile << oldFile.rdbuf();
+        }
+
+        newFile.close();
+        oldFile.close();
+        cout << "Changes Saved!\n";
     }
     else if (choice[0] == 'n') {
-        remove(tempOriginalFileName.c_str());
         cout << "Changes not saved!\n";
     }
     cout << "--------------------------------------------------------------------------------------" << endl;
@@ -418,7 +430,7 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     choice = "";
     validInput = false;
     while (!validInput) {
-        cout << "Would you like to save the file changes as a file with a different name? (y)|(n):\\n";
+        cout << "Would you like to save the file changes as a file with a different name? (y)|(n):\n";
         getline(cin, choice);
         validInput = checkValidYesOrNo(choice);
         if (!validInput)
@@ -438,7 +450,7 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
         fstream newFile;
         fstream oldFile;
         newFile.open(newFileName.c_str(), ios::out);
-        oldFile.open(originalFileName.c_str(), ios::in);
+        oldFile.open(tempOriginalFileName.c_str(), ios::in);
 
         if (newFile.is_open()) {
             //copying the content from the old one.
@@ -452,6 +464,7 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     else if (choice[0] == 'n') {
         cout << "OK.\n";
     }
+    remove(tempOriginalFileName.c_str());
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
