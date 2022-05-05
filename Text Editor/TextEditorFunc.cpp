@@ -99,7 +99,7 @@ bool isClearScreen()
     string choice = "";
     while (!isWant)
     {
-        cout << "Do you want to clear the screen before continue or not {y:n}: ";
+        cout << "Do you want to clear the screen before continue or not (y)|(n): ";
         getline(cin, choice);
         isWant = checkValidYesOrNo(choice);
         if (!isWant)
@@ -401,43 +401,52 @@ void allFileToLowerCase(string fileName) {
 //____________________________________________________________________________________________
 // converts the first letter of every word in the text file to capital letter. // DONE - Yusuf Badr.
 void allFileToFirstCaps(string fileName) {
-    allFileToLowerCase(fileName);
+    // allFileToLowerCase(fileName);
+    bool emptyFile = isEmptyFile(fileName);
+    if (!emptyFile)
+    {
+        fstream originalFile, newFile;
+        char letter, nextChar;
 
-    fstream originalFile, newFile;
-    char letter;
+        originalFile.open(fileName.c_str(), ios::in);
+        newFile.open("newTemp.txt", ios::out);
 
-    originalFile.open(fileName.c_str(), ios::in);
-    newFile.open("newTemp.txt", ios::out);
-
-    if (originalFile.peek() != EOF) {
-        originalFile.get(letter);
-        letter = toupper(letter);
-        newFile << letter;
-    }
-    char nextChar;
-    while (originalFile.peek() != EOF) {
-        nextChar = originalFile.get();
-        if ((nextChar == ' ' or nextChar == '\n') and isalpha(originalFile.peek())) {
-            originalFile.unget();
-            originalFile.get(letter);
-            newFile << letter;
+        if (originalFile.peek() != EOF) {
             originalFile.get(letter);
             letter = toupper(letter);
             newFile << letter;
         }
-        else {
-            originalFile.unget();
-            originalFile.get(letter);
-            newFile << letter;
+        while (originalFile.peek() != EOF) {
+            nextChar = originalFile.get();
+            if ((nextChar == ' ' or nextChar == '\n') and isalpha(originalFile.peek())) {
+                originalFile.unget();
+                originalFile.get(letter);
+                newFile << letter;
+                originalFile.get(letter);
+                letter = toupper(letter);
+                newFile << letter;
+            }
+            else {
+                originalFile.unget();
+                originalFile.get(letter);
+                // Eladwy: I maked the rest of the word a lower case dude. 
+                // bcz there is no need to call allFileToLowerCase function here.
+                letter = tolower(letter); 
+                newFile << letter;
+            }
         }
+
+        newFile.close();
+        originalFile.close();
+
+        remove(fileName.c_str());
+        rename("newTemp.txt", fileName.c_str());
+        cout << "all words in the file have turned to 1st caps (1st char of each word is capital) successfully.\n";
     }
-
-    newFile.close();
-    originalFile.close();
-
-    remove(fileName.c_str());
-    rename("newTemp.txt", fileName.c_str());
-    cout << "all words in the file have turned to 1st caps (1st char of each word is capital) successfully.\n";
+    else
+    {
+        cout << "The file is empty, There is no content to turn to 1st caps!" << endl;
+    }
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
@@ -586,40 +595,41 @@ void addingContent(string fileName) //Done by Amr.
 //____________________________________________________________________________________________
 void displayContent(string fileName) //Done by Amr
 {
-    string line;
-    fstream myFile;
     bool emptyFile = isEmptyFile(fileName);
-    myFile.open(fileName.c_str(), ios::in);
-    if (myFile.is_open())
-    {
-        if (emptyFile)
+    if (!emptyFile) {
+        string line;
+        fstream myFile;
+        myFile.open(fileName.c_str(), ios::in);
+        cout << "The Content of the File:-\n";
+        cout << "-------------------------\n";
+        while (getline(myFile, line))
         {
-            cout << "The file is empty, There is no content to display." << endl;
-            cout << "--------------------------------------------------------------------------------------" << endl;
+            cout << line << "\n";
         }
-        else
-        {
-            cout << "The Content of the File:-\n";
-            cout << "-------------------------\n";
-            while (getline(myFile, line))
-            {
-                cout << line << "\n";
-            }
 
-            myFile.close();
-            cout << "--------------------------------------------------------------------------------------" << endl;
-            cout << "The content of the file have displayed succefully.\n";
-            cout << "--------------------------------------------------------------------------------------" << endl;
-        }
+        myFile.close();
+        cout << "--------------------------------------------------------------------------------------" << endl;
+        cout << "The content of the file have displayed succefully.\n";
+        cout << "--------------------------------------------------------------------------------------" << endl;
+    }
+    else {
+        cout << "The file is empty, There is no content to display." << endl;
+        cout << "--------------------------------------------------------------------------------------" << endl;
     }
 }
 //____________________________________________________________________________________________
 void emptyFileContent(string fileName) //Done by Amr
 {
-    fstream myFile;
-    myFile.open(fileName.c_str(), ios::out); // Eladwy: I changed the ios::trunc to ios::out bcz it wasn't working in the begnning
-    myFile.close();
-    cout << "The content of the file have cleared succefully.\n";
+    bool emptyFile = isEmptyFile(fileName);
+    if (!emptyFile) {
+        fstream myFile;
+        myFile.open(fileName.c_str(), ios::out);
+        myFile.close();
+        cout << "The content of the file have cleared succefully.\n";
+    }
+    else {
+        cout << "This file does indeed empty!" << endl;
+    }
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
