@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cctype>
 #include <fstream>
-#include <sstream> // it's not used, consider removing it - Yusuf Badr.//Eladwy: I am using it. (sstream == stringstream) that I am using it in my functions 
+#include <sstream> 
 #include <regex>
 #include <string>
 using namespace std;
@@ -25,7 +25,6 @@ bool checkValidYesOrNo(string choice)
     }
     return !isValidInput;
 }
-
 //____________________________________________________________________________________________
 string getAValidFileName(string turn = "")
 {
@@ -109,14 +108,13 @@ bool isClearScreen()
     }
     return isWant;
 }
-
 //____________________________________________________________________________________________
 void createOriginalFile(string fileName) {
     fstream originalFile;
     originalFile.open(fileName.c_str(), ios::in);
     cout << "--------------------------------------------------------------------------------------" << endl;
     if (originalFile.is_open()) {
-        cout << "This file does indeed exists and will be used for your preferred operations\n";
+        cout << "This file does indeed exists and will be used for your preferred operations.\n";
     }
     else {
         originalFile.open(fileName.c_str(), ios::out);
@@ -161,7 +159,7 @@ void mergeAnotherFile(string fileName)
     file2.open(secondFileName.c_str(), ios::in);
     while (getline(file2, inputLine))
     {
-        file << inputLine << "\n";
+        file << " " << inputLine << "\n";
     }
     file.close();
     file2.close();
@@ -172,9 +170,9 @@ void mergeAnotherFile(string fileName)
 void countNumberOfWords(string fileName)
 {
     fstream file;
-    file.open(fileName.c_str(), ios::in);
     int numberOfWords = 0;
     string inputLine, word;
+    file.open(fileName.c_str(), ios::in);
     while (getline(file, inputLine))
     {
         stringstream strLine(inputLine);
@@ -217,8 +215,8 @@ void countNumberOfCharacters(string fileName)
     numberOfCharacters++;
     while (!file.eof() && !file.fail())
     {
-        numberOfCharacters++;
         file.get();
+        numberOfCharacters++;
     }
     file.close();
     cout << "The number of the characters in the file = " << numberOfCharacters << "\n";
@@ -267,10 +265,10 @@ void searchForWordInFile(string fileName)
     }
     file.close();
     if (checkWord) {
-        cout << "\n" << "the word {" << searchWord << "} exists in the file.\n";
+        cout << "the word {" << searchWord << "} exists in the file.\n";
     }
     else {
-        cout << "\n" << "the word {" << searchWord << "} does not exist in the file.\n";
+        cout << "the word {" << searchWord << "} does not exist in the file.\n";
     }
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
@@ -513,12 +511,12 @@ void addingContent(string fileName) //Done by Amr.
         getline(cin, line);
         if (line == "0000")
         {
-            cout << "--------------------------------------------------------------------------------------" << endl;
-            cout << "text added succesfully.\n";
             break;
         }
         myFile << line << "\n";
     }
+    cout << "--------------------------------------------------------------------------------------" << endl;
+    cout << "text added succesfully.\n";
     cout << "--------------------------------------------------------------------------------------" << endl;
     myFile.close();
 }
@@ -606,7 +604,91 @@ void decryptFileContent(string fileName) //Done by Amr
 
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
-    cout << "The content of the file have encrypted succefully.\n";
-    cout << "--------------------------------------------------------------------------------------" << endl;
-  
+    cout << "The content of the file have decrypted succefully.\n";
+    cout << "--------------------------------------------------------------------------------------" << endl;  
 }
+//____________________________________________________________________________________________
+void executeUserChoice(int choice, string fileName, string originalFileName) // Done - Eladwy.
+{
+    switch (choice) {
+
+    case 1: {
+        addingContent(fileName);
+        break;
+    }
+
+    case 2: {
+        displayContent(fileName);
+        break;
+    }
+
+    case 3: {
+        emptyFileContent(fileName);
+        break;
+    }
+
+    case 4: {
+        encryptFileContent(fileName);
+        break;
+    }
+
+    case 5: {
+        decryptFileContent(fileName);
+        break;
+    }
+
+    case 6: {
+        mergeAnotherFile(fileName);
+        break;
+    }
+
+    case 7: {
+        countNumberOfWords(fileName);
+        break;
+    }
+
+    case 8: {
+        countNumberOfCharacters(fileName);
+        break;
+    }
+
+    case 9: {
+        countNumberOfLines(fileName);
+        break;
+    }
+
+    case 10: {
+        searchForWordInFile(fileName);
+        break;
+    }
+
+    case 11: {
+        countWordOccurences(fileName);
+        break;
+    }
+
+    case 12: {
+        allFileToUpperCase(fileName);
+        break;
+    }
+
+    case 13: {
+        allFileToLowerCase(fileName);
+        break;
+    }
+
+    case 14: {
+        allFileToFirstCaps(fileName);
+        break;
+    }
+
+    case 15: {
+        saveFile(originalFileName, fileName);
+        break;
+    }
+
+    default:
+        break;
+    }
+}
+//____________________________________________________________________________________________
