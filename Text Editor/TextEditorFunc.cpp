@@ -358,6 +358,8 @@ void allFileToLowerCase(string fileName) {
 //____________________________________________________________________________________________
 // converts the first letter of every word in the text file to capital letter. // DONE - Yusuf Badr.
 void allFileToFirstCaps(string fileName) {
+    allFileToLowerCase(fileName);
+
     fstream originalFile, newFile;
     char letter;
 
