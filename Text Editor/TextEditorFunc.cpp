@@ -600,15 +600,14 @@ void addingContent(string fileName)
     myFile.close();
 }
 //____________________________________________________________________________________________
-void displayContent(string fileName)
+void displayContent(string fileName, string originalFileName)
 {
     bool emptyFile = isEmptyFile(fileName);
     if (!emptyFile) {
         string line;
         fstream myFile;
         myFile.open(fileName.c_str(), ios::in);
-        cout << "The Content of the File:-\n";
-        cout << "-------------------------\n";
+        cout << "------------------------------{" << originalFileName << "}------------------------------" << endl ;
         while (getline(myFile, line))
         {
             cout << line << "\n";
@@ -665,7 +664,7 @@ void encryptFileContent(string fileName)
 
         remove(fileName.c_str());
         rename("newTemp.txt", fileName.c_str());
-        cout << "The content of the file have encrypted succefully.\n";
+        cout << "The content of the file have encrypted and secured succefully.\n";
         cout << "--------------------------------------------------------------------------------------" << endl;
     }
     else
@@ -721,7 +720,7 @@ void executeUserChoice(int choice, string fileName, string originalFileName)
         }
 
         case 2: {
-            displayContent(fileName);
+            displayContent(fileName, originalFileName);
             break;
         }
 
