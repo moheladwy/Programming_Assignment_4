@@ -1,3 +1,15 @@
+/*
+FCAI – Programming 1 – 2022 - Assignment 4
+Program Name: Text Editor Application
+Last Modification Date: xx/05/2022
+Author1 and ID and Group: Mohamed Hussein Hassan Eladwy. ID: 20210335. Group: B. Section: 17 - 18.
+Author2 and ID and Group: Yusuf Elsayed Abdelrahman Bdr. ID: 20210502. Group: B. Section: 17 - 18.
+Author3 and ID and Group: Amr Khalied Elsayed Elhennawy. ID: 20210274. Group: B. Section: 17 - 18.
+Teaching Assistant: Eng.Hagar Aly
+Purpose: Allow the user to open text files with write and reading from.
+File: This is the CPP file that contain the algorithms of the functions.
+*/
+
 #include <Windows.h>
 #include <iostream>
 #include <cctype>
@@ -26,10 +38,10 @@ bool checkValidYesOrNo(string choice)
     return !isValidInput;
 }
 //____________________________________________________________________________________________
-string getAValidFileName(string turn = "")
+string getAValidFileName(string turn)
 {
     string fileName; bool checker;
-    regex isValid("^[\\w\\-. ]+\\.txt$"); // Done. by Yusuf
+    regex isValid("^[\\w\\-. ]+\\.txt$");
     while (true)
     {
         fileName = "";
@@ -306,7 +318,6 @@ void searchForWordInFile(string fileName)
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-// counting the number of times a word exists in a file. // very strict counter. // read only. // DONE - Yusuf Badr.
 void countWordOccurences(string fileName) 
 {
     bool emptyFile = isEmptyFile(fileName);
@@ -340,7 +351,6 @@ void countWordOccurences(string fileName)
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-// DONE - Yusuf Badr.
 void allFileToUpperCase(string fileName) {
     bool emptyFile = isEmptyFile(fileName);
     if (!emptyFile) {
@@ -369,7 +379,6 @@ void allFileToUpperCase(string fileName) {
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-// DONE - Yusuf Badr.
 void allFileToLowerCase(string fileName) {
     bool emptyFile = isEmptyFile(fileName);
     if (!emptyFile)
@@ -399,7 +408,6 @@ void allFileToLowerCase(string fileName) {
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-// converts the first letter of every word in the text file to capital letter. // DONE - Yusuf Badr.
 void allFileToFirstCaps(string fileName) {
     // allFileToLowerCase(fileName);
     bool emptyFile = isEmptyFile(fileName);
@@ -450,7 +458,6 @@ void allFileToFirstCaps(string fileName) {
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-// DONE - Yusuf Badr.
 void saveFile(string originalFileName, string tempOriginalFileName) {
 
     // getting yes or no with defensive programming.
@@ -458,12 +465,12 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     string choice = "";
     bool validInput = false;
     while (!validInput) {
-        cout << "Would you like to save the current changes of this file? (y)|(n):\n";
+        cout << "Would you like to save the current changes of this file? (y)|(n): ";
         getline(cin, choice);
         validInput = checkValidYesOrNo(choice);
         if (!validInput)
         {
-            cout << "Please enter a valid character, \"y\" or \"n\"\n";
+            cout << "Please enter a valid character, \"y\" or \"n\"." << endl;
         }
     }
     choice[0] = tolower(choice[0]);
@@ -492,12 +499,12 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     choice = "";
     validInput = false;
     while (!validInput) {
-        cout << "Would you like to save the file changes as a file with a different name? (y)|(n):\n";
+        cout << "Would you like to save the file changes as a file with a different name? (y)|(n): ";
         getline(cin, choice);
         validInput = checkValidYesOrNo(choice);
         if (!validInput)
         {
-            cout << "Please enter a valid character, \"y\" or \"n\"\n";
+            cout << "Please enter a valid character, \"y\" or \"n\"." << endl;
         }
     }
     choice[0] = tolower(choice[0]);
@@ -527,7 +534,7 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-bool checkUserChoice(string choice) // Done. // By Mohamed.
+bool checkUserChoice(string choice)
 {
     if ((choice.length() == 1 || choice.length() == 2))
     {
@@ -549,7 +556,7 @@ bool checkUserChoice(string choice) // Done. // By Mohamed.
     return false;
 }
 //____________________________________________________________________________________________
-int getUserChoice() // Done By Mohamed.
+int getUserChoice()
 {
     string getChoice;
     int setChoice;
@@ -570,7 +577,7 @@ int getUserChoice() // Done By Mohamed.
     return setChoice;
 }
 //____________________________________________________________________________________________
-void addingContent(string fileName) //Done by Amr.
+void addingContent(string fileName)
 {
     string line;
     fstream myFile;
@@ -593,7 +600,7 @@ void addingContent(string fileName) //Done by Amr.
     myFile.close();
 }
 //____________________________________________________________________________________________
-void displayContent(string fileName) //Done by Amr
+void displayContent(string fileName)
 {
     bool emptyFile = isEmptyFile(fileName);
     if (!emptyFile) {
@@ -618,7 +625,7 @@ void displayContent(string fileName) //Done by Amr
     }
 }
 //____________________________________________________________________________________________
-void emptyFileContent(string fileName) //Done by Amr
+void emptyFileContent(string fileName)
 {
     bool emptyFile = isEmptyFile(fileName);
     if (!emptyFile) {
@@ -633,7 +640,7 @@ void emptyFileContent(string fileName) //Done by Amr
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
-void encryptFileContent(string fileName) // Done by Amr.
+void encryptFileContent(string fileName)
 {
 
     string line, newline;
@@ -668,7 +675,7 @@ void encryptFileContent(string fileName) // Done by Amr.
     }
 }
 //____________________________________________________________________________________________
-void decryptFileContent(string fileName) //Done by Amr
+void decryptFileContent(string fileName)
 {
 
     string line, newline;
@@ -704,7 +711,7 @@ void decryptFileContent(string fileName) //Done by Amr
     }
 }
 //____________________________________________________________________________________________
-void executeUserChoice(int choice, string fileName, string originalFileName) // Done - Eladwy.
+void executeUserChoice(int choice, string fileName, string originalFileName)
 {
     switch (choice) {
 
