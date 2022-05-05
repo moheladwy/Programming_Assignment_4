@@ -6,6 +6,26 @@
 #include <regex>
 #include <string>
 using namespace std;
+
+//____________________________________________________________________________________________
+bool checkValidYesOrNo(string choice)
+{
+    bool isValidInput = true;
+    if (choice.length() == 1) {
+        switch (choice[0]) {
+            case 'y':
+            case 'Y':
+                return isValidInput;
+            case 'n':
+            case 'N':
+                return isValidInput;
+            default:
+                break;
+        }
+    }
+    return !isValidInput;
+}
+
 //____________________________________________________________________________________________
 string getAValidFileName(string turn = "")
 {
@@ -81,7 +101,7 @@ bool isClearScreen()
     {
         cout << "Do you want to clear the screen before continue or not {y:n}: ";
         getline(cin, choice);
-        isWant = checkYesOrNot(choice);
+        isWant = checkValidYesOrNo(choice);
         if(!isWant)
         {
             cout << "Please enter a choice from (y) or (n) only, Try again.\n";
@@ -89,24 +109,7 @@ bool isClearScreen()
     }
     return isWant;
 }
-//____________________________________________________________________________________________
-bool checkYesOrNot(string choice)
-{
-    bool isValidInput = true;
-    if (choice.length() == 1) {
-        switch (choice[0]) {
-        case 'y':
-        case 'Y':
-            return isValidInput;
-        case 'n':
-        case 'N':
-            return isValidInput;
-        default:
-            break;
-        }
-    }
-    return !isValidInput;
-}
+
 //____________________________________________________________________________________________
 void createOriginalFile(string fileName) {
     fstream originalFile;
@@ -381,7 +384,7 @@ void allFileToFirstCaps(string fileName) {
 
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
-    cout << "all words in the file have turned to 1st caps (1st char of each word is capital) succefully.\n";
+    cout << "all words in the file have turned to 1st caps (1st char of each word is capital) successfully.\n";
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
@@ -394,30 +397,11 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     while (!validInput) {
         cout << "Would you like to save the current changes of this file? (y)|(n):\n";
         getline(cin, choice);
-        isValidInput = checkYesOrNot(choice);
-        if (!isValidInput)
+        validInput = checkValidYesOrNo(choice);
+        if (!validInput)
         {
-            cout << "Enter a Valid option from (y) or (n), Try again.\n";
+            cout << "Please enter a valid character, \"y\" or \"n\"\n";
         }
-        // Eladwy: I made a Function called CheckYesOrNot that will be used in this function twice and my functions also.
-        // so don't forget to remove the commenting codes from the file dude.
-        // if (choice.length() == 1) {
-        //     switch (choice[0]) {
-        //     case 'y':
-        //     case 'Y':
-        //         validInput = true;
-        //         break;
-        //     case 'n':
-        //     case 'N':
-        //         validInput = true;
-        //         break;
-        //     default:
-        //         cout << "invalid character try again.\n";
-        //     }
-        // }
-        // else {
-        //     cout << "Please enter one CHARACTER y/n\n";
-        // }
     }
     choice[0] = tolower(choice[0]);
 
@@ -425,7 +409,7 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
         remove(originalFileName.c_str());
         rename(tempOriginalFileName.c_str(), originalFileName.c_str());
     }
-    else {
+    else if (choice[0] == 'n') {
         remove(tempOriginalFileName.c_str());
         cout << "Changes not saved!\n";
     }
@@ -436,32 +420,13 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     choice = "";
     validInput = false;
     while (!validInput) {
-        cout << "Would you like to save the file again with a different name? (y)|(n):\n";
+        cout << "Would you like to save the file changes as a file with a different name? (y)|(n):\\n";
         getline(cin, choice);
-        isValidInput = checkYesOrNot(choice);
-        if (!isValidInput)
+        validInput = checkValidYesOrNo(choice);
+        if (!validInput)
         {
-            cout << "Enter a Valid option from (y) or (n), Try again.\n";
+            cout << "Please enter a valid character, \"y\" or \"n\"\n";
         }
-        // Eladwy: I made a Function called CheckYesOrNot that will be used in this function twice and my functions also. 
-        // so don't forget to remove the commenting codes from the file dude.
-        // if (choice.length() == 1) {
-        //     switch (choice[0]) {
-        //     case 'y':
-        //     case 'Y':
-        //         validInput = true;
-        //         break;
-        //     case 'n':
-        //     case 'N':
-        //         validInput = true;
-        //         break;
-        //     default:
-        //         cout << "invalid character try again.\n";
-        //     }
-        // }
-        // else {
-        //     cout << "Please enter one CHARACTER y/n\n";
-        // }
     }
     choice[0] = tolower(choice[0]);
 
@@ -486,7 +451,7 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
         oldFile.close();
         cout << "Saved a copy as new file successfully!\n";
     }
-    else {
+    else if (choice[0] == 'n') {
         cout << "OK.\n";
     }
     cout << "--------------------------------------------------------------------------------------" << endl;
