@@ -13,14 +13,14 @@ bool checkValidYesOrNo(string choice)
     bool isValidInput = true;
     if (choice.length() == 1) {
         switch (choice[0]) {
-            case 'y':
-            case 'Y':
-                return isValidInput;
-            case 'n':
-            case 'N':
-                return isValidInput;
-            default:
-                break;
+        case 'y':
+        case 'Y':
+            return isValidInput;
+        case 'n':
+        case 'N':
+            return isValidInput;
+        default:
+            break;
         }
     }
     return !isValidInput;
@@ -35,7 +35,7 @@ string getAValidFileName(string turn = "")
         fileName = "";
         while (fileName.empty())
         {
-            cout << "Enter the" << turn << " file Name:\n";
+            cout << "Enter the" << turn << " file Name: ";
             getline(cin, fileName);
         }
         checker = regex_match(fileName, isValid);
@@ -49,7 +49,6 @@ string getAValidFileName(string turn = "")
         }
     }
 }
-
 //____________________________________________________________________________________________
 bool checkValidFile(string fileName)
 {
@@ -66,6 +65,8 @@ bool checkValidFile(string fileName)
 void printMainMenu()
 {
     cout << "--------------------------------------------------------------------------------------" << endl;
+    cout << "The options of the program:-" << endl;
+    cout << "----------------------------" << endl;
     cout << "1.  Add new text to the end of the file." << endl;
     cout << "2.  Display the content of the file." << endl;
     cout << "3.  Empty the file." << endl;
@@ -87,7 +88,6 @@ void printMainMenu()
 //____________________________________________________________________________________________
 void clearScreen()
 {
-    Sleep(5000);
     system("CLS");
     cout << flush;
     system("CLS");
@@ -102,9 +102,16 @@ bool isClearScreen()
         cout << "Do you want to clear the screen before continue or not {y:n}: ";
         getline(cin, choice);
         isWant = checkValidYesOrNo(choice);
-        if(!isWant)
+        if (!isWant)
         {
             cout << "Please enter a choice from (y) or (n) only, Try again.\n";
+        }
+        else
+        {
+            if (choice == "n" || choice == "N")
+            {
+                return !isWant;
+            }
         }
     }
     return isWant;
@@ -119,7 +126,7 @@ void createOriginalFile(string fileName) {
     }
     else {
         originalFile.open(fileName.c_str(), ios::out);
-        cout << "This is a new file that have been created for you!";
+        cout << "This is a new file that have been created for you!\n";
     }
     originalFile.close();
 }
@@ -174,11 +181,9 @@ void countNumberOfWords(string fileName)
     int numberOfWords = 0;
     string inputLine, word;
     file.open(fileName.c_str(), ios::in);
-    while (getline(file, inputLine))
-    {
+    while (getline(file, inputLine)) {
         stringstream strLine(inputLine);
-        while (strLine >> word)
-        {
+        while (strLine >> word) {
             numberOfWords++;
         }
     }
@@ -198,12 +203,17 @@ void countNumberOfLines(string fileName)
     int numberOfLines = 0;
     string inputLine;
     file.open(fileName.c_str(), ios::in);
-    while (getline(file, inputLine))
-    {
+    while (getline(file, inputLine)) {
         numberOfLines++;
     }
     file.close();
-    cout << "The number of the Lines in the file = " << numberOfLines << "\n";
+    // because the defult of Notepad text editor that any file starts the lines and the characters from 1 not 0 like words.
+    if (numberOfLines == 0) {
+        cout << "The number of the Lines in the file = " << ++numberOfLines << "\n";
+    }
+    else {
+        cout << "The number of the Lines in the file = " << numberOfLines << "\n";
+    }
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
@@ -214,8 +224,7 @@ void countNumberOfCharacters(string fileName)
     int numberOfCharacters = 0;
     file.get();
     numberOfCharacters++;
-    while (!file.eof() && !file.fail())
-    {
+    while (!file.eof() && !file.fail()) {
         file.get();
         numberOfCharacters++;
     }
@@ -269,7 +278,7 @@ void searchForWordInFile(string fileName)
         cout << "the word {" << searchWord << "} exists in the file.\n";
     }
     else {
-        cout << "the word {" << searchWord << "} does not exist in the file.\n";
+        cout << "the word {" << searchWord << "} does not exist in the file or the file empty.\n";
     }
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
@@ -391,6 +400,7 @@ void allFileToFirstCaps(string fileName) {
 void saveFile(string originalFileName, string tempOriginalFileName) {
 
     // getting yes or no with defensive programming.
+    fstream oldFile, newFile, tempFile;
     string choice = "";
     bool validInput = false;
     while (!validInput) {
@@ -406,18 +416,16 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
 
     if (choice[0] == 'y') {
 
-        fstream newFile;
-        fstream oldFile;
-        newFile.open(originalFileName.c_str(), ios::out);
-        oldFile.open(tempOriginalFileName.c_str(), ios::in);
+        oldFile.open(originalFileName.c_str(), ios::out);
+        tempFile.open(tempOriginalFileName.c_str(), ios::in);
 
-        if (newFile.is_open()) {
+        if (oldFile.is_open()) {
             //copying the content from the old one.
-            newFile << oldFile.rdbuf();
+            oldFile << tempFile.rdbuf();
         }
 
-        newFile.close();
         oldFile.close();
+        tempFile.close();
         cout << "Changes Saved!\n";
     }
     else if (choice[0] == 'n') {
@@ -447,8 +455,6 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
             newFileName = getAValidFileName(" other new");
         }
 
-        fstream newFile;
-        fstream oldFile;
         newFile.open(newFileName.c_str(), ios::out);
         oldFile.open(tempOriginalFileName.c_str(), ios::in);
 
@@ -464,7 +470,6 @@ void saveFile(string originalFileName, string tempOriginalFileName) {
     else if (choice[0] == 'n') {
         cout << "OK.\n";
     }
-    remove(tempOriginalFileName.c_str());
     cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
@@ -618,90 +623,90 @@ void decryptFileContent(string fileName) //Done by Amr
     remove(fileName.c_str());
     rename("newTemp.txt", fileName.c_str());
     cout << "The content of the file have decrypted succefully.\n";
-    cout << "--------------------------------------------------------------------------------------" << endl;  
+    cout << "--------------------------------------------------------------------------------------" << endl;
 }
 //____________________________________________________________________________________________
 void executeUserChoice(int choice, string fileName, string originalFileName) // Done - Eladwy.
 {
     switch (choice) {
 
-    case 1: {
-        addingContent(fileName);
-        break;
-    }
+        case 1: {
+            addingContent(fileName);
+            break;
+        }
 
-    case 2: {
-        displayContent(fileName);
-        break;
-    }
+        case 2: {
+            displayContent(fileName);
+            break;
+        }
 
-    case 3: {
-        emptyFileContent(fileName);
-        break;
-    }
+        case 3: {
+            emptyFileContent(fileName);
+            break;
+        }
 
-    case 4: {
-        encryptFileContent(fileName);
-        break;
-    }
+        case 4: {
+            encryptFileContent(fileName);
+            break;
+        }
 
-    case 5: {
-        decryptFileContent(fileName);
-        break;
-    }
+        case 5: {
+            decryptFileContent(fileName);
+            break;
+        }
 
-    case 6: {
-        mergeAnotherFile(fileName);
-        break;
-    }
+        case 6: {
+            mergeAnotherFile(fileName);
+            break;
+        }
 
-    case 7: {
-        countNumberOfWords(fileName);
-        break;
-    }
+        case 7: {
+            countNumberOfWords(fileName);
+            break;
+        }
 
-    case 8: {
-        countNumberOfCharacters(fileName);
-        break;
-    }
+        case 8: {
+            countNumberOfCharacters(fileName);
+            break;
+        }
 
-    case 9: {
-        countNumberOfLines(fileName);
-        break;
-    }
+        case 9: {
+            countNumberOfLines(fileName);
+            break;
+        }
 
-    case 10: {
-        searchForWordInFile(fileName);
-        break;
-    }
+        case 10: {
+            searchForWordInFile(fileName);
+            break;
+        }
 
-    case 11: {
-        countWordOccurences(fileName);
-        break;
-    }
+        case 11: {
+            countWordOccurences(fileName);
+            break;
+        }
 
-    case 12: {
-        allFileToUpperCase(fileName);
-        break;
-    }
+        case 12: {
+            allFileToUpperCase(fileName);
+            break;
+        }
 
-    case 13: {
-        allFileToLowerCase(fileName);
-        break;
-    }
+        case 13: {
+            allFileToLowerCase(fileName);
+            break;
+        }
 
-    case 14: {
-        allFileToFirstCaps(fileName);
-        break;
-    }
+        case 14: {
+            allFileToFirstCaps(fileName);
+            break;
+        }
 
-    case 15: {
-        saveFile(originalFileName, fileName);
-        break;
-    }
+        case 15: {
+            saveFile(originalFileName, fileName);
+            break;
+        }
 
-    default:
-        break;
-    }
+        default:
+            break;
+        }
 }
 //____________________________________________________________________________________________

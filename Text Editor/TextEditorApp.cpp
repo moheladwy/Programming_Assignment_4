@@ -27,6 +27,7 @@ int main()
 		}
 		else {
 			cout << "Thanks for using our Text File Editor Program.\n";
+			remove(tempOriginalFileName.c_str());
 			isOpen = false;
 		}
 	}
