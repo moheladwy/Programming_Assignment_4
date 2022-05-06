@@ -1,20 +1,19 @@
-/*
-FCAI – Programming 1 – 2022 - Assignment 4
-Program Name: Text Editor Application
-Last Modification Date: xx/05/2022
-Author1 and ID and Group: Mohamed Hussein Hassan Eladwy. ID: 20210335. Group: B. Section: 17 - 18.
-Author2 and ID and Group: Yusuf Elsayed Abdelrahman Bdr. ID: 20210502. Group: B. Section: 17 - 18.
-Author3 and ID and Group: Amr Khalied Elsayed Elhennawy. ID: 20210274. Group: B. Section: 17 - 18.
-Teaching Assistant: Eng.Hagar Aly
-Purpose: Allow the user to open text files with write and reading from.
-File: This is the Application File that contain the main algorithem of the program.
-*/
+// FCAI – Programming 1 – 2022 - Assignment 4
+// Program Name: Text Editor Application
+// Last Modification Date: xx/05/2022
+// Author1 and ID and Group: Mohamed Hussein Hassan Eladwy. ID: 20210335. Group: B. Section: 17 - 18.
+// Author2 and ID and Group: Yusuf Elsayed Abdelrahman Bdr. ID: 20210502. Group: B. Section: 17 - 18.
+// Author3 and ID and Group: Amr Khalied Elsayed Elhennawy. ID: 20210274. Group: B. Section: 17 - 18.
+// Teaching Assistant: Eng.Hagar Aly
+// Purpose: Allow the user to open text files with write and reading from.
+// File: This is the Application File that contain the main algorithem of the program.
 
 #include <iostream>
 #include <string>
 #include <fstream>
 #include "TextEditorFunc.h"
 // #include "TextEditorFunc.cpp"
+using namespace std;
 
 /* 
 Please Eng.Hagar Uncomment the apove #include "TextEditorFunc.cpp" if You are using Microsoft Visual Studio Code (the blue one) for Compiling the Files. 
@@ -24,7 +23,6 @@ if You are using Clion, Code Blocks or Microsoft Visual Studio (the purple one) 
 (All of them work on Files in a project not like MS VSC in the same folder) and the files won't compile if You are Uncommented it.
 */
 
-using namespace std;
 
 int main()
 {
