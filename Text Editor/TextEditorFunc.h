@@ -29,7 +29,7 @@ void executeUserChoice(int choice, string fileName, string originalFileName);
 //____________________________________________________________________________________________
 void addingContent(string fileName);
 //____________________________________________________________________________________________
-void displayContent(string fileName, string originalFileName);
+void displayContent(string fileName);
 //____________________________________________________________________________________________
 void emptyFileContent(string fileName);
 //____________________________________________________________________________________________
