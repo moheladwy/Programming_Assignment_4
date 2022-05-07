@@ -4,7 +4,7 @@
 // Author1 and ID and Group: Mohamed Hussein Hassan Eladwy. ID: 20210335. Group: B. Section: 17 - 18.
 // Author2 and ID and Group: Yusuf Elsayed Abdelrahman Bdr. ID: 20210502. Group: B. Section: 17 - 18.
 // Author3 and ID and Group: Amr Khalied Elsayed Elhennawy. ID: 20210274. Group: B. Section: 17 - 18.
-// Teaching Assistant: Eng.Hagar Aly
+// Teaching Assistant: Eng.Hagar Ahmed
 // Purpose: Allow the user to open text files with write and reading from.
 // File: This is the CPP file that contain the algorithms of the functions.
 
