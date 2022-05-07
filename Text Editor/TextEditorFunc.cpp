@@ -587,11 +587,15 @@ void addingContent(string fileName)
 {
     string line;
     fstream myFile;
+    bool emptyFile = isEmptyFile(fileName);
     myFile.open(fileName.c_str(), ios::app);
     cout << "######################################################\n";
     cout << "### write here or press Enter+0000+Enter to stop #####\n";
     cout << "######################################################\n";
-    myFile << " ";
+    if (!emptyFile)
+    {
+        myFile << " ";
+    }
     while (true)
     {
         getline(cin, line);
