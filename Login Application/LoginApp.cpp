@@ -10,6 +10,7 @@
 // File: This is the CPP file that contain the main algorithm of the program.
 //___________________________________________________________________________________________________
 #include <iostream>
+#include <string>
 #include "OpenXLSX.hpp"
 #include "LoginFunc.h"
 using namespace std;
@@ -18,7 +19,16 @@ using namespace OpenXLSX;
 int main()
 {
     cout << "Welcome in Login Application Project!" << endl;
-    printMainMenu();
+    string index;
+    while (index.empty()) {cout << "Enter the index you want to read: ";index = "";getline(cin, index);}
+    cout << endl;
+    XLDocument doc;
+    doc.open("usersData.xlsx");
+    auto workSheet = doc.workbook().worksheet("Sheet1");
+    XLCellValue cell = workSheet.cell(index).value();
+    cout << cell.get<string>() << "\n";
+    doc.close();
+    cout << "Done." << endl;
     return 0;
 }
 //___________________________________________________________________________________________________
