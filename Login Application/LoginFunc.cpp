@@ -229,7 +229,7 @@ string getPassword()
     }
 }
 //___________________________________________________________________________________________________
-string encryptPassword(string plainText) { // Atbash Cipher
+string encryptPassword(string& plainText) { // Atbash Cipher
     string cipherText;
     char cipherLetter;
     for (auto i: plainText){
@@ -245,7 +245,7 @@ string encryptPassword(string plainText) { // Atbash Cipher
     return cipherText;
 }
 //___________________________________________________________________________________________________
-string decryptPassword(string cipherText) {
+string decryptPassword(string& cipherText) {
     string plainText;
     char plainLetter;
     for (auto i: cipherText){

@@ -29,8 +29,8 @@ bool isvalidUserName(string userName);
 bool isValidEmail(string email);
 bool isValidPassword(string& password); // Done - Mohamed Eladwy.
 string getPassword(); // Done - Mohamed Eladwy.
-string encryptPassword(string plainText); // Done - Yusuf Badr.
-string decryptPassword(string cipherText); // Done - Yusuf Badr.
+string encryptPassword(string& plainText); // Done - Yusuf Badr.
+string decryptPassword(string& cipherText); // Done - Yusuf Badr.
 void executeUserChoice(int choice);
 //___________________________________________________________________________________________________
 // The main functions of the project.
