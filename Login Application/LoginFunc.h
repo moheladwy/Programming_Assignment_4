@@ -40,4 +40,27 @@ string userLogin(string ID, string password);
 void changePassword();
 void forgetPassword();
 //___________________________________________________________________________________________________
+
+//===== to be done =====
+void fetchXLSXFile(){
+    // get the user data already in file and populate to the map
+
+}
+void updateXLSXFile(){
+    // changes made in unordered map should be updated to xlsx file directly
+
+}
+
+
+
+
+
+
+
+
+
+
+
 #endif //LOGIN_APPLICATION_LOGINFUNC_H
+
+

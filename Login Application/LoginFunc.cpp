@@ -14,6 +14,7 @@
 #include <string>
 #include <cctype>
 #include <conio.h>
+#include <unordered_map>
 using namespace std;
 //___________________________________________________________________________________________________
 // code practices:
@@ -35,16 +36,27 @@ struct user {
     string password;
     string email;
 };
+
 // operator overloading for struct, you can modify to allow for direct output of each user in the Excel file
 ostream& operator<< (ostream& out, user inUser){
     out << inUser.ID << '\n' << inUser.fullName << '\n' << inUser.phoneNumber << '\n' << inUser.email << '\n' << inUser.password;
     return out;
 }
-vector <user> systemUsers;// no need to use vectors, we can only use maps
-map <string, user> getUserStruct {}; // key: userID, value: struct of this exact user
+
+user userProfile;
+
+// key: userID, value: struct of this exact user
+
+unordered_map <string, user> getUserData;
+
+
 //___________________________________________________________________________________________________
 void printMainMenu()
 {
+    getUserData[userProfile.ID] = userProfile;
+    user temprpfile = getUserData[userProfile.ID];
+
+
     cout << "----------------------------------------------------------------------------------------" << endl;
     cout << "1- Register." << endl;
     cout << "2- Login." << endl;
