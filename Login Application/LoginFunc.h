@@ -37,7 +37,7 @@ void updateXLSXFile(int& indexUserInFile, string& newPassword, string& userID); 
 //___________________________________________________________________________________________________
 // The main functions of the project.
 //___________________________________________________________________________________________________
-void userRegister();
+void userRegister(string& ID, string& fullName, string& phoneNumber, string& email, string password, int& indexUserInFile); // Done - Mohamed Eladwy.
 string userLogin(string ID, string password);
 void changePassword();
 void forgetPassword();

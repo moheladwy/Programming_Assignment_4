@@ -51,6 +51,38 @@ user userProfile;
 // key: userID, value: struct of this exact user
 unordered_map <string, user> getUserData;
 //___________________________________________________________________________________________________
+string encryptPassword(string& plainText) { // Atbash Cipher
+    string cipherText;
+    char cipherLetter;
+    for (auto i: plainText){
+        if (isupper(i)){
+            cipherLetter = i + 25 - 2 * (i - 'A'); // equation to get new cipher letter
+        } else if (islower(i)) {
+            cipherLetter = i + 25 - 2 * (i - 'a');
+        } else {
+            cipherLetter = i;
+        }
+        cipherText += cipherLetter;
+    }
+    return cipherText;
+}
+//___________________________________________________________________________________________________
+string decryptPassword(string& cipherText) {
+    string plainText;
+    char plainLetter;
+    for (auto i: cipherText){
+        if (isupper(i)){
+            plainLetter = i - 25 + 2 * ('Z' - i); // equation to get new plain letter
+        } else if (islower(i)) {
+            plainLetter = i - 25 + 2 * ('z' - i);
+        } else {
+            plainLetter = i;
+        }
+        plainText += plainLetter;
+    }
+    return plainText;
+}
+//___________________________________________________________________________________________________
 //===== to be done =====
 void fetchXLSXFile(){
     // get the user data already in file and populate to the map.
@@ -65,6 +97,7 @@ void fetchXLSXFile(){
         userProfile.phoneNumber = workSheet.cell(index,3).value().get<string>();
         userProfile.email = workSheet.cell(index,4).value().get<string>();
         userProfile.password = workSheet.cell(index,5).value().get<string>();
+        userProfile.password = decryptPassword(userProfile.password);
         getUserData.insert({userProfile.ID,userProfile});
     }
     usersData.close();
@@ -85,7 +118,7 @@ void updateXLSXFile(int& indexUserInFile, string& newPassword, string& userID){
     XLDocument usersData;
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1");
-    workSheet.cell(indexUserInFile,5).value() = newPassword;
+    workSheet.cell(indexUserInFile,5).value() = encryptPassword(newPassword);
     usersData.save();
     usersData.close();
 }
@@ -277,39 +310,32 @@ string getPassword()
     }
 }
 //___________________________________________________________________________________________________
-string encryptPassword(string& plainText) { // Atbash Cipher
-    string cipherText;
-    char cipherLetter;
-    for (auto i: plainText){
-        if (isupper(i)){
-            cipherLetter = i + 25 - 2 * (i - 'A'); // equation to get new cipher letter
-        } else if (islower(i)) {
-            cipherLetter = i + 25 - 2 * (i - 'a');
-        } else {
-            cipherLetter = i;
-        }
-        cipherText += cipherLetter;
-    }
-    return cipherText;
+void userRegister(string& ID, string& fullName, string& phoneNumber, string& email, string password, int& indexUserInFile)
+{
+    userProfile.indexUserInFile = indexUserInFile;
+    userProfile.ID = ID;
+    userProfile.fullName = fullName;
+    userProfile.phoneNumber = phoneNumber;
+    userProfile.email = email;
+    userProfile.password = password;
+
+    getUserData.insert({ID, userProfile});
+
+    XLDocument usersData;
+    usersData.open("usersData.xlsx");
+    auto workSheet = usersData.workbook().worksheet("Sheet1");
+
+    workSheet.cell(indexUserInFile, 1).value() = ID;
+    workSheet.cell(indexUserInFile, 2).value() = fullName;
+    workSheet.cell(indexUserInFile, 3).value() = phoneNumber;
+    workSheet.cell(indexUserInFile, 4).value() = email;
+    workSheet.cell(indexUserInFile, 5).value() = encryptPassword(password); // Encrypting the password that will be stored in the file.
+
+    usersData.save();
+    usersData.close();
 }
 //___________________________________________________________________________________________________
-string decryptPassword(string& cipherText) {
-    string plainText;
-    char plainLetter;
-    for (auto i: cipherText){
-        if (isupper(i)){
-            plainLetter = i - 25 + 2 * ('Z' - i); // equation to get new plain letter
-        } else if (islower(i)) {
-            plainLetter = i - 25 + 2 * ('z' - i);
-        } else {
-            plainLetter = i;
-        }
-        plainText += plainLetter;
-    }
-    return plainText;
-}
-//___________________________________________________________________________________________________
-string userLogin(string ID, string password){// parameter password is assumed to be the plain password
+string userLogin(string ID, string password){ // parameter password is assumed to be the plain password.
     return "";
 }
 //___________________________________________________________________________________________________
