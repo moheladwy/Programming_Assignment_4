@@ -25,31 +25,15 @@
 				},
 				{
 					"build" : "OpenXLSX",
-					"childIndexes" : 
-					[
-						2
-					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-OpenXLSX-Debug-57b3a46c75076b7e25cb.json",
+					"jsonFile" : "directory-OpenXLSX-Debug-54e5b25f18fbb06db957.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.15"
 					},
 					"parentIndex" : 0,
 					"projectIndex" : 1,
-					"source" : "OpenXLSX"
-				},
-				{
-					"build" : "OpenXLSX/OpenXLSX",
-					"hasInstallRule" : true,
-					"jsonFile" : "directory-OpenXLSX.OpenXLSX-Debug-1d92c3cb7bd4776f40cf.json",
-					"minimumCMakeVersion" : 
-					{
-						"string" : "3.15"
-					},
-					"parentIndex" : 1,
-					"projectIndex" : 2,
-					"source" : "OpenXLSX/OpenXLSX",
+					"source" : "OpenXLSX",
 					"targetIndexes" : 
 					[
 						1
@@ -75,24 +59,12 @@
 					]
 				},
 				{
-					"childIndexes" : 
-					[
-						2
-					],
 					"directoryIndexes" : 
 					[
 						1
 					],
-					"name" : "OpenXLSX",
-					"parentIndex" : 0
-				},
-				{
-					"directoryIndexes" : 
-					[
-						2
-					],
 					"name" : "OpenXLSX.Library",
-					"parentIndex" : 1,
+					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
 						1
@@ -104,16 +76,16 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Login_Application::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Login_Application-Debug-f4c29c02296319e97c50.json",
+					"jsonFile" : "target-Login_Application-Debug-b9879a8a32cbedf8593a.json",
 					"name" : "Login_Application",
 					"projectIndex" : 0
 				},
 				{
-					"directoryIndex" : 2,
-					"id" : "OpenXLSX::@a10863c5946955c16ed7",
-					"jsonFile" : "target-OpenXLSX-Debug-52a7577069e758a0fd27.json",
+					"directoryIndex" : 1,
+					"id" : "OpenXLSX::@1d1c34297b664bad0518",
+					"jsonFile" : "target-OpenXLSX-Debug-b18971aa26272580b98a.json",
 					"name" : "OpenXLSX",
-					"projectIndex" : 2
+					"projectIndex" : 1
 				}
 			]
 		}
@@ -121,8 +93,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug",
-		"source" : "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application"
+		"build" : "C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application/cmake-build-debug",
+		"source" : "C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application"
 	},
 	"version" : 
 	{

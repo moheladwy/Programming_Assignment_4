@@ -22,7 +22,7 @@
 		],
 		"files" : 
 		[
-			"OpenXLSX/OpenXLSX/CMakeLists.txt"
+			"OpenXLSX/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -126,30 +126,30 @@
 			[
 				{
 					"backtrace" : 6,
-					"path" : "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX"
+					"path" : "C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application/OpenXLSX"
 				},
 				{
 					"backtrace" : 6,
-					"path" : "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/headers"
+					"path" : "C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application/OpenXLSX/headers"
 				},
 				{
 					"backtrace" : 6,
-					"path" : "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX"
+					"path" : "C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX"
 				},
 				{
 					"backtrace" : 7,
 					"isSystem" : true,
-					"path" : "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/external/zippy"
+					"path" : "C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application/OpenXLSX/external/zippy"
 				},
 				{
 					"backtrace" : 7,
 					"isSystem" : true,
-					"path" : "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/external/pugixml"
+					"path" : "C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application/OpenXLSX/external/pugixml"
 				},
 				{
 					"backtrace" : 7,
 					"isSystem" : true,
-					"path" : "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/external/nowide"
+					"path" : "C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application/OpenXLSX/external/nowide"
 				}
 			],
 			"language" : "CXX",
@@ -191,7 +191,7 @@
 	{
 		"name" : "libs"
 	},
-	"id" : "OpenXLSX::@a10863c5946955c16ed7",
+	"id" : "OpenXLSX::@1d1c34297b664bad0518",
 	"install" : 
 	{
 		"destinations" : 
@@ -210,8 +210,8 @@
 	"nameOnDisk" : "libOpenXLSXd.a",
 	"paths" : 
 	{
-		"build" : "OpenXLSX/OpenXLSX",
-		"source" : "OpenXLSX/OpenXLSX"
+		"build" : "OpenXLSX",
+		"source" : "OpenXLSX"
 	},
 	"sourceGroups" : 
 	[
@@ -248,127 +248,127 @@
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLCell.cpp",
+			"path" : "OpenXLSX/sources/XLCell.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLCellIterator.cpp",
+			"path" : "OpenXLSX/sources/XLCellIterator.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLCellRange.cpp",
+			"path" : "OpenXLSX/sources/XLCellRange.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLCellReference.cpp",
+			"path" : "OpenXLSX/sources/XLCellReference.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLCellValue.cpp",
+			"path" : "OpenXLSX/sources/XLCellValue.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLColor.cpp",
+			"path" : "OpenXLSX/sources/XLColor.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLColumn.cpp",
+			"path" : "OpenXLSX/sources/XLColumn.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLContentTypes.cpp",
+			"path" : "OpenXLSX/sources/XLContentTypes.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLDateTime.cpp",
+			"path" : "OpenXLSX/sources/XLDateTime.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLDocument.cpp",
+			"path" : "OpenXLSX/sources/XLDocument.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLFormula.cpp",
+			"path" : "OpenXLSX/sources/XLFormula.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLProperties.cpp",
+			"path" : "OpenXLSX/sources/XLProperties.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLRelationships.cpp",
+			"path" : "OpenXLSX/sources/XLRelationships.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLRow.cpp",
+			"path" : "OpenXLSX/sources/XLRow.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLRowData.cpp",
+			"path" : "OpenXLSX/sources/XLRowData.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLSharedStrings.cpp",
+			"path" : "OpenXLSX/sources/XLSharedStrings.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLSheet.cpp",
+			"path" : "OpenXLSX/sources/XLSheet.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLWorkbook.cpp",
+			"path" : "OpenXLSX/sources/XLWorkbook.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLXmlData.cpp",
+			"path" : "OpenXLSX/sources/XLXmlData.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLXmlFile.cpp",
+			"path" : "OpenXLSX/sources/XLXmlFile.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 8,
 			"compileGroupIndex" : 0,
-			"path" : "OpenXLSX/OpenXLSX/sources/XLZipArchive.cpp",
+			"path" : "OpenXLSX/sources/XLZipArchive.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
