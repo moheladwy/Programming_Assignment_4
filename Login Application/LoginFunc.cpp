@@ -14,7 +14,10 @@
 #include <string>
 #include <cctype>
 #include <conio.h>
+#include <unordered_map>
+#include "OpenXLSX.hpp"
 using namespace std;
+using namespace OpenXLSX;
 //___________________________________________________________________________________________________
 // code practices:
 /*
@@ -35,16 +38,42 @@ struct user {
     string password;
     string email;
 };
+
 // operator overloading for struct, you can modify to allow for direct output of each user in the Excel file
 ostream& operator<< (ostream& out, user inUser){
     out << inUser.ID << '\n' << inUser.fullName << '\n' << inUser.phoneNumber << '\n' << inUser.email << '\n' << inUser.password;
     return out;
 }
-vector <user> systemUsers;// no need to use vectors, we can only use maps
-map <string, user> getUserStruct {}; // key: userID, value: struct of this exact user
+
+user userProfile;
+
+// key: userID, value: struct of this exact user
+
+unordered_map <string, user> getUserData;
+//___________________________________________________________________________________________________
+//===== to be done =====
+void fetchXLSXFile(){
+    // get the user data already in file and populate to the map
+    XLDocument usersData;
+    usersData.open("usersData.xlsx");
+    auto workSheet = usersData.workbook().worksheet("Sheet1");
+    int numberOfRows = workSheet.rowCount();
+    cout << "The Number of the Rows = " << numberOfRows << " in sheet 1." << endl;
+    usersData.close();
+    return ;
+}
+//___________________________________________________________________________________________________
+void updateXLSXFile(){
+    // changes made in unordered map should be updated to xlsx file directly
+    return ;
+}
 //___________________________________________________________________________________________________
 void printMainMenu()
 {
+    getUserData[userProfile.ID] = userProfile;
+    user temprpfile = getUserData[userProfile.ID];
+
+
     cout << "----------------------------------------------------------------------------------------" << endl;
     cout << "1- Register." << endl;
     cout << "2- Login." << endl;

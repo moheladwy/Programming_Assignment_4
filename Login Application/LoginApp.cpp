@@ -18,17 +18,12 @@ using namespace OpenXLSX;
 //___________________________________________________________________________________________________
 int main()
 {
-    cout << "Welcome in Login Application Project!" << endl;
-    string index;
-    while (index.empty()) {cout << "Enter the index you want to read: ";index = "";getline(cin, index);}
-    cout << endl;
-    XLDocument doc;
-    doc.open("usersData.xlsx");
-    auto workSheet = doc.workbook().worksheet("Sheet1");
-    XLCellValue cell = workSheet.cell(index).value();
-    cout << cell.get<string>() << "\n";
-    doc.close();
-    cout << "Done." << endl;
+    XLDocument usersData;
+    usersData.open("usersData.xlsx");
+    auto workSheet = usersData.workbook().worksheet("Sheet1");
+    int numberOfRows = workSheet.rowCount();
+    cout << "The Number of the Rows = " << numberOfRows << " in sheet 1." << endl;
+    usersData.close();
     return 0;
 }
 //___________________________________________________________________________________________________
