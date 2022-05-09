@@ -21,13 +21,13 @@ void printMainMenu(); // Done - Mohamed Eladwy.
 void printEndApp(); // Done - Mohamed Eladwy.
 void clearScreen(); // Done - Mohamed Eladwy.
 bool isClearScreen(); // Done - Mohamed Eladwy.
-bool checkValidYesOrNo(string choice); // Done - Mohamed Eladwy.
+bool isYesOrNo(string& choice); // Done - Mohamed Eladwy.
 string makeLowerCase(string line); // Done - Mohamed Eladwy.
 bool checkUserChoice(string choice); // Done - Mohamed Eladwy.
 int getUserChoice(); // Done - Mohamed Eladwy.
 bool isvalidUserName(string userName);
 bool isValidEmail(string email);
-bool isValidPassword(string password); // Done - Mohamed Eladwy.
+bool isValidPassword(string& password); // Done - Mohamed Eladwy.
 string getPassword(); // Done - Mohamed Eladwy.
 string encryptPassword(string plainText); // Done - Yusuf Badr.
 string decryptPassword(string cipherText); // Done - Yusuf Badr.

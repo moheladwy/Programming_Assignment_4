@@ -53,7 +53,7 @@ void printMainMenu()
     cout << "----------------------------------------------------------------------------------------" << endl;
 }
 //___________________________________________________________________________________________________
-bool checkValidYesOrNo(string& choice)
+bool isYesOrNo(string& choice)
 {
     bool isValidInput = true;
     if (choice.length() == 1) {
@@ -89,7 +89,7 @@ bool isClearScreen()
     {
         cout << "Do you want to clear the screen before continue or not (y)|(n): ";
         getline(cin, choice);
-        isWant = checkValidYesOrNo(choice);
+        isWant = isYesOrNo(choice);
         if (!isWant)
         {
             cout << "Please enter a choice from (y) or (n) only, Try again.\n";
