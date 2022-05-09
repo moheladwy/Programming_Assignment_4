@@ -1,3 +1,4 @@
+//___________________________________________________________________________________________________
 // FCAI – Programming 1 – 2022 - Assignment 4
 // Program Name: Login Application.
 // Last Modification Date: xx/05/2022
@@ -7,7 +8,7 @@
 // Teaching Assistant: Eng.Hagar Ahmed
 // Purpose: .......
 // File: This is the Header file that contain the prototype of the Functions and its parameters.
-
+//___________________________________________________________________________________________________
 #ifndef LOGIN_APPLICATION_LOGINFUNC_H
 #define LOGIN_APPLICATION_LOGINFUNC_H
 #pragma once
@@ -28,12 +29,14 @@ bool isvalidUserName(string userName);
 bool isValidEmail(string email);
 bool isValidPassword(string password); // Done - Mohamed Eladwy.
 string getPassword(); // Done - Mohamed Eladwy.
+string encryptPassword(string plainText); // Done - Yusuf Badr.
+string decryptPassword(string cipherText); // Done - Yusuf Badr.
 void executeUserChoice(int choice);
 //___________________________________________________________________________________________________
 // The main functions of the project.
 //___________________________________________________________________________________________________
 void userRegister();
-void userLogin();
+string userLogin(string ID, string password);
 void changePassword();
 void forgetPassword();
 //___________________________________________________________________________________________________
