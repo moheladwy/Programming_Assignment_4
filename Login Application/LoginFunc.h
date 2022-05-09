@@ -24,10 +24,10 @@ bool checkValidYesOrNo(string choice); // Done - Mohamed Eladwy.
 string makeLowerCase(string line); // Done - Mohamed Eladwy.
 bool checkUserChoice(string choice); // Done - Mohamed Eladwy.
 int getUserChoice(); // Done - Mohamed Eladwy.
-bool isVaildUserName(string userName);
-bool isVaildEmail(string email);
-bool isVaildPassword(string password);
-string getPassword();
+bool isvalidUserName(string userName);
+bool isValidEmail(string email);
+bool isValidPassword(string password); // Done - Mohamed Eladwy.
+string getPassword(); // Done - Mohamed Eladwy.
 void executeUserChoice(int choice);
 //___________________________________________________________________________________________________
 // The main functions of the project.
@@ -37,6 +37,4 @@ void userLogin();
 void changePassword();
 void forgetPassword();
 //___________________________________________________________________________________________________
-
 #endif //LOGIN_APPLICATION_LOGINFUNC_H
-

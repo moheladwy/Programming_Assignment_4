@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/mohamed hussein/CLionProjects/Login Application/OpenXLSX
+# Install script for directory: E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/mohamed hussein/CLionProjects/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX/cmake_install.cmake")
+  include("E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX/cmake_install.cmake")
 endif()
 

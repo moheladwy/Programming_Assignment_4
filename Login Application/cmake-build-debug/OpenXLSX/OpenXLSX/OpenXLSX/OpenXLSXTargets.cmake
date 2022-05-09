@@ -46,7 +46,7 @@ add_library(OpenXLSX::OpenXLSX STATIC IMPORTED)
 
 set_target_properties(OpenXLSX::OpenXLSX PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "OPENXLSX_STATIC_DEFINE"
-  INTERFACE_INCLUDE_DIRECTORIES "C:/Users/mohamed hussein/CLionProjects/Login Application/OpenXLSX/OpenXLSX;C:/Users/mohamed hussein/CLionProjects/Login Application/OpenXLSX/OpenXLSX/headers;C:/Users/mohamed hussein/CLionProjects/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX"
+  INTERFACE_INCLUDE_DIRECTORIES "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/headers;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX"
   INTERFACE_LINK_LIBRARIES "\$<LINK_ONLY:Zippy>;\$<LINK_ONLY:PugiXML>;\$<LINK_ONLY:NoWide>"
 )
 
@@ -54,7 +54,7 @@ set_target_properties(OpenXLSX::OpenXLSX PROPERTIES
 set_property(TARGET OpenXLSX::OpenXLSX APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(OpenXLSX::OpenXLSX PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-  IMPORTED_LOCATION_DEBUG "C:/Users/mohamed hussein/CLionProjects/Login Application/cmake-build-debug/output/libOpenXLSXd.a"
+  IMPORTED_LOCATION_DEBUG "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/output/libOpenXLSXd.a"
   )
 
 # This file does not depend on other imported targets which have

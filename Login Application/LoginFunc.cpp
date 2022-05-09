@@ -9,12 +9,10 @@
 // File: This is the CPP file that contain the algorithms of the functions.
 //___________________________________________________________________________________________________
 #include <iostream>
-//#include <regex>
-//#include <fstream>
+#include <regex>
 #include <string>
 #include <cctype>
-#include <vector>
-// #include <Windows.h>
+#include <conio.h>
 using namespace std;
 //___________________________________________________________________________________________________
 void printMainMenu()
@@ -27,21 +25,12 @@ void printMainMenu()
     cout << "----------------------------------------------------------------------------------------" << endl;
 }
 //___________________________________________________________________________________________________
-bool checkValidYesOrNo(string choice)
+bool checkValidYesOrNo(string& choice)
 {
     bool isValidInput = true;
     if (choice.length() == 1) {
-        switch (choice[0]) {
-            case 'y':
-            case 'Y':
-                return isValidInput;
-            case 'n':
-            case 'N':
-                return isValidInput;
-            default:
-                break;
+        if (choice == "y" || choice == "Y" || choice == "n" || choice == "N") return isValidInput;
         }
-    }
     return !isValidInput;
 }
 //___________________________________________________________________________________________________
@@ -131,7 +120,7 @@ int getUserChoice()
     return setChoice;
 }
 //___________________________________________________________________________________________________
-bool isValidPassword(string password)
+bool isValidPassword(string& password)
 {
     regex passwordFormat("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#<>=?!+@$%^&*-]).{8,100}$");
     bool strongPassword = regex_match(password, passwordFormat);
@@ -143,15 +132,15 @@ string getPassword()
     first:
     cout << "The password must contain small letters, capital letters, numbers, special characters and be between 8 and 100 chars." << endl;
     cout << "Enter a password that follow the instructions above: ";
-    char firstPassword[100] = {0}, repeatedPassword[100] = {0}, tempChar;
-    int letterPassword1 = 0, letterPassword2 = 0;
-    for(letterPassword1 = 0;;) //infinite loop
+    char tempChar; string firstPassword, repeatedPassword;
+    for(int letterPassword1 = 0;;) //infinite loop
     {
         tempChar = getch(); //stores char typed in tempChar
         if(tempChar >= 32 && tempChar <= 126)
             //check if tempChar is numeric , alphabet, special character
         {
-            firstPassword[letterPassword1] = tempChar; //stores tempChar in pass
+            //stores tempChar in pass
+            firstPassword += tempChar;
             ++letterPassword1;
             cout << "*" ;
         }
@@ -163,15 +152,12 @@ string getPassword()
         }
         if(tempChar == '\r') //if enter is pressed
         {
-            firstPassword[letterPassword1] = '\0'; //null means end of string.
+            //null means end of string.
+            firstPassword += '\0';
             break; //break the loop
         }
     }
-    string setPassword1 = "";
-    for (int i = 0; i <= letterPassword1; i++) {
-        setPassword1 += firstPassword[i];
-    }
-    if (!isValidPassword(setPassword1))
+    if (!isValidPassword(firstPassword))
     {
         cout << endl << "The password Must follow the above instructions, try again." << endl;
         goto first;
@@ -179,15 +165,15 @@ string getPassword()
     else
     {
         second:
-        cout << endl << "Enter the Password again to conferm the first one: ";
-        string  setPassword2 = "";
-        for(letterPassword2 = 0;;) //infinite loop
+        cout << endl << "Enter the Password again to confirm the first one: ";
+        for(int letterPassword2 = 0;;) //infinite loop
         {
             tempChar = getch(); //stores char typed in tempChar
             if(tempChar >= 32 && tempChar <= 126)
                 //check if tempChar is numeric , alphabet, special character
             {
-                repeatedPassword[letterPassword2] = tempChar; //stores tempChar in pass
+                //stores tempChar in pass
+                repeatedPassword += tempChar;
                 ++letterPassword2;
                 cout << "*" ;
             }
@@ -199,16 +185,14 @@ string getPassword()
             }
             if(tempChar == '\r') //if enter is pressed
             {
-                repeatedPassword[letterPassword2] = '\0'; //null means end of string.
+                //null means end of string.
+                repeatedPassword += '\0';
                 break; //break the loop
             }
         }
-        for (int i = 0; i <= letterPassword2; i++) {
-            setPassword2 += repeatedPassword[i];
-        }
-        if (setPassword1 == setPassword2)
+        if (repeatedPassword == firstPassword)
         {
-            return setPassword1;
+            return firstPassword;
         }
         else
         {

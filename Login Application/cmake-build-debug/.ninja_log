@@ -1,10 +1,10 @@
 # ninja log v5
 42	1329	6737498851561463	OpenXLSX/OpenXLSX/CMakeFiles/OpenXLSX.dir/sources/XLColor.cpp.obj	c434eb2ce4e05990
-4	680	6737513048019623	CMakeFiles/Login_Application.dir/LoginFunc.cpp.obj	d3e5019155047394
+16	630	6737521052787404	CMakeFiles/Login_Application.dir/LoginFunc.cpp.obj	d3e5019155047394
 47	1922	6737498857162733	OpenXLSX/OpenXLSX/CMakeFiles/OpenXLSX.dir/sources/XLColumn.cpp.obj	267f585db99399c
 530	657	6737491645788811	Login_Application.exe	e57402461ed790b0
-18	1235	6737511042906049	CMakeFiles/Login_Application.dir/LoginApp.cpp.obj	fcd6055964321101
-1	11505	6737520995592870	build.ninja	a5addf87eb7c80e4
+4	1209	6737521945855087	CMakeFiles/Login_Application.dir/LoginApp.cpp.obj	fcd6055964321101
+1	11505	6738100684666740	build.ninja	a5addf87eb7c80e4
 59	1415	6737498852381648	OpenXLSX/OpenXLSX/CMakeFiles/OpenXLSX.dir/sources/XLCellReference.cpp.obj	ee15e69a08308a38
 20	1982	6737498858122946	OpenXLSX/OpenXLSX/CMakeFiles/OpenXLSX.dir/sources/XLXmlFile.cpp.obj	956916aea6b4ff8e
 26	2774	6737498865994720	OpenXLSX/OpenXLSX/CMakeFiles/OpenXLSX.dir/sources/XLCell.cpp.obj	8e06eab2050dbbad
@@ -23,11 +23,6 @@
 2704	4461	6737498883328623	OpenXLSX/OpenXLSX/CMakeFiles/OpenXLSX.dir/sources/XLProperties.cpp.obj	b6770a8ce4d8decd
 1983	4750	6737498886189388	OpenXLSX/OpenXLSX/CMakeFiles/OpenXLSX.dir/sources/XLRowData.cpp.obj	9fc62ddc5e3ba9c0
 1415	4839	6737498887089590	OpenXLSX/OpenXLSX/CMakeFiles/OpenXLSX.dir/sources/XLDocument.cpp.obj	5f38a314f1bae02c
-680	1485	6737513055980857	output/Login_Application.exe	edaccfcdd90fb41c
+1209	1998	6737521953670291	output/Login_Application.exe	edaccfcdd90fb41c
 2774	5297	6737498891640551	OpenXLSX/OpenXLSX/CMakeFiles/OpenXLSX.dir/sources/XLSheet.cpp.obj	c7b7d39948f8805c
 5297	5932	6737498898037565	output/libOpenXLSXd.a	58370d14dc0b85ed
-16	630	6737521052787404	CMakeFiles/Login_Application.dir/LoginFunc.cpp.obj	d3e5019155047394
-4	1234	6737521058818758	CMakeFiles/Login_Application.dir/LoginApp.cpp.obj	fcd6055964321101
-1234	2032	6737521066729883	output/Login_Application.exe	edaccfcdd90fb41c
-4	1209	6737521945855087	CMakeFiles/Login_Application.dir/LoginApp.cpp.obj	fcd6055964321101
-1209	1998	6737521953670291	output/Login_Application.exe	edaccfcdd90fb41c
