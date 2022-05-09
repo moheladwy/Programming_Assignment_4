@@ -56,10 +56,10 @@ RM = "C:\Program Files\JetBrains\CLion 2021.3.3\bin\cmake\win\bin\cmake.exe" -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\01_Yusuf Files\01_Professional Life\Git\CS112-Assignment-4\Programming_Assignment_4\Login Application"
+CMAKE_SOURCE_DIR = "E:\Faculty-Content\2nd Semester\Structured Programming 1\Assighnments\Assignment 4\Programming_Assignment_4\Login Application"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\01_Yusuf Files\01_Professional Life\Git\CS112-Assignment-4\Programming_Assignment_4\Login Application\cmake-build-debug"
+CMAKE_BINARY_DIR = "E:\Faculty-Content\2nd Semester\Structured Programming 1\Assighnments\Assignment 4\Programming_Assignment_4\Login Application\cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -131,9 +131,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\01_Yusuf Files\01_Professional Life\Git\CS112-Assignment-4\Programming_Assignment_4\Login Application\cmake-build-debug\CMakeFiles" "C:\01_Yusuf Files\01_Professional Life\Git\CS112-Assignment-4\Programming_Assignment_4\Login Application\cmake-build-debug\\CMakeFiles\progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "E:\Faculty-Content\2nd Semester\Structured Programming 1\Assighnments\Assignment 4\Programming_Assignment_4\Login Application\cmake-build-debug\CMakeFiles" "E:\Faculty-Content\2nd Semester\Structured Programming 1\Assighnments\Assignment 4\Programming_Assignment_4\Login Application\cmake-build-debug\\CMakeFiles\progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\01_Yusuf Files\01_Professional Life\Git\CS112-Assignment-4\Programming_Assignment_4\Login Application\cmake-build-debug\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "E:\Faculty-Content\2nd Semester\Structured Programming 1\Assighnments\Assignment 4\Programming_Assignment_4\Login Application\cmake-build-debug\CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -183,7 +183,7 @@ OpenXLSX: cmake_check_build_system
 
 # fast build rule for target.
 OpenXLSX/fast:
-	$(MAKE) $(MAKESILENT) -f OpenXLSX\CMakeFiles\OpenXLSX.dir\build.make OpenXLSX/CMakeFiles/OpenXLSX.dir/build
+	$(MAKE) $(MAKESILENT) -f OpenXLSX\OpenXLSX\CMakeFiles\OpenXLSX.dir\build.make OpenXLSX/OpenXLSX/CMakeFiles/OpenXLSX.dir/build
 .PHONY : OpenXLSX/fast
 
 LoginApp.obj: LoginApp.cpp.obj

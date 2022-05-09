@@ -15,6 +15,7 @@
 #include <cctype>
 #include <conio.h>
 #include <unordered_map>
+#include <windows.h>
 #include "OpenXLSX.hpp"
 using namespace std;
 using namespace OpenXLSX;
@@ -32,48 +33,65 @@ using namespace OpenXLSX;
 */
 //___________________________________________________________________________________________________
 struct user {
-    string ID;
-    string fullName;
-    string phoneNumber;
-    string password;
-    string email;
+    string ID = "";
+    string fullName = "";
+    string phoneNumber = "";
+    string password = "";
+    string email = "";
+    int indexUserInFile;
 };
 
 // operator overloading for struct, you can modify to allow for direct output of each user in the Excel file
 ostream& operator<< (ostream& out, user inUser){
-    out << inUser.ID << '\n' << inUser.fullName << '\n' << inUser.phoneNumber << '\n' << inUser.email << '\n' << inUser.password;
+    out << ",Full Name: " << inUser.fullName << " ,Phone Number: " << inUser.phoneNumber << " ,Email: " << inUser.email << " ,Password: " << inUser.password;
     return out;
 }
 
 user userProfile;
-
 // key: userID, value: struct of this exact user
-
 unordered_map <string, user> getUserData;
 //___________________________________________________________________________________________________
 //===== to be done =====
 void fetchXLSXFile(){
-    // get the user data already in file and populate to the map
+    // get the user data already in file and populate to the map.
     XLDocument usersData;
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1");
-    int numberOfRows = workSheet.rowCount();
-    cout << "The Number of the Rows = " << numberOfRows << " in sheet 1." << endl;
+    int numberOfUsers = workSheet.rowCount();
+    for (int index = 2; index <= numberOfUsers; ++index) {
+        userProfile.indexUserInFile = index;
+        userProfile.ID = workSheet.cell(index,1).value().get<string>();
+        userProfile.fullName = workSheet.cell(index,2).value().get<string>();
+        userProfile.phoneNumber = workSheet.cell(index,3).value().get<string>();
+        userProfile.email = workSheet.cell(index,4).value().get<string>();
+        userProfile.password = workSheet.cell(index,5).value().get<string>();
+        getUserData.insert({userProfile.ID,userProfile});
+    }
     usersData.close();
-    return ;
+    for (auto itr = getUserData.begin(); itr != getUserData.end(); itr++) {
+        cout << "ID: " << itr->first << " " << itr->second << "\n";
+    }
 }
 //___________________________________________________________________________________________________
-void updateXLSXFile(){
-    // changes made in unordered map should be updated to xlsx file directly
-    return ;
+void updateXLSXFile(int& indexUserInFile, string& newPassword, string& userID){
+    // changes made in unordered map should be updated to xlsx file directly.
+
+    // change the password in the map.
+    user tempProfile = getUserData[userID];
+    tempProfile.password = newPassword;
+    getUserData[userID] = tempProfile;
+
+    // change the password in the file of the users.
+    XLDocument usersData;
+    usersData.open("usersData.xlsx");
+    auto workSheet = usersData.workbook().worksheet("Sheet1");
+    workSheet.cell(indexUserInFile,5).value() = newPassword;
+    usersData.save();
+    usersData.close();
 }
 //___________________________________________________________________________________________________
 void printMainMenu()
 {
-    getUserData[userProfile.ID] = userProfile;
-    user temprpfile = getUserData[userProfile.ID];
-
-
     cout << "----------------------------------------------------------------------------------------" << endl;
     cout << "1- Register." << endl;
     cout << "2- Login." << endl;
@@ -105,6 +123,7 @@ void printEndApp()
 //___________________________________________________________________________________________________
 void clearScreen()
 {
+    Sleep(60000);
     system("CLS");
     cout << flush;
     system("CLS");

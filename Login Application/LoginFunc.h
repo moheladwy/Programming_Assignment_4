@@ -32,8 +32,8 @@ string getPassword(); // Done - Mohamed Eladwy.
 string encryptPassword(string& plainText); // Done - Yusuf Badr.
 string decryptPassword(string& cipherText); // Done - Yusuf Badr.
 void executeUserChoice(int choice);
-void fetchXLSXFile();
-void updateXLSXFile();
+void fetchXLSXFile(); // Done - Mohamed Eladwy.
+void updateXLSXFile(int& indexUserInFile, string& newPassword, string& userID); // Done - Mohamed Eladwy.
 //___________________________________________________________________________________________________
 // The main functions of the project.
 //___________________________________________________________________________________________________

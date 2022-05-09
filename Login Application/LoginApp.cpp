@@ -18,12 +18,30 @@ using namespace OpenXLSX;
 //___________________________________________________________________________________________________
 int main()
 {
-    XLDocument usersData;
-    usersData.open("usersData.xlsx");
-    auto workSheet = usersData.workbook().worksheet("Sheet1");
-    int numberOfRows = workSheet.rowCount();
-    cout << "The Number of the Rows = " << numberOfRows << " in sheet 1." << endl;
-    usersData.close();
+//    string messege = "Welcome in our Login System Application Project!", newPassword, userID;
+//    int index = 2;
+//    cout << messege << endl;
+//    fetchXLSXFile();
+//    cout << "---------------------------------------------------------------------------------------------" << endl;
+//    while (userID.empty())
+//    {
+//        cout << "Enter the your User Name: ";
+//        userID = "";
+//        getline(cin, userID);
+//    }
+//    cout << "---------------------------------------------------------------------------------------------" << endl;
+//    while (newPassword.empty())
+//    {
+//        cout << "Enter the New Password: ";
+//        newPassword = "";
+//        getline(cin, newPassword);
+//        if (!isValidPassword(newPassword)) newPassword = "";
+//        else cout << "Valid Password." << endl;
+//    }
+//    cout << "---------------------------------------------------------------------------------------------" << endl;
+//    updateXLSXFile(index, newPassword, userID);
+//    fetchXLSXFile();
+//    clearScreen();
     return 0;
 }
 //___________________________________________________________________________________________________
