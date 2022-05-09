@@ -131,3 +131,90 @@ int getUserChoice()
     return setChoice;
 }
 //___________________________________________________________________________________________________
+bool isValidPassword(string password)
+{
+    regex passwordFormat("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#<>=?!+@$%^&*-]).{8,100}$");
+    bool strongPassword = regex_match(password, passwordFormat);
+    return strongPassword;
+}
+//___________________________________________________________________________________________________
+string getPassword()
+{
+    first:
+    cout << "The password must contain small letters, capital letters, numbers, special characters and be between 8 and 100 chars." << endl;
+    cout << "Enter a password that follow the instructions above: ";
+    char firstPassword[100] = {0}, repeatedPassword[100] = {0}, tempChar;
+    int letterPassword1 = 0, letterPassword2 = 0;
+    for(letterPassword1 = 0;;) //infinite loop
+    {
+        tempChar = getch(); //stores char typed in tempChar
+        if(tempChar >= 32 && tempChar <= 126)
+            //check if tempChar is numeric , alphabet, special character
+        {
+            firstPassword[letterPassword1] = tempChar; //stores tempChar in pass
+            ++letterPassword1;
+            cout << "*" ;
+        }
+        if(tempChar == '\b' && letterPassword1 >= 1) //if user typed backspace
+            //letterPassword1 should be greater than 0.
+        {
+            cout << "\b \b"; //rub the character behind the cursor.
+            --letterPassword1;
+        }
+        if(tempChar == '\r') //if enter is pressed
+        {
+            firstPassword[letterPassword1] = '\0'; //null means end of string.
+            break; //break the loop
+        }
+    }
+    string setPassword1 = "";
+    for (int i = 0; i <= letterPassword1; i++) {
+        setPassword1 += firstPassword[i];
+    }
+    if (!isValidPassword(setPassword1))
+    {
+        cout << endl << "The password Must follow the above instructions, try again." << endl;
+        goto first;
+    }
+    else
+    {
+        second:
+        cout << endl << "Enter the Password again to conferm the first one: ";
+        string  setPassword2 = "";
+        for(letterPassword2 = 0;;) //infinite loop
+        {
+            tempChar = getch(); //stores char typed in tempChar
+            if(tempChar >= 32 && tempChar <= 126)
+                //check if tempChar is numeric , alphabet, special character
+            {
+                repeatedPassword[letterPassword2] = tempChar; //stores tempChar in pass
+                ++letterPassword2;
+                cout << "*" ;
+            }
+            if(tempChar == '\b' && letterPassword2 >= 1) //if user typed backspace
+                //letterPassword2 should be greater than 0.
+            {
+                cout << "\b \b"; //rub the character behind the cursor.
+                --letterPassword2;
+            }
+            if(tempChar == '\r') //if enter is pressed
+            {
+                repeatedPassword[letterPassword2] = '\0'; //null means end of string.
+                break; //break the loop
+            }
+        }
+        for (int i = 0; i <= letterPassword2; i++) {
+            setPassword2 += repeatedPassword[i];
+        }
+        if (setPassword1 == setPassword2)
+        {
+            return setPassword1;
+        }
+        else
+        {
+            cout << endl << "The Password doesn't match with the first one, Try again." << endl;
+            goto second;
+        }
+    }
+}
+//___________________________________________________________________________________________________
