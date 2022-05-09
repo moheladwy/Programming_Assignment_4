@@ -7,6 +7,11 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2021.3.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeMinGWFindMake.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
 			"path" : "C:/Program Files/JetBrains/CLion 2021.3.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeDetermineSystem.cmake"
 		},
 		{
@@ -524,6 +529,21 @@
 		{
 			"isCMake" : true,
 			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2021.3.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeFindCodeBlocks.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2021.3.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "C:/Program Files/JetBrains/CLion 2021.3.3/bin/cmake/win/share/cmake-3.21/Modules/ProcessorCount.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
 			"path" : "C:/Program Files/JetBrains/CLion 2021.3.3/bin/cmake/win/share/cmake-3.21/Modules/CMakeCInformation.cmake"
 		},
 		{
@@ -757,9 +777,6 @@
 			"path" : "OpenXLSX/CMakeLists.txt"
 		},
 		{
-			"path" : "OpenXLSX/OpenXLSX/CMakeLists.txt"
-		},
-		{
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "C:/Program Files/JetBrains/CLion 2021.3.3/bin/cmake/win/share/cmake-3.21/Modules/CheckCXXSourceCompiles.cmake"
@@ -845,14 +862,14 @@
 			"path" : "C:/Program Files/JetBrains/CLion 2021.3.3/bin/cmake/win/share/cmake-3.21/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in"
 		},
 		{
-			"path" : "OpenXLSX/OpenXLSX/OpenXLSXConfig.cmake"
+			"path" : "OpenXLSX/OpenXLSXConfig.cmake"
 		}
 	],
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug",
-		"source" : "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application"
+		"build" : "C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application/cmake-build-debug",
+		"source" : "C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application"
 	},
 	"version" : 
 	{

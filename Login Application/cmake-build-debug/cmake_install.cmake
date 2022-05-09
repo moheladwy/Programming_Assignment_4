@@ -1,4 +1,4 @@
-# Install script for directory: E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application
+# Install script for directory: C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/cmake_install.cmake")
+  include("C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/01_Yusuf Files/01_Professional Life/Git/CS112-Assignment-4/Programming_Assignment_4/Login Application/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
