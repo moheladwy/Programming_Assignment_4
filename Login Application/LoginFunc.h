@@ -27,7 +27,7 @@ int getUserChoice(); // Done - Mohamed Eladwy.
 bool isVaildUserName(string userName);
 bool isVaildEmail(string email);
 bool isVaildPassword(string password);
-string getPassword();
+string getPlainPassword();
 void executeUserChoice(int choice);
 //___________________________________________________________________________________________________
 // The main functions of the project.

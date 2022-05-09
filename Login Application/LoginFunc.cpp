@@ -8,15 +8,49 @@
 // Purpose: .......
 // File: This is the CPP file that contain the algorithms of the functions.
 //___________________________________________________________________________________________________
+
 #include <iostream>
 //#include <regex>
 //#include <fstream>
 #include <string>
 #include <cctype>
 #include <vector>
+#include <regex>
+#include <conio.h>
 // #include <Windows.h>
+
+// code practices:
+/*
+ * There is a struct as you can see below.
+ * Since the  user ID is unique to each user, we will identify each user of the struct by the username:
+ * please note that userID is CASE-SENSITIVE
+ * e.g. user <userID>;
+ *      <userID>.email = "test@email.com"
+ * below is another example
+ * e.g. user ahmedAdam;
+ *      ahmedAdam.email = "test2@email.com"
+ *
+ *
+ *
+*/
+
 using namespace std;
 //___________________________________________________________________________________________________
+struct user {
+    string ID;
+    string password;
+    string email;
+};
+
+// operator overloading for struct, you can modify to allow for direct output of each user in the excel file
+ostream& operator<< (ostream& out, user inUser){
+    out << inUser.ID << '\n' << inUser.password << '\n' << inUser.email;
+    return out;
+}
+vector <user> systemUsers;// no need to use vectors, we can only use maps
+map <string, user> getUserStruct {}; // key: userID, value: struct of this exact user
+
+
 void printMainMenu()
 {
     cout << "----------------------------------------------------------------------------------------" << endl;
@@ -131,14 +165,14 @@ int getUserChoice()
     return setChoice;
 }
 //___________________________________________________________________________________________________
-bool isValidPassword(string password)
+bool isValidPlainPassword(string password)
 {
     regex passwordFormat("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#<>=?!+@$%^&*-]).{8,100}$");
     bool strongPassword = regex_match(password, passwordFormat);
     return strongPassword;
 }
 //___________________________________________________________________________________________________
-string getPassword()
+string getPlainPassword()
 {
     first:
     cout << "The password must contain small letters, capital letters, numbers, special characters and be between 8 and 100 chars." << endl;
@@ -171,7 +205,7 @@ string getPassword()
     for (int i = 0; i <= letterPassword1; i++) {
         setPassword1 += firstPassword[i];
     }
-    if (!isValidPassword(setPassword1))
+    if (!isValidPlainPassword(setPassword1))
     {
         cout << endl << "The password Must follow the above instructions, try again." << endl;
         goto first;
@@ -218,3 +252,39 @@ string getPassword()
     }
 }
 //___________________________________________________________________________________________________
+
+string encryptPassword(string plainText) { // Atbash Cipher
+    string cipherText;
+    char cipherLetter;
+    for (auto i: plainText){
+        if (isupper(i)){
+            cipherLetter = i + 25 - 2 * (i - 'A'); // equation to get new cipher letter
+        } else if (islower(i)) {
+            cipherLetter = i + 25 - 2 * (i - 'a');
+        } else {
+            cipherLetter = i;
+        }
+        cipherText += cipherLetter;
+    }
+    return cipherText;
+}
+
+string decryptPassword(string cipherText) {
+    string plainText;
+    char plainLetter;
+    for (auto i: cipherText){
+        if (isupper(i)){
+            plainLetter = i - 25 + 2 * ('Z' - i); // equation to get new plain letter
+        } else if (islower(i)) {
+            plainLetter = i - 25 + 2 * ('z' - i);
+        } else {
+            plainLetter = i;
+        }
+        plainText += plainLetter;
+    }
+    return plainText;
+}
+
+string login(string ID, string password){// parameter password is assumed to be the plain password
+    return "";
+}

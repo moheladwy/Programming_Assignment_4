@@ -18,18 +18,20 @@ using namespace OpenXLSX;
 //___________________________________________________________________________________________________
 int main()
 {
-    cout << "Welcome in Login Application Project!" << endl;
-    printMainMenu();
-    // initialize XLDocument
-    XLDocument doc;
-    // create document
-    doc.create("./Demo01.xlsx");
-    // add worksheet
-    auto workSheet = doc.workbook().worksheet("Sheet1");
-    // add text
-    workSheet.cell(XLCellReference("A2")).value() ="Login Application Project.";
-    // save document
-    doc.save();
+
+    getPlainPassword();
+//    cout << "Welcome in Login Application Project!" << endl;
+//    printMainMenu();
+//    // initialize XLDocument
+//    XLDocument doc;
+//    // create document
+//    doc.create("./Demo01.xlsx");
+//    // add worksheet
+//    auto workSheet = doc.workbook().worksheet("Sheet1");
+//    // add text
+//    workSheet.cell(XLCellReference("A2")).value() ="Login Application Project.";
+//    // save document
+//    doc.save();
     return 0;
 }
 //___________________________________________________________________________________________________
