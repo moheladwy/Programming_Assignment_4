@@ -42,7 +42,6 @@ struct user {
 };
 
 const int colmID = 1, colmFullName = 2, colmPhoneNumber = 3, colmEmail = 4, colmPassword = 5;
-user userProfile;
 // key: userID, value: struct of this exact user
 unordered_map <string, user> getUserData;
 //___________________________________________________________________________________________________
@@ -87,6 +86,7 @@ string decryptPassword(const string& cipherText) {
 //===== to be done =====
 void fetchXLSXFile(){
     // get the user data already in file and populate to the map.
+    user userProfile;
     XLDocument usersData;
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1");
@@ -236,77 +236,46 @@ bool isValidPassword(string& password)
     return strongPassword;
 }
 //___________________________________________________________________________________________________
-string getPassword()
+string getPassword(string type)
 {
-    first:
-    cout << "The password must contain small letters, capital letters, numbers, special characters and be greater than 7 characters." << endl;
-    cout << "Enter a password that follow the instructions above: ";
-    char tempChar; string firstPassword, repeatedPassword;
-    for(int letterPassword1 = 0;;) //infinite loop
+    char tempChar; string password;
+    cout << "The password must contain small letters (a,b ..etc), capital letters (A,B ..etc), numbers (0,1 ..etc), special characters (@,# ..etc) and be greater than 7 characters." << endl;
+    while (true)
     {
-        tempChar = getch(); //stores char typed in tempChar
-        if(tempChar >= 32 && tempChar <= 126)
-            //check if tempChar is numeric , alphabet, special character
-        {
-            //stores tempChar in pass
-            firstPassword += tempChar;
-            ++letterPassword1;
-            cout << "*" ;
-        }
-        if(tempChar == '\b' && letterPassword1 >= 1) //if user typed backspace
-            //letterPassword1 should be greater than 0.
-        {
-            cout << "\b \b"; //rub the character behind the cursor.
-            --letterPassword1;
-        }
-        if(tempChar == '\r') //if enter is pressed
-        {
-            //null means end of string.
-            firstPassword += '\0';
-            break; //break the loop
-        }
-    }
-    if (!isValidPassword(firstPassword))
-    {
-        cout << endl << "The password Must follow the above instructions, try again." << endl;
-        goto first;
-    }
-    else
-    {
-        second:
-        cout << endl << "Enter the Password again to confirm the first one: ";
-        for(int letterPassword2 = 0;;) //infinite loop
+        cout << "Enter the" << type << " password that follow the instructions above: ";
+        for(int count = 0;;) //infinite loop
         {
             tempChar = getch(); //stores char typed in tempChar
-            if(tempChar >= 32 && tempChar <= 126)
+            if(tempChar >= 32 && tempChar <= 126)//
                 //check if tempChar is numeric , alphabet, special character
             {
                 //stores tempChar in pass
-                repeatedPassword += tempChar;
-                ++letterPassword2;
+                password += tempChar;
+                ++count;
                 cout << "*" ;
             }
-            if(tempChar == '\b' && letterPassword2 >= 1) //if user typed backspace
-                //letterPassword2 should be greater than 0.
+            if(tempChar == '\b' && count >= 1) //if user typed backspace
+                //count should be greater than 0.
             {
                 cout << "\b \b"; //rub the character behind the cursor.
-                --letterPassword2;
+                --count;
             }
             if(tempChar == '\r') //if enter is pressed
             {
                 //null means end of string.
-                repeatedPassword += '\0';
+                password += '\0';
                 break; //break the loop
             }
         }
-        if (repeatedPassword == firstPassword)
+        if (!isValidPassword(password))
         {
-            return firstPassword;
+            cout << "The password must contain small letters (a,b ..etc), capital letters (A,B ..etc), numbers (0,1 ..etc), special characters (@,# ..etc) and be greater than 7 characters." << endl;
+            cout << "The password Must follow the above instructions, try again." << endl;
+            password = "";
         }
         else
         {
-            cout << endl << "The Password doesn't match with the first one, Try again." << endl;
-            goto second;
+            return password;
         }
     }
 }
@@ -353,14 +322,28 @@ void userRegister(string& ID, string& fullName, string& phoneNumber, string& ema
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1");
     int indexUserInFile = workSheet.rowCount();
-    string password = getPassword();
+    string firstPassword, repeatedPassword;
+    while(true)
+    {
+        firstPassword = getPassword(" first");
+        repeatedPassword = getPassword(" repeated");
+        if (firstPassword == repeatedPassword)
+        {
+            cout << "Passwords Match Successfully!" << endl;
+            break;
+        }
+        else
+        {
+            cout << "The passwords doesn't match, Try again!" << endl;
+        }
+    }
 
     newUser.indexUserInFile = indexUserInFile + 1;
     newUser.ID = ID;
     newUser.fullName = fullName;
     newUser.phoneNumber = phoneNumber;
     newUser.email = email;
-    newUser.password = password;
+    newUser.password = firstPassword;
 
     getUserData.insert({ID, newUser});
 
@@ -368,7 +351,7 @@ void userRegister(string& ID, string& fullName, string& phoneNumber, string& ema
     workSheet.cell(indexUserInFile, colmFullName).value() = fullName;
     workSheet.cell(indexUserInFile, colmPhoneNumber).value() = phoneNumber;
     workSheet.cell(indexUserInFile, colmEmail).value() = email;
-    workSheet.cell(indexUserInFile, colmPassword).value() = encryptPassword(password); // Encrypting the password that will be stored in the file.
+    workSheet.cell(indexUserInFile, colmPassword).value() = encryptPassword(firstPassword); // Encrypting the firstPassword that will be stored in the file.
 
     usersData.save();
     usersData.close();

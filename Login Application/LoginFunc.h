@@ -36,7 +36,7 @@ string getID();
 string getFullName();
 string getPhoneNumber(); //Done by Amr
 string getEmail(); //Done by Amr
-string getPassword(); // Done - Mohamed Eladwy.
+string getPassword(string type); // Done - Mohamed Eladwy.
 void fetchXLSXFile(); // Done - Mohamed Eladwy.
 void updateXLSXFile(int& indexUserInFile, string& newPassword, string& userID); // Done - Mohamed Eladwy.
 void executeUserChoice(int choice);
