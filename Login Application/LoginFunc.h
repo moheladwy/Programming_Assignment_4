@@ -29,12 +29,12 @@ string encryptPassword(string& plainText); // Done - Yusuf Badr.
 string decryptPassword(string& cipherText); // Done - Yusuf Badr.
 bool isvalidID(string& ID);
 bool isValidFullName(string& fullName);
-bool isValidPhoneNumber(string& phoneNumber);
+bool isValidPhoneNumber(string& phoneNumber); //Done by Amr
 bool isValidEmail(string& email); //Done by Amr
 bool isValidPassword(string& password); // Done - Mohamed Eladwy.
 string getID();
 string getFullName();
-string getPhoneNumber();
+string getPhoneNumber(); //Done by Amr
 string getEmail(); //Done by Amr
 string getPassword(); // Done - Mohamed Eladwy.
 void fetchXLSXFile(); // Done - Mohamed Eladwy.
