@@ -25,17 +25,17 @@ bool isYesOrNo(string& choice); // Done - Mohamed Eladwy.
 string makeLowerCase(string line); // Done - Mohamed Eladwy.
 bool checkUserChoice(string choice); // Done - Mohamed Eladwy.
 int getUserChoice(); // Done - Mohamed Eladwy.
-string encryptPassword(string& plainText); // Done - Yusuf Badr.
-string decryptPassword(string& cipherText); // Done - Yusuf Badr.
+string encryptPassword(const string& plainText); // Done - Yusuf Badr.
+string decryptPassword(const string& cipherText); // Done - Yusuf Badr.
 bool isvalidID(string& ID);
 bool isValidFullName(string& fullName);
-bool isValidPhoneNumber(string& phoneNumber);
-bool isValidEmail(string& email);
+bool isValidPhoneNumber(string& phoneNumber); //Done by Amr
+bool isValidEmail(string& email); //Done by Amr
 bool isValidPassword(string& password); // Done - Mohamed Eladwy.
 string getID();
 string getFullName();
-string getPhoneNumber();
-string getEmail();
+string getPhoneNumber(); //Done by Amr
+string getEmail(); //Done by Amr
 string getPassword(); // Done - Mohamed Eladwy.
 void fetchXLSXFile(); // Done - Mohamed Eladwy.
 void updateXLSXFile(int& indexUserInFile, string& newPassword, string& userID); // Done - Mohamed Eladwy.

@@ -52,7 +52,7 @@ ostream& operator<< (ostream& out, user inUser){
     return out;
 }
 //___________________________________________________________________________________________________
-string encryptPassword(string& plainText) { // Atbash Cipher
+string encryptPassword(const string& plainText) { // Atbash Cipher
     string cipherText;
     char cipherLetter;
     for (auto i: plainText){
@@ -68,7 +68,7 @@ string encryptPassword(string& plainText) { // Atbash Cipher
     return cipherText;
 }
 //___________________________________________________________________________________________________
-string decryptPassword(string& cipherText) {
+string decryptPassword(const string& cipherText) {
     string plainText;
     char plainLetter;
     for (auto i: cipherText){
@@ -311,6 +311,42 @@ string getPassword()
     }
 }
 //___________________________________________________________________________________________________
+void userLogin() {// parameter password is assumed to be the plain password
+    cout << "Inorder to Log in please enter the following\n";
+    cout << "Username: ";
+    string username;
+    getline(cin, username);
+    cout << "\nPassword: ";
+
+
+
+
+//    while (true){
+//
+//    }
+//    tempChar = getch(); //stores char typed in tempChar
+//    if(tempChar >= 32 && tempChar <= 126)
+//        //check if tempChar is numeric , alphabet, special character
+//    {
+//        //stores tempChar in pass
+//        firstPassword += tempChar;
+//        ++letterPassword1;
+//        cout << "*" ;
+//    }
+//    if(tempChar == '\b' && letterPassword1 >= 1) //if user typed backspace
+//        //letterPassword1 should be greater than 0.
+//    {
+//        cout << "\b \b"; //rub the character behind the cursor.
+//        --letterPassword1;
+//    }
+//    if(tempChar == '\r') //if enter is pressed
+//    {
+//        //null means end of string.
+//        firstPassword += '\0';
+//        break; //break the loop
+//    }
+}
+
 void userRegister(string& ID, string& fullName, string& phoneNumber, string& email)
 {
     XLDocument usersData; user newUser;
@@ -340,5 +376,55 @@ void userRegister(string& ID, string& fullName, string& phoneNumber, string& ema
 //___________________________________________________________________________________________________
 string userLogin(string ID, string password){ // parameter password is assumed to be the plain password.
     return "";
+}
+//___________________________________________________________________________________________________
+bool isValidEmail(string email)// Done by amr
+{
+    regex isValid("^\\w{1}([\\.\\-\\#\\!\\%\\$\\‘\\&\\+\\*\\/\\=\\?\\^\\_\\`\\{\\|\\}\\~]?\\w+){0,63}@\\w+([.-]?\\w+)*(\\.\\w{2,3})+$");
+    return regex_match(email, isValid);
+}
+//___________________________________________________________________________________________________
+string getEmail()
+{
+    string email;
+    while (true)
+    {
+        cout<<"Email: ";
+        getline(cin,email);
+        if (isValidEmail(email)){
+            return email;
+            cout<<"\nEmail has been added successfully";
+            break;
+        }
+        else
+        {
+            cout<<"\nEmail is not valid please try again\n\n";
+        }
+    }
+}
+//___________________________________________________________________________________________________
+bool isValidPhoneNumber(string phoneNumber)// Done by amr
+{
+    regex isValid("^01[0125][0-9]{8}$");
+    return regex_match(phoneNumber, isValid);
+}
+//___________________________________________________________________________________________________
+string  getPhoneNumber() // Done by amr
+{
+string phoneNumber;
+while (true)
+{
+cout<<"PhoneNumber: ";
+getline(cin,phoneNumber);
+if (isValidPhoneNumber(phoneNumber)){
+// return phoneNumber;
+cout<<"\nPhoneNumber has been added successfully";
+break;
+}
+else
+{
+cout<<"\nPhoneNumber is not valid please try again\n\n";
+}
+}
 }
 //___________________________________________________________________________________________________
