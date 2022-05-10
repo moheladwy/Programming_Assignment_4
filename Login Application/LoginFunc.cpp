@@ -307,7 +307,11 @@ void userLogin() {// parameter password is assumed to be the plain password
         cout << "Inorder to Log in please enter the following\n";
         cout << "Username: ";
         string inUsername;
-        getline(cin, inUsername);
+        while(inUsername.empty())
+        {
+            inUsername = "";
+            getline(cin, inUsername);
+        }
         cout << "\nPassword: ";
         string inPassword = getPassword("");
         user userProfile;
@@ -395,7 +399,7 @@ bool isValidFullName(string& fullName)// Done by Amr
 }
 //___________________________________________________________________________________________________
 string getFullName()// Done by Amr
- {
+{
     string fullName;
     while (true) {
         cout << "FullName: ";
@@ -454,19 +458,28 @@ string checkMatchingPasswords(const string& firstPasswordTurn)
 //___________________________________________________________________________________________________
 void userRegister()
 {
-    XLDocument usersData; user newUser;
+    XLDocument usersData; user newUser, tempProfile;
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1");
 
     int indexUserInFile = workSheet.rowCount();
-    string ID = makeLowerCase(getID());
-    string fullName = getFullName();
-    string phoneNumber = getPhoneNumber();
-    string email = makeLowerCase(getEmail());
-    string password = checkMatchingPasswords(" first");
+    string ID, fullName, phoneNumber, email, password;
+    while(true)
+    {
+        try {
+            ID = makeLowerCase(getID());
+            tempProfile = getUserData.at(ID);
+        } catch (const out_of_range &) {
+            newUser.ID = ID;
+            break;
+        }
+    }
+    fullName = getFullName();
+    phoneNumber = getPhoneNumber();
+    email = makeLowerCase(getEmail());
+    password = checkMatchingPasswords(" first");
 
     newUser.indexUserInFile = indexUserInFile + 1;
-    newUser.ID = ID;
     newUser.fullName = fullName;
     newUser.phoneNumber = phoneNumber;
     newUser.email = email;
