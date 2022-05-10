@@ -84,7 +84,6 @@ string decryptPassword(const string& cipherText) {
     return plainText;
 }
 //___________________________________________________________________________________________________
-//===== to be done =====
 void fetchXLSXFile(){
     // get the user data already in file and populate to the map.
     user userProfile; XLDocument usersData;
@@ -150,7 +149,6 @@ void printMainMenu()
     cout << "----------------------------------------------------------------------------------------" << endl;
     cout << "1- Register." << endl;
     cout << "2- Login." << endl;
-    // cout << "3- Change Password." << endl;
     cout << "3- Forget Password." << endl;
     cout << "4- Exit." << endl;
     cout << "----------------------------------------------------------------------------------------" << endl;
@@ -303,11 +301,44 @@ string getPassword(const string& type)
 }
 //___________________________________________________________________________________________________
 void userLogin() {// parameter password is assumed to be the plain password
-    cout << "Inorder to Log in please enter the following\n";
-    cout << "Username: ";
-    string username;
-    getline(cin, username);
-    cout << "\nPassword: ";
+    // make input user name lower case for comparing.
+    int failedLoginPasswordAttempts = 0;
+    while (failedLoginPasswordAttempts < 3) {
+        cout << "Inorder to Log in please enter the following\n";
+        cout << "Username: ";
+        string inUsername;
+        getline(cin, inUsername);
+        cout << "\nPassword: ";
+        string inPassword = getPassword("");
+        user userProfile;
+        bool validUsername = true;
+        try {
+            userProfile = getUserData.at(inUsername);
+        } catch (const out_of_range &) {
+            cout << "Failed Login! Username Not Found!\n";
+            break;
+        }
+        //        if (userProfile.failedAttempts >= 3){
+        //            cout << "You are blocked from the system as you have failed to login for three times consecutively\n";
+        //            isBlocked = true;
+        //        }
+
+        if (!userProfile.isBlocked) {
+            if (inPassword == userProfile.password) {
+                cout << "Successful Login, welcome " << userProfile.ID << " your full name is " << userProfile.fullName;
+            } else {
+                failedLoginPasswordAttempts += 1;
+            }
+        } else {
+            cout << "You are blocked from the system";
+            break;
+        }
+        if (failedLoginPasswordAttempts >= 3) {
+            userProfile.isBlocked = true;
+            cout << "You have been blocked from the system\n";
+            // // // // // UPDATE
+        }
+    }
 }
 //___________________________________________________________________________________________________
 bool isValidEmail(string& email)// Done by amr
@@ -428,10 +459,10 @@ void userRegister()
     auto workSheet = usersData.workbook().worksheet("Sheet1");
 
     int indexUserInFile = workSheet.rowCount();
-    string ID = getID();
+    string ID = makeLowerCase(getID());
     string fullName = getFullName();
     string phoneNumber = getPhoneNumber();
-    string email = getEmail();
+    string email = makeLowerCase(getEmail());
     string password = checkMatchingPasswords(" first");
 
     newUser.indexUserInFile = indexUserInFile + 1;
@@ -444,10 +475,10 @@ void userRegister()
 
     getUserData.insert({ID, newUser});
 
-    workSheet.cell(indexUserInFile, colmID).value() = makeLowerCase(ID);
-    workSheet.cell(indexUserInFile, colmFullName).value() = makeLowerCase(fullName);
-    workSheet.cell(indexUserInFile, colmPhoneNumber).value() = makeLowerCase(phoneNumber);
-    workSheet.cell(indexUserInFile, colmEmail).value() = makeLowerCase(email);
+    workSheet.cell(indexUserInFile, colmID).value() = ID;
+    workSheet.cell(indexUserInFile, colmFullName).value() = fullName;
+    workSheet.cell(indexUserInFile, colmPhoneNumber).value() = phoneNumber;
+    workSheet.cell(indexUserInFile, colmEmail).value() = email;
     workSheet.cell(indexUserInFile, colmPassword).value() = encryptPassword(password); // Encrypting the firstPassword that will be stored in the file.
     workSheet.cell(indexUserInFile, colmBlocked).value() = false;
 
