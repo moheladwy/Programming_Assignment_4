@@ -384,7 +384,7 @@ bool isValidEmail(string& email)// Done by amr
     return regex_match(email, isValid);
 }
 //___________________________________________________________________________________________________
-string getEmail()
+string getEmail()// Done by Amr
 {
     string email;
     while (true)
@@ -428,18 +428,19 @@ cout<<"\nPhoneNumber is not valid please try again\n\n";
 }
 }
 //___________________________________________________________________________________________________
-bool isValidFullName(string& fullName)
+bool isValidFullName(string& fullName)// Done by Amr
 {
     regex isValid("^[a-zA-Z]+[ -]?[A-Za-z]*$");
     return regex_match(fullName, isValid);
 }
 //___________________________________________________________________________________________________
-string getFullName() {
+string getFullName()// Done by Amr
+ {
     string fullName;
     while (true) {
         cout << "FullName: ";
         getline(cin, fullName);
-        if (isValidPhoneNumber(fullName)) {
+        if (isValidFullName(fullName)) {
         return fullName;
             cout << "\nFullName has been added successfully";
             break;
@@ -447,4 +448,30 @@ string getFullName() {
             cout << "\nFullName is not valid please try again\n\n";
         }
     }
+}
+//_________________________________________________________________________________________________
+bool isvalidID(string& ID)// Done by Amr
+{
+    regex isValid("^[\\w\\.\\-\\#\\!\\%\\$\\&\\+\\*\\/\\=\\?\\^\\`\\{\\|\\}\\~]*$");
+    return regex_match(ID, isValid);
+}
+//_________________________________________________________________________________________________
+string getID()// Done by Amr
+{
+
+string ID;
+while (true)
+{
+cout<<"ID: ";
+getline(cin,ID);
+if (isvalidID(ID)){
+ return ID;
+cout<<"\nID has been added successfully";
+break;
+}
+else
+{
+cout<<"\nID is not valid please try again\n\n";
+}
+}
 }
