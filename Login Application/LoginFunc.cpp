@@ -33,23 +33,24 @@ using namespace OpenXLSX;
 */
 //___________________________________________________________________________________________________
 struct user {
-    string ID = "";
-    string fullName = "";
-    string phoneNumber = "";
-    string password = "";
-    string email = "";
+    string ID;
+    string fullName;
+    string phoneNumber;
+    string password;
+    string email;
     int indexUserInFile;
 };
 
+const int colmID = 1, colmFullName = 2, colmPhoneNumber = 3, colmEmail = 4, colmPassword = 5;
+user userProfile;
+// key: userID, value: struct of this exact user
+unordered_map <string, user> getUserData;
+//___________________________________________________________________________________________________
 // operator overloading for struct, you can modify to allow for direct output of each user in the Excel file
 ostream& operator<< (ostream& out, user inUser){
     out << ",Full Name: " << inUser.fullName << " ,Phone Number: " << inUser.phoneNumber << " ,Email: " << inUser.email << " ,Password: " << inUser.password;
     return out;
 }
-
-user userProfile;
-// key: userID, value: struct of this exact user
-unordered_map <string, user> getUserData;
 //___________________________________________________________________________________________________
 string encryptPassword(string& plainText) { // Atbash Cipher
     string cipherText;
@@ -92,11 +93,11 @@ void fetchXLSXFile(){
     int numberOfUsers = workSheet.rowCount();
     for (int index = 2; index <= numberOfUsers; ++index) {
         userProfile.indexUserInFile = index;
-        userProfile.ID = workSheet.cell(index,1).value().get<string>();
-        userProfile.fullName = workSheet.cell(index,2).value().get<string>();
-        userProfile.phoneNumber = workSheet.cell(index,3).value().get<string>();
-        userProfile.email = workSheet.cell(index,4).value().get<string>();
-        userProfile.password = workSheet.cell(index,5).value().get<string>();
+        userProfile.ID = workSheet.cell(index,colmID).value().get<string>();
+        userProfile.fullName = workSheet.cell(index,colmFullName).value().get<string>();
+        userProfile.phoneNumber = workSheet.cell(index,colmPhoneNumber).value().get<string>();
+        userProfile.email = workSheet.cell(index,colmEmail).value().get<string>();
+        userProfile.password = workSheet.cell(index,colmPassword).value().get<string>();
         userProfile.password = decryptPassword(userProfile.password);
         getUserData.insert({userProfile.ID,userProfile});
     }
@@ -118,7 +119,7 @@ void updateXLSXFile(int& indexUserInFile, string& newPassword, string& userID){
     XLDocument usersData;
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1");
-    workSheet.cell(indexUserInFile,5).value() = encryptPassword(newPassword);
+    workSheet.cell(indexUserInFile,colmPassword).value() = encryptPassword(newPassword);
     usersData.save();
     usersData.close();
 }
@@ -310,26 +311,28 @@ string getPassword()
     }
 }
 //___________________________________________________________________________________________________
-void userRegister(string& ID, string& fullName, string& phoneNumber, string& email, string password, int& indexUserInFile)
+void userRegister(string& ID, string& fullName, string& phoneNumber, string& email)
 {
-    userProfile.indexUserInFile = indexUserInFile;
-    userProfile.ID = ID;
-    userProfile.fullName = fullName;
-    userProfile.phoneNumber = phoneNumber;
-    userProfile.email = email;
-    userProfile.password = password;
-
-    getUserData.insert({ID, userProfile});
-
-    XLDocument usersData;
+    XLDocument usersData; user newUser;
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1");
+    int indexUserInFile = workSheet.rowCount();
+    string password = getPassword();
 
-    workSheet.cell(indexUserInFile, 1).value() = ID;
-    workSheet.cell(indexUserInFile, 2).value() = fullName;
-    workSheet.cell(indexUserInFile, 3).value() = phoneNumber;
-    workSheet.cell(indexUserInFile, 4).value() = email;
-    workSheet.cell(indexUserInFile, 5).value() = encryptPassword(password); // Encrypting the password that will be stored in the file.
+    newUser.indexUserInFile = indexUserInFile + 1;
+    newUser.ID = ID;
+    newUser.fullName = fullName;
+    newUser.phoneNumber = phoneNumber;
+    newUser.email = email;
+    newUser.password = password;
+
+    getUserData.insert({ID, newUser});
+
+    workSheet.cell(indexUserInFile, colmID).value() = ID;
+    workSheet.cell(indexUserInFile, colmFullName).value() = fullName;
+    workSheet.cell(indexUserInFile, colmPhoneNumber).value() = phoneNumber;
+    workSheet.cell(indexUserInFile, colmEmail).value() = email;
+    workSheet.cell(indexUserInFile, colmPassword).value() = encryptPassword(password); // Encrypting the password that will be stored in the file.
 
     usersData.save();
     usersData.close();

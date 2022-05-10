@@ -25,19 +25,25 @@ bool isYesOrNo(string& choice); // Done - Mohamed Eladwy.
 string makeLowerCase(string line); // Done - Mohamed Eladwy.
 bool checkUserChoice(string choice); // Done - Mohamed Eladwy.
 int getUserChoice(); // Done - Mohamed Eladwy.
-bool isvalidUserName(string userName);
-bool isValidEmail(string email);
-bool isValidPassword(string& password); // Done - Mohamed Eladwy.
-string getPassword(); // Done - Mohamed Eladwy.
 string encryptPassword(string& plainText); // Done - Yusuf Badr.
 string decryptPassword(string& cipherText); // Done - Yusuf Badr.
-void executeUserChoice(int choice);
+bool isvalidID(string& ID);
+bool isValidFullName(string& fullName);
+bool isValidPhoneNumber(string& phoneNumber);
+bool isValidEmail(string& email);
+bool isValidPassword(string& password); // Done - Mohamed Eladwy.
+string getID();
+string getFullName();
+string getPhoneNumber();
+string getEmail();
+string getPassword(); // Done - Mohamed Eladwy.
 void fetchXLSXFile(); // Done - Mohamed Eladwy.
 void updateXLSXFile(int& indexUserInFile, string& newPassword, string& userID); // Done - Mohamed Eladwy.
+void executeUserChoice(int choice);
 //___________________________________________________________________________________________________
 // The main functions of the project.
 //___________________________________________________________________________________________________
-void userRegister(string& ID, string& fullName, string& phoneNumber, string& email, string password, int& indexUserInFile); // Done - Mohamed Eladwy.
+void userRegister(string& ID, string& fullName, string& phoneNumber, string& email); // Done - Mohamed Eladwy.
 string userLogin(string ID, string password);
 void changePassword();
 void forgetPassword();
