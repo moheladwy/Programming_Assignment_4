@@ -311,7 +311,7 @@ string getPassword()
     }
 }
 //___________________________________________________________________________________________________
-<<<<<<< HEAD
+
 string encryptPassword(string plainText) { // Atbash Cipher
     string cipherText;
     char cipherLetter;
@@ -344,7 +344,7 @@ string decryptPassword(string cipherText) {
     return plainText;
 }
 //___________________________________________________________________________________________________
-void userLogin(){// parameter password is assumed to be the plain password
+void userLogin() {// parameter password is assumed to be the plain password
     cout << "Inorder to Log in please enter the following\n";
     cout << "Username: ";
     string username;
@@ -378,10 +378,8 @@ void userLogin(){// parameter password is assumed to be the plain password
 //        firstPassword += '\0';
 //        break; //break the loop
 //    }
+}
 
-
-
-=======
 void userRegister(string& ID, string& fullName, string& phoneNumber, string& email)
 {
     XLDocument usersData; user newUser;
@@ -411,7 +409,6 @@ void userRegister(string& ID, string& fullName, string& phoneNumber, string& ema
 //___________________________________________________________________________________________________
 string userLogin(string ID, string password){ // parameter password is assumed to be the plain password.
     return "";
->>>>>>> 7a588050bbe7f463d98b6920e0dc1a6604f63da6
 }
 //___________________________________________________________________________________________________
 bool isValidEmail(string email)// Done by amr
