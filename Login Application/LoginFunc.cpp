@@ -366,3 +366,29 @@ string getEmail()
         }
     }
 }
+//___________________________________________________________________________________________________
+bool isValidPhoneNumber(string phoneNumber)// Done by amr
+{
+    regex isValid("^01[0125][0-9]{8}$");
+    return regex_match(phoneNumber, isValid);
+}
+//___________________________________________________________________________________________________
+string  getPhoneNumber() // Done by amr
+{
+string phoneNumber;
+while (true)
+{
+cout<<"PhoneNumber: ";
+getline(cin,phoneNumber);
+if (isValidPhoneNumber(phoneNumber)){
+// return phoneNumber;
+cout<<"\nPhoneNumber has been added successfully";
+break;
+}
+else
+{
+cout<<"\nPhoneNumber is not valid please try again\n\n";
+}
+}
+}
+//___________________________________________________________________________________________________
