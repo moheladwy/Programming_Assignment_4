@@ -348,3 +348,21 @@ bool isValidEmail(string email)// Done by amr
     return regex_match(email, isValid);
 }
 //___________________________________________________________________________________________________
+string getEmail()
+{
+    string email;
+    while (true)
+    {
+        cout<<"Email: ";
+        getline(cin,email);
+        if (isValidEmail(email)){
+            return email;
+            cout<<"\nEmail has been added successfully";
+            break;
+        }
+        else
+        {
+            cout<<"\nEmail is not valid please try again\n\n";
+        }
+    }
+}
