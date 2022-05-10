@@ -18,12 +18,7 @@ using namespace OpenXLSX;
 //___________________________________________________________________________________________________
 int main()
 {
-    XLDocument usersData;
-    usersData.open("usersData.xlsx");
-    auto workSheet = usersData.workbook().worksheet("Sheet1");
-    int numberOfRows = workSheet.rowCount();
-    cout << "The Number of the Rows = " << numberOfRows << " in sheet 1." << endl;
-    usersData.close();
+    cout << "Hello Ya User Ya Habeby!" << endl;
     return 0;
 }
 //___________________________________________________________________________________________________
