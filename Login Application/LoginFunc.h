@@ -32,18 +32,20 @@ bool isValidFullName(string& fullName);
 bool isValidPhoneNumber(string& phoneNumber); //Done by Amr
 bool isValidEmail(string& email); //Done by Amr
 bool isValidPassword(string& password); // Done - Mohamed Eladwy.
+string checkMatchingPasswords(const string& firstPasswordTurn); // Done - Mohamed Eladwy.
 string getID();
 string getFullName();
 string getPhoneNumber(); //Done by Amr
 string getEmail(); //Done by Amr
-string getPassword(string type); // Done - Mohamed Eladwy.
+string getPassword(const string& type); // Done - Mohamed Eladwy.
 void fetchXLSXFile(); // Done - Mohamed Eladwy.
-void updateXLSXFile(int& indexUserInFile, string& newPassword, string& userID); // Done - Mohamed Eladwy.
-void executeUserChoice(int choice);
+void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& newPassword); // Done - Mohamed Eladwy.
+void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood ); // Done - Mohamed Eladwy.
+void executeUserChoice(const int& choice);
 //___________________________________________________________________________________________________
 // The main functions of the project.
 //___________________________________________________________________________________________________
-void userRegister(string& ID, string& fullName, string& phoneNumber, string& email); // Done - Mohamed Eladwy.
+void userRegister(); // Done - Mohamed Eladwy.
 string userLogin(string ID, string password);
 void changePassword();
 void forgetPassword();
