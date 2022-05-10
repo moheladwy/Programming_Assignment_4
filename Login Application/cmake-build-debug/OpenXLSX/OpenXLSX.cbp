@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="OpenXLSX"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\OpenXLSX\;CMake Files\OpenXLSX\OpenXLSX\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="OpenXLSX">
+				<Option output="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/output/libOpenXLSXd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DOPENXLSX_STATIC_DEFINE"/>
+					<Add option="-DCHARCONV_ENABLED"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/headers"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/external/zippy"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/external/pugixml"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/external/nowide"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX/Makefile&quot;  VERBOSE=1 OpenXLSX"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="OpenXLSX/fast">
+				<Option output="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/output/libOpenXLSXd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DOPENXLSX_STATIC_DEFINE"/>
+					<Add option="-DCHARCONV_ENABLED"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/headers"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/external/zippy"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/external/pugixml"/>
+					<Add directory="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/external/nowide"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.3/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX/Makefile&quot;  VERBOSE=1 OpenXLSX/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.3/bin/mingw/bin/mingw32-make.exe -f &quot;E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/cmake-build-debug/OpenXLSX/OpenXLSX/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLCell.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLCellIterator.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLCellRange.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLCellReference.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLCellValue.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLColor.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLColumn.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLContentTypes.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLDateTime.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLDocument.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLFormula.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLProperties.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLRelationships.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLRow.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLRowData.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLSharedStrings.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLSheet.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLWorkbook.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLXmlData.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLXmlFile.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/sources/XLZipArchive.cpp">
+			<Option target="OpenXLSX"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\OpenXLSX\"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\OpenXLSX\OpenXLSX\"/>
+		</Unit>
+		<Unit filename="E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login Application/OpenXLSX/OpenXLSX/OpenXLSXConfig.cmake">
+			<Option virtualFolder="CMake Files\OpenXLSX\OpenXLSX\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
