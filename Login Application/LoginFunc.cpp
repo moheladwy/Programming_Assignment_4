@@ -258,7 +258,7 @@ string getPassword()
     }
 }
 //___________________________________________________________________________________________________
-string encryptPassword(string& plainText) { // Atbash Cipher
+string encryptPassword(string plainText) { // Atbash Cipher
     string cipherText;
     char cipherLetter;
     for (auto i: plainText){
@@ -274,7 +274,7 @@ string encryptPassword(string& plainText) { // Atbash Cipher
     return cipherText;
 }
 //___________________________________________________________________________________________________
-string decryptPassword(string& cipherText) {
+string decryptPassword(string cipherText) {
     string plainText;
     char plainLetter;
     for (auto i: cipherText){
@@ -290,7 +290,42 @@ string decryptPassword(string& cipherText) {
     return plainText;
 }
 //___________________________________________________________________________________________________
-string userLogin(string ID, string password){// parameter password is assumed to be the plain password
-    return "";
+void userLogin(){// parameter password is assumed to be the plain password
+    cout << "Inorder to Log in please enter the following\n";
+    cout << "Username: ";
+    string username;
+    getline(cin, username);
+    cout << "\nPassword: ";
+
+
+
+
+//    while (true){
+//
+//    }
+//    tempChar = getch(); //stores char typed in tempChar
+//    if(tempChar >= 32 && tempChar <= 126)
+//        //check if tempChar is numeric , alphabet, special character
+//    {
+//        //stores tempChar in pass
+//        firstPassword += tempChar;
+//        ++letterPassword1;
+//        cout << "*" ;
+//    }
+//    if(tempChar == '\b' && letterPassword1 >= 1) //if user typed backspace
+//        //letterPassword1 should be greater than 0.
+//    {
+//        cout << "\b \b"; //rub the character behind the cursor.
+//        --letterPassword1;
+//    }
+//    if(tempChar == '\r') //if enter is pressed
+//    {
+//        //null means end of string.
+//        firstPassword += '\0';
+//        break; //break the loop
+//    }
+
+
+
 }
 //___________________________________________________________________________________________________
