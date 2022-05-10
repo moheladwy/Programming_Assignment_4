@@ -39,10 +39,11 @@ struct user {
     string password;
     string email;
     int indexUserInFile;
+    bool isBlocked;
 };
 
 const int colmID = 1, colmFullName = 2, colmPhoneNumber = 3, colmEmail = 4, colmPassword = 5;
-user userProfile;
+
 // key: userID, value: struct of this exact user
 unordered_map <string, user> getUserData;
 //___________________________________________________________________________________________________
@@ -86,6 +87,7 @@ string decryptPassword(const string& cipherText) {
 //___________________________________________________________________________________________________
 //===== to be done =====
 void fetchXLSXFile(){
+    user userProfile;
     // get the user data already in file and populate to the map.
     XLDocument usersData;
     usersData.open("usersData.xlsx");
@@ -311,12 +313,57 @@ string getPassword()
     }
 }
 //___________________________________________________________________________________________________
+
 void userLogin() {// parameter password is assumed to be the plain password
-    cout << "Inorder to Log in please enter the following\n";
-    cout << "Username: ";
-    string username;
-    getline(cin, username);
-    cout << "\nPassword: ";
+    int failedLoginPasswordAttempts = 0;
+    while (failedLoginPasswordAttempts < 3){
+        cout << "Inorder to Log in please enter the following\n";
+        cout << "Username: ";
+        string inUsername;
+        getline(cin, inUsername);
+        cout << "\nPassword: ";
+        string inPassword = getPassword("");
+        user userProfile;
+        bool validUsername = true;
+        try {
+            userProfile = getUserData.at(inUsername);
+        } catch (const out_of_range&) {
+            cout << "Failed Login! Username Not Found!\n";
+            break;
+        }
+    //        if (userProfile.failedAttempts >= 3){
+    //            cout << "You are blocked from the system as you have failed to login for three times consecutively\n";
+    //            isBlocked = true;
+    //        }
+
+        if (!userProfile.isBlocked){
+            if (inPassword == userProfile.password){
+                cout << "Successful Login, welcome " << userProfile.ID << " your full name is " << userProfile.fullName;
+            } else {
+                failedLoginPasswordAttempts += 1;
+            }
+        } else {
+            cout << "You are blocked from the system";
+            break;
+        }
+        if (failedLoginPasswordAttempts >= 3){
+            userProfile.isBlocked = true;
+            cout << "You have been blocked from the system\n";
+            // // // // // UPDATE
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
