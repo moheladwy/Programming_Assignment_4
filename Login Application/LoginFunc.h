@@ -32,12 +32,12 @@ bool isValidFullName(string& fullName);
 bool isValidPhoneNumber(string& phoneNumber); //Done by Amr
 bool isValidEmail(string& email); //Done by Amr
 bool isValidPassword(string& password); // Done - Mohamed Eladwy.
-string checkMatchingPasswords(const string& firstPasswordTurn); // Done - Mohamed Eladwy.
+string getANewPassword(const string& firstPasswordTurn); // Done - Mohamed Eladwy.
 string getID();
 string getFullName();
 string getPhoneNumber(); //Done by Amr
 string getEmail(); //Done by Amr
-string getPassword(const string& type); // Done - Mohamed Eladwy.
+string getPassword(const string& additionalText); // Done - Mohamed Eladwy.
 void fetchXLSXFile(); // Done - Mohamed Eladwy.
 void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& newPassword); // Done - Mohamed Eladwy.
 void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood ); // Done - Mohamed Eladwy.
