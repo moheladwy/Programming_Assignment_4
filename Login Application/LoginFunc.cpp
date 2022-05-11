@@ -42,20 +42,11 @@ struct user {
     string email;
     int indexUserInFile;
     bool isBlocked;
-    bool loggedIn;
 };
-// NEED TO BE DONE : make logged in by deafult false;
+
 const int colmID = 1, colmFullName = 2, colmPhoneNumber = 3, colmEmail = 4, colmPassword = 5, colmBlocked = 6;
 // key: userID, value: struct of this exact user
 unordered_map <string, user> getUserData;
-
-
-//___________________________________________________________________________________________________
-// operator overloading for struct, you can modify to allow for direct output of each user in the Excel file
-ostream& operator<< (ostream& out, user inUser){
-    out << ",Full Name: " << inUser.fullName << " ,Phone Number: " << inUser.phoneNumber << " ,Email: " << inUser.email << " ,Password: " << inUser.password << " ,Blocking Mood: " << inUser.isBlocked;
-    return out;
-}
 
 //___________________________________________________________________________________________________
 string makeLowerCase(string line)
@@ -355,8 +346,8 @@ bool isValidPassword(string& password)
     return strongPassword;
 }
 //___________________________________________________________________________________________________
-string getPassword(const string& additionalText = "") // please remove all text regarding what a valid password should contain and add it somewhere else bcz this used even for login // Yusuf B
-{ // ERROR returns an extra character - spotted by Yusuf B
+string getPassword(const string& additionalText = "")
+{
     char tempChar; string password;
     cout << additionalText <<"Password: ";
     for(int count = 0;;) //infinite loop
@@ -444,9 +435,9 @@ string userLogin() {// password is assumed to be the plain password //
                     cout << "Failed to login! Invalid Password!\n";
 
                     if (failedLoginPasswordAttempts >= 3) {
-                        userProfile.isBlocked = true;
                         cout << "You have been blocked from the system\n";
                         updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, true); //blocked mode = true
+                        // updates excel file and map of structs
                         break;
                     }
                 }
@@ -471,8 +462,8 @@ void changePassword(){
         string oldPassword = getPassword();
         if (oldPassword == userProfile.password){
             string newPassword = getANewPassword();
-            userProfile.password = newPassword;
-            updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, newPassword);
+            updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, newPassword);  /* updates excel file and map of structs
+             newPassword is updated */
             cout << "\nPassword Changed Successfully!\n";
         } else {
             cout << "Password does not match; you will be logged out due to security concerns!"
