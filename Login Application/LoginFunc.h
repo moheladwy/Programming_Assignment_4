@@ -1,4 +1,4 @@
-//___________________________________________________________________________________________________
+//______________________________________________________________________________________________________________________
 // FCAI – Programming 1 – 2022 - Assignment 4
 // Program Name: Login Application.
 // Last Modification Date: xx/05/2022
@@ -8,15 +8,15 @@
 // Teaching Assistant: Eng.Hagar Ahmed
 // Purpose: .......
 // File: This is the Header file that contain the prototype of the Functions and its parameters.
-//___________________________________________________________________________________________________
+//______________________________________________________________________________________________________________________
 #ifndef LOGIN_APPLICATION_LOGINFUNC_H
 #define LOGIN_APPLICATION_LOGINFUNC_H
 #pragma once
 #include <string>
 using namespace std;
-//___________________________________________________________________________________________________
+//______________________________________________________________________________________________________________________
 // general functions for being used in many functions for the project.
-//___________________________________________________________________________________________________
+//______________________________________________________________________________________________________________________
 void printMainMenu(); // Done - Mohamed Eladwy.
 void printEndApp(); // Done - Mohamed Eladwy.
 void clearScreen(); // Done - Mohamed Eladwy.
@@ -42,12 +42,12 @@ void fetchXLSXFile(); // Done - Mohamed Eladwy.
 void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& newPassword); // Done - Mohamed Eladwy.
 void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood ); // Done - Mohamed Eladwy.
 void executeUserChoice(const int& choice);
-//___________________________________________________________________________________________________
+//______________________________________________________________________________________________________________________
 // The main functions of the project.
-//___________________________________________________________________________________________________
+//______________________________________________________________________________________________________________________
 void userRegister(); // Done - Mohamed Eladwy.
 string userLogin(string ID, string password);
 void changePassword();
 void forgetPassword();
-//___________________________________________________________________________________________________
+//______________________________________________________________________________________________________________________
 #endif //LOGIN_APPLICATION_LOGINFUNC_H
