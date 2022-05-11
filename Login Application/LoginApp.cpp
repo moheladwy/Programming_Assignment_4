@@ -19,6 +19,19 @@ using namespace OpenXLSX;
 int main()
 {
     cout << "Hello Ya User Ya Habeby!" << endl;
+    bool blockMood = true;
+    string newPassword = "mohamedHussein123@";
+    string userID = "mohamed.h.eladwy";
+    cout << "---------------------------------------------------------------------------------------" << endl;
+    fetchXLSXFile();
+    cout << "---------------------------------------------------------------------------------------" << endl;
+    updateXLSXFile(2, userID, blockMood);
+    fetchXLSXFile();
+    cout << "---------------------------------------------------------------------------------------" << endl;
+    updateXLSXFile(2, userID, newPassword);
+    fetchXLSXFile();
+    cout << "---------------------------------------------------------------------------------------" << endl;
+    clearScreen();
     return 0;
 }
 //___________________________________________________________________________________________________
