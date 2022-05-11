@@ -49,13 +49,6 @@ const int colmID = 1, colmFullName = 2, colmPhoneNumber = 3, colmEmail = 4, colm
 unordered_map <string, user> getUserData;
 unordered_map <string, bool> registeredEmails;
 //______________________________________________________________________________________________________________________
-// operator overloading for struct, you can modify to allow for direct output of each user in the Excel file
-ostream& operator<< (ostream& out, user inUser) {
-    out << ",Full Name: " << inUser.fullName << " ,Phone Number: " << inUser.phoneNumber
-    << " ,Email: " << inUser.email << " ,Password: " << inUser.password << " ,Blocking Mood: " << inUser.isBlocked;
-    return out;
-}
-//______________________________________________________________________________________________________________________
 string makeLowerCase(string line) {
     for (int i = 0; i < line.length(); i++) line[i] = tolower(line[i]);
     return line;

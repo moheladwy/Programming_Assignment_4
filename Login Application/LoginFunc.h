@@ -38,7 +38,8 @@ string getPhoneNumber(); //Done by Amr
 string getEmail(); //Done by Amr
 string getPassword(const string& additionalText = ""); // Done - Mohamed Eladwy - Modified - Yusuf Badr.
 string getANewPassword(); // Modified - Yusuf Badr
-bool doesUsernameExist(const string& inUsername); // Done - Yusuf Badr
+bool doesIDExist(const string& inUsername); // Done - Yusuf Badr
+bool doesEmailExists(const string& email); // Done - Mohamed Eladwy.
 string userLogin(); // Done - Yusuf Badr
 void changePassword();
 void fetchXLSXFile(); // Done - Mohamed Eladwy.
