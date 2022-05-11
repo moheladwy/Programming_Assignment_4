@@ -18,6 +18,7 @@ using namespace std;
 // general functions for being used in many functions for the project.
 //______________________________________________________________________________________________________________________
 void printMainMenu(); // Done - Mohamed Eladwy.
+void printLoginMenu(); // Done - Mohamed Eladwy.
 void printEndApp(); // Done - Mohamed Eladwy.
 void clearScreen(); // Done - Mohamed Eladwy.
 bool isClearScreen(); // Done - Mohamed Eladwy.

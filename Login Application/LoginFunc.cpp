@@ -13,11 +13,9 @@
 #include <regex>
 #include <string>
 #include <cctype>
-#include <cstring>
 #include <conio.h>
 #include <unordered_map>
 #include <windows.h>
-#include <optional>
 #include "OpenXLSX.hpp"
 using namespace std;
 using namespace OpenXLSX;
@@ -194,7 +192,7 @@ void fetchXLSXFile() {
     }
 }
 //______________________________________________________________________________________________________________________
-void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& newPassword) { // rev with hussein - YB
+void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& newPassword) {
     // change the password in the map.
     user tempProfile = getUserData[userID];
     tempProfile.password = newPassword;
@@ -211,7 +209,7 @@ void updateXLSXFile(const int& indexUserInFile, const string& userID, const stri
     usersData.close();
 }
 //______________________________________________________________________________________________________________________
-void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood ) { // rev with hussein -YB
+void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood ) {
     // change Blocked Mood in the map.
     user tempProfile = getUserData[userID];
     tempProfile.isBlocked = blockedMood;
@@ -237,12 +235,13 @@ void printMainMenu() {
     cout << "----------------------------------------------------------------------------------------" << endl;
 }
 //______________________________________________________________________________________________________________________
-bool isYesOrNo(string& choice) {
-    bool isValidInput = true;
-    if (choice.length() == 1) {
-        if (choice == "y" || choice == "Y" || choice == "n" || choice == "N") return isValidInput;
-        }
-    return !isValidInput;
+void printLoginMenu() {
+    cout << "----------------------------------------------------------------------------------------" << endl;
+    cout << "1- Change Full Name." << endl;
+    cout << "2- Change Phone Number." << endl;
+    cout << "3- Change Email." << endl;
+    cout << "4- Change Password." << endl;
+    cout << "----------------------------------------------------------------------------------------" << endl;
 }
 //______________________________________________________________________________________________________________________
 void printEndApp() {
@@ -254,6 +253,14 @@ void printEndApp() {
     cout << "2- Name: Yusuf Elsayed Abdelrahman Bdr. ID: 20210502." << endl;
     cout << "3- Name: Amr Khalied Elsayed Elhennawy. ID: 20210274." << endl;
     cout << "----------------------------------------------------------------------------------------" << endl;
+}
+//______________________________________________________________________________________________________________________
+bool isYesOrNo(string& choice) {
+    bool isValidInput = true;
+    if (choice.length() == 1) {
+        if (choice == "y" || choice == "Y" || choice == "n" || choice == "N") return isValidInput;
+        }
+    return !isValidInput;
 }
 //______________________________________________________________________________________________________________________
 void clearScreen() {
@@ -300,7 +307,7 @@ int getUserChoice() {
     int setChoice;
     bool isValidChoice = false;
     while (!isValidChoice) {
-        cout << "Enter your choice from the list above [1:4]: ";
+        cout << "Enter your choice from the list above: ";
         getChoice = "";
         while (getChoice.empty()) {
             getline(cin, getChoice);
@@ -485,6 +492,20 @@ void changePassword(){
             cout << "\nPassword Changed Successfully!\n";
         } else {
             cout << "Password does not match; you will be logged out due to security concerns!" << "\nTry again Later\n";
+        }
+    }
+}
+//______________________________________________________________________________________________________________________
+void executeUserChoice(const int& choice)
+{
+    switch (choice) {
+        case 1: {
+            userRegister();
+            break;
+        }
+        case 2: {
+            userLogin();
+            break;
         }
     }
 }
