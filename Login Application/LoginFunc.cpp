@@ -425,13 +425,13 @@ string userLogin(string ID, string password){ // parameter password is assumed t
     return "";
 }
 //___________________________________________________________________________________________________
-bool isValidEmail(string email)// Done by amr
+bool isValidEmail(string& email)// Done by amr
 {
     regex isValid("^\\w{1}([\\.\\-\\#\\!\\%\\$\\‘\\&\\+\\*\\/\\=\\?\\^\\_\\`\\{\\|\\}\\~]?\\w+){0,63}@\\w+([.-]?\\w+)*(\\.\\w{2,3})+$");
     return regex_match(email, isValid);
 }
 //___________________________________________________________________________________________________
-string getEmail()
+string getEmail()// Done by Amr
 {
     string email;
     while (true)
@@ -450,7 +450,7 @@ string getEmail()
     }
 }
 //___________________________________________________________________________________________________
-bool isValidPhoneNumber(string phoneNumber)// Done by amr
+bool isValidPhoneNumber(string& phoneNumber)// Done by amr
 {
     regex isValid("^01[0125][0-9]{8}$");
     return regex_match(phoneNumber, isValid);
@@ -475,3 +475,50 @@ cout<<"\nPhoneNumber is not valid please try again\n\n";
 }
 }
 //___________________________________________________________________________________________________
+bool isValidFullName(string& fullName)// Done by Amr
+{
+    regex isValid("^[a-zA-Z]+[ -]?[A-Za-z]*$");
+    return regex_match(fullName, isValid);
+}
+//___________________________________________________________________________________________________
+string getFullName()// Done by Amr
+ {
+    string fullName;
+    while (true) {
+        cout << "FullName: ";
+        getline(cin, fullName);
+        if (isValidFullName(fullName)) {
+        return fullName;
+            cout << "\nFullName has been added successfully";
+            break;
+        } else {
+            cout << "\nFullName is not valid please try again\n\n";
+        }
+    }
+}
+//_________________________________________________________________________________________________
+bool isvalidID(string& ID)// Done by Amr
+{
+    regex isValid("^[\\w\\.\\-\\#\\!\\%\\$\\&\\+\\*\\/\\=\\?\\^\\`\\{\\|\\}\\~]*$");
+    return regex_match(ID, isValid);
+}
+//_________________________________________________________________________________________________
+string getID()// Done by Amr
+{
+
+string ID;
+while (true)
+{
+cout<<"ID: ";
+getline(cin,ID);
+if (isvalidID(ID)){
+ return ID;
+cout<<"\nID has been added successfully";
+break;
+}
+else
+{
+cout<<"\nID is not valid please try again\n\n";
+}
+}
+}
