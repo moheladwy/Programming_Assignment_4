@@ -25,14 +25,14 @@ struct user {
     string phoneNumber;
     string password;
     string email;
-    int indexUserInFile;
-    bool isBlocked;
+    int indexUserInFile = 0;
+    bool isBlocked = false;
 };
 const int colmID = 1, colmFullName = 2, colmPhoneNumber = 3, colmEmail = 4, colmPassword = 5, colmBlocked = 6, endRangeLoginMenuList = 6;
 // key: userID, value: struct of this exact user
 unordered_map <string, user> getUserData;
 unordered_map <string, bool> registeredEmails;
-//______________________________________________________________________________________________________________________U
+//______________________________________________________________________________________________________________________
 ostream& operator<<(ostream& out, user inUser)
 {
     cout << "ID: " << inUser.ID << "\n" << "Email: " << inUser.email << "\n" << "Full Name: " << inUser.fullName << "\n"
@@ -386,18 +386,18 @@ string getANewPassword(const string& oldPassword = "") {
             newPassword = "";
             continue;
         }
-        if (!oldPassword.empty())
-        {
-            if (oldPassword == newPassword)
-            {
-                cout << "The new password must be different from the old one, Try again!" << endl;
-                newPassword = "";
-                continue;
-            }
-        }
         repeatNewPassword = getPassword("Confirm ");
         if (newPassword == repeatNewPassword) {
             cout << "Passwords Match Successfully!" << endl;
+            if (!oldPassword.empty())
+            {
+                if (oldPassword == newPassword)
+                {
+                    cout << "The new password must be different from the old one, Try again!" << endl;
+                    newPassword = "";
+                    continue;
+                }
+            }
             return newPassword;
         }
         else {
@@ -576,11 +576,12 @@ void executeLoginMenu(const int& choice, const string& ID){
 void userLogin() { // password is assumed to be the plain password.
     // return username if login is successful, else return ""
     int failedLoginPasswordAttempts = 0, userChoice = 0;
+    string inUsername, inPassword;
     bool clrScreen;
     while (true) {
-        cout << "Inorder to Log in please enter the following\n";
-        string inUsername = getID();
-        string inPassword = getPassword();
+        cout << "Inorder to Log in please enter the following!\n";
+        inUsername = getID();
+        inPassword = getPassword();
         if (doesIDExist(inUsername)) {
             user userProfile;
             userProfile = getUserData[inUsername];
@@ -631,9 +632,11 @@ void userLogin() { // password is assumed to be the plain password.
 
 void authenticateOTPProcess(const string& otp, const string& userID) { // otp sent to user // Yusuf B
 
-    cout << "Please enter you OTP that you recieved on your email: ";
     string inOTP;
-    getline (cin, inOTP);
+    while(inOTP.empty()){
+        cout << "Please enter you OTP that you recieved on your email: ";
+        getline (cin, inOTP);
+    }
     if (inOTP == otp) {
         changePassword(userID, true);
     } else {
