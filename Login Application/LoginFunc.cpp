@@ -560,6 +560,8 @@ void executeLoginMenu(const int& choice, const string& ID){
             changePassword(ID);
             break;
         }
+        default:
+            break;
     }
 }
 //______________________________________________________________________________________________________________________
@@ -637,6 +639,8 @@ void executeMainMenu(const int& choice) {
             forgetPassword();
             break;
         }
+        default:
+            break;
     }
 }
 //______________________________________________________________________________________________________________________
