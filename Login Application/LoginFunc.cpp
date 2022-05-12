@@ -523,20 +523,28 @@ void changeEmail(const string& ID) {
     cout << "Changing the Email Done Successfully!" << endl;
 }
 //______________________________________________________________________________________________________________________
-void changePassword(const string& ID){
+void changePassword(const string& ID, bool fromOTP = false){
     string newPassword, oldPassword;
-    user userProfile = getUserData[ID];
-    oldPassword = getPassword("Enter Your Old ");
 
-    if (oldPassword == userProfile.password) {
-        newPassword = getANewPassword(oldPassword);
-        updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, newPassword, colmPassword);
-        cout << "Password Changed Successfully!\n";
-    }
-    else {
-        cout << "Password is not correct; you will be logged out due to security concerns!\n" << "Try again Later.\n";
+    if (fromOTP){
+        user userProfile = getUserData[ID];
+        cout << "Enter your new password: ";
+        userProfile.password = getANewPassword();
+        updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, userProfile.password, colmPassword);
+    } else {
+        user userProfile = getUserData[ID];
+        oldPassword = getPassword("Enter Your Old ");
+        if (oldPassword == userProfile.password) {
+            newPassword = getANewPassword(oldPassword);
+            updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, newPassword, colmPassword);
+            cout << "Password Changed Successfully!\n";
+        }
+        else {
+            cout << "Password is not correct; you will be logged out due to security concerns!\n" << "Try again Later.\n";
+        }
     }
 }
+
 //______________________________________________________________________________________________________________________
 void executeLoginMenu(const int& choice, const string& ID){
     switch (choice) {
@@ -620,14 +628,14 @@ void userLogin() { // password is assumed to be the plain password.
     }
 }
 //______________________________________________________________________________________________________________________
-// TO BE DONE.
+
 void authenticateOTPProcess(const string& otp, const string& userID) { // otp sent to user // Yusuf B
-    user userProfile;
+
     cout << "Please enter you OTP that you recieved on your email: ";
     string inOTP;
     getline (cin, inOTP);
     if (inOTP == otp) {
-        // should change password, DELAYED TILL YUSUF B and M Hussein meet to discuss changes in Yusuf B functions;
+        changePassword(userID, true);
     } else {
         cout << "Your OTP is incorrect, failed forget password attempt;\n";
     }
