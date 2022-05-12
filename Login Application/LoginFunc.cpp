@@ -19,18 +19,6 @@
 using namespace std;
 using namespace OpenXLSX;
 //______________________________________________________________________________________________________________________
-/*
- * code practices:
- * There is a struct as you can see below.
- * Since the  user ID is unique to each user, we will identify each user of the struct by the username:
- * please note that userID is CASE-SENSITIVE
- * e.g. user <userID>;
- *      <userID>.email = "test@email.com"
- * below is another example
- * e.g. user ahmedAdam;
- *      ahmedAdam.email = "test2@email.com"
-*/
-//______________________________________________________________________________________________________________________
 struct user {
     string ID;
     string fullName;
@@ -40,8 +28,7 @@ struct user {
     int indexUserInFile;
     bool isBlocked;
 };
-// NEED TO BE DONE : make logged in by deafult false;
-const int colmID = 1, colmFullName = 2, colmPhoneNumber = 3, colmEmail = 4, colmPassword = 5, colmBlocked = 6, endRangeLoginMenuList = 6, numberOfMainMenuList = 4;
+const int colmID = 1, colmFullName = 2, colmPhoneNumber = 3, colmEmail = 4, colmPassword = 5, colmBlocked = 6, endRangeLoginMenuList = 6;
 // key: userID, value: struct of this exact user
 unordered_map <string, user> getUserData;
 unordered_map <string, bool> registeredEmails;
