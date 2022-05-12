@@ -33,7 +33,7 @@ int _tmain(int argc, _TCHAR* argv[])
     oSmtp->Subject = _T("Log in app forgetten password");
     srand(time(0));
     otp = rand() % 8;
-    to_string(otp);
+    password = to_string(otp);
     // Set email body
     oSmtp->BodyText = _T(password.c_str());//<----------------- the error in this line
 

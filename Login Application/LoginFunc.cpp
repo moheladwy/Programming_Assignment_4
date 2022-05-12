@@ -621,8 +621,16 @@ void userLogin() { // password is assumed to be the plain password.
 }
 //______________________________________________________________________________________________________________________
 // TO BE DONE.
-void forgetPassword() {
-
+void authenticateOTPProcess(const string& otp, const string& userID) { // otp sent to user // Yusuf B
+    user userProfile;
+    cout << "Please enter you OTP that you recieved on your email: ";
+    string inOTP;
+    getline (cin, inOTP);
+    if (inOTP == otp) {
+        // should change password, DELAYED TILL YUSUF B and M Hussein meet to discuss changes in Yusuf B functions;
+    } else {
+        cout << "Your OTP is incorrect, failed forget password attempt;\n";
+    }
 }
 //______________________________________________________________________________________________________________________
 void executeMainMenu(const int& choice) {
@@ -636,7 +644,8 @@ void executeMainMenu(const int& choice) {
             break;
         }
         case 3: {
-            forgetPassword();
+
+//            authenticateOTPProcess();
             break;
         }
         default:

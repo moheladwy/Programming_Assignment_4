@@ -55,7 +55,7 @@ void changeFullName(const string& ID); // Done - Mohamed Eladwy.
 void changePhoneNumber(const string& ID); // Done - Mohamed Eladwy.
 void changeEmail(const string& ID); // Done - Mohamed Eladwy.
 void changePassword(const string& ID); // Done - Yusuf Bdr - Modified by - Mohamed Eladwy.
-void forgetPassword();
+void changePasswordUsingOTP();
 void executeLoginMenu(const int& choice, const string& ID); // Done - Mohamed Eladwy.
 void executeMainMenu(const int& choice);
 //______________________________________________________________________________________________________________________
