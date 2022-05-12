@@ -10,7 +10,6 @@
 // File: This is the CPP file that contain the main algorithm of the program.
 //______________________________________________________________________________________________________________________
 #include <iostream>
-#include <string>
 #include "OpenXLSX.hpp"
 #include "LoginFunc.h"
 using namespace std;
@@ -18,7 +17,28 @@ using namespace OpenXLSX;
 //______________________________________________________________________________________________________________________
 int main()
 {
-    cout << "Hello Ya User Ya Habeby!" << endl;
+    int userChoice;
+    bool CLS, openSystem = true;
+
+    cout << "Ahlan Ya User Ya Habeby!" << endl;
+    fetchXLSXFile();
+
+    while(openSystem) {
+        printMainMenu();
+        userChoice = getUserChoice(4);
+        if (userChoice != 4) {
+            executeMainMenu(userChoice);
+            CLS = isClearScreen();
+            if (CLS) {
+                clearScreen();
+            }
+        }
+        else {
+            openSystem = false;
+        }
+    }
+    cout << "----------------------------------------------------------------------------------------" << endl;
+    printEndApp();
     return 0;
 }
 //______________________________________________________________________________________________________________________
