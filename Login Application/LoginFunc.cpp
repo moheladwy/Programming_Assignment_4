@@ -441,8 +441,7 @@ void userRegister() {
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1");
 
-    int indexUserInFile = workSheet.rowCount();
-    indexUserInFile++;
+    int indexUserInFile = workSheet.rowCount() + 1;
     string ID, fullName, phoneNumber, email, password;
 
     while(ID.empty()) {
