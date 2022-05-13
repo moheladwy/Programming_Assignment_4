@@ -18,7 +18,6 @@ using namespace std;
 //______________________________________________________________________________________________________________________
 // general functions for being used in many functions for the project.
 //______________________________________________________________________________________________________________________
-void authenticateOTPProcess(const string& otp, const string& userID);
 void printMainMenu(); // Done - Mohamed Eladwy.
 void printLoginMenu(); // Done - Mohamed Eladwy.
 void printEndApp(); // Done - Mohamed Eladwy.
@@ -55,7 +54,7 @@ void showPersonalData(const string& ID); // Done - Mohamed Eladwy.
 void changeFullName(const string& ID); // Done - Mohamed Eladwy.
 void changePhoneNumber(const string& ID); // Done - Mohamed Eladwy.
 void changeEmail(const string& ID); // Done - Mohamed Eladwy.
-void changePassword(const string& ID); // Done - Yusuf Bdr - Modified by - Mohamed Eladwy.
+void changePassword(const string& ID, bool fromOTP = false); // Done - Yusuf Bdr - Modified by - Mohamed Eladwy.
 void executeLoginMenu(const int& choice, const string& ID); // Done - Mohamed Eladwy.
 void authenticateOTPProcess(const string& otp, const string& userID);
 void executeMainMenu(const int& choice);

@@ -33,7 +33,7 @@ const int colmID = 1, colmFullName = 2, colmPhoneNumber = 3, colmEmail = 4, colm
 unordered_map <string, user> getUserData;
 unordered_map <string, bool> registeredEmails;
 //______________________________________________________________________________________________________________________
-ostream& operator<<(ostream& out, user inUser)
+ostream& operator<<(ostream& out, user& inUser)
 {
     cout << "ID: " << inUser.ID << "\n" << "Email: " << inUser.email << "\n" << "Full Name: " << inUser.fullName << "\n"
          << "Phone Number: " << inUser.phoneNumber << "\n" << "Password: " << inUser.password << "\n";
@@ -87,16 +87,14 @@ bool isValidEmail(const string& email) {
 //______________________________________________________________________________________________________________________
 string getEmail() {
     string email;
-    while (true)
-    {
+    while (true) {
         cout<<"Email: ";
         getline(cin,email);
         if (isValidEmail(email)){
             email = makeLowerCase(email);
             return email;
         }
-        else
-        {
+        else {
             cout<<"Email is not valid please try again!" << endl;
             email = "";
         }
@@ -110,8 +108,7 @@ bool isValidPhoneNumber(const string& phoneNumber) {
 //______________________________________________________________________________________________________________________
 string  getPhoneNumber() {
     string phoneNumber;
-    while (true)
-    {
+    while (true) {
         cout<<"PhoneNumber: ";
         getline(cin,phoneNumber);
         if (isValidPhoneNumber(phoneNumber)) {
@@ -165,7 +162,7 @@ string getID() {
     }
 }
 //______________________________________________________________________________________________________________________
-string encryptPassword(const string& plainText) { // Atbash Cipher
+string encryptPassword(const string& plainText) { // At-bash Cipher
     string cipherText;
     char cipherLetter;
     for (auto i: plainText){
@@ -414,10 +411,8 @@ bool doesIDExist(const string& inUsername) {
     return false;
 }
 //______________________________________________________________________________________________________________________
-bool doesEmailExists(const string& email)
-{
-    if (registeredEmails.count(email))
-    {
+bool doesEmailExists(const string& email) {
+    if (registeredEmails.count(email)) {
         return true;
     }
     return false;
@@ -629,12 +624,11 @@ void userLogin() { // password is assumed to be the plain password.
     }
 }
 //______________________________________________________________________________________________________________________
-
 void authenticateOTPProcess(const string& otp, const string& userID) { // otp sent to user // Yusuf B
 
     string inOTP;
     while(inOTP.empty()){
-        cout << "Please enter you OTP that you recieved on your email: ";
+        cout << "Please enter you OTP that you received on your email: ";
         getline (cin, inOTP);
     }
     if (inOTP == otp) {
@@ -655,7 +649,6 @@ void executeMainMenu(const int& choice) {
             break;
         }
         case 3: {
-
 //            authenticateOTPProcess();
             break;
         }
