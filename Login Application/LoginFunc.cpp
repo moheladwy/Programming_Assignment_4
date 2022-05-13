@@ -75,9 +75,202 @@ void printEndApp() {
     cout << "----------------------------------------------------------------------------------------" << endl;
 }
 //______________________________________________________________________________________________________________________
+string encryptPassword(const string& plainText) { // At-bash Cipher
+    string cipherText;
+    char cipherLetter;
+    for (auto i: plainText){
+        if (isupper(i)){
+            cipherLetter = i + 25 - 2 * (i - 'A'); // equation to get new cipher letter
+        }
+        else if (islower(i)) {
+            cipherLetter = i + 25 - 2 * (i - 'a');
+        }
+        else {
+            cipherLetter = i;
+        }
+        cipherText += cipherLetter;
+    }
+    return cipherText;
+}
+//______________________________________________________________________________________________________________________
+string decryptPassword(const string& cipherText) {
+    string plainText;
+    char plainLetter;
+    for (auto i: cipherText){
+        if (isupper(i)){
+            plainLetter = i - 25 + 2 * ('Z' - i); // equation to get new plain letter
+        }
+        else if (islower(i)) {
+            plainLetter = i - 25 + 2 * ('z' - i);
+        }
+        else {
+            plainLetter = i;
+        }
+        plainText += plainLetter;
+    }
+    return plainText;
+}
+//______________________________________________________________________________________________________________________
+void fetchXLSXFile() {
+    // get the user data already in file and populate to the map.
+    user userProfile; XLDocument usersData;
+    usersData.open("usersData.xlsx");
+    auto workSheet = usersData.workbook().worksheet("Sheet1");
+    int numberOfUsers = workSheet.rowCount();
+
+    for (int index = 2; index <= numberOfUsers; ++index) {
+
+        userProfile.indexUserInFile = index;
+        userProfile.ID = workSheet.cell(index, colmID).value().get<string>();
+        userProfile.fullName = workSheet.cell(index, colmFullName).value().get<string>();
+        userProfile.phoneNumber = workSheet.cell(index, colmPhoneNumber).value().get<string>();
+        userProfile.email = workSheet.cell(index, colmEmail).value().get<string>();
+        userProfile.password = workSheet.cell(index, colmPassword).value().get<string>();
+        userProfile.password = decryptPassword(userProfile.password);
+        userProfile.isBlocked = workSheet.cell(index, colmBlocked).value().get<bool>();
+
+        getUserData.insert({ userProfile.ID,userProfile });
+        registeredEmails.insert({ userProfile.email, true });
+    }
+    usersData.close();
+}
+//______________________________________________________________________________________________________________________
+void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& infoWantedToChange, const int& colm) {
+    // change the password in the map.
+    user tempProfile = getUserData[userID];
+    XLDocument usersData;
+    usersData.open("usersData.xlsx");
+    auto workSheet = usersData.workbook().worksheet("Sheet1"); // change the password in the file of the users.
+
+    switch (colm) {
+        case 2: {
+            tempProfile.fullName = infoWantedToChange;
+            workSheet.cell(indexUserInFile, colmFullName).value() = infoWantedToChange;
+            break;
+        }
+        case 3: {
+            tempProfile.phoneNumber = infoWantedToChange;
+            workSheet.cell(indexUserInFile, colmPhoneNumber).value() = infoWantedToChange;
+            break;
+        }
+        case 4: {
+            // Edit the Key -> email, in the registeredEmails map
+            auto oldEmail = registeredEmails.extract(tempProfile.email);
+            oldEmail.key() = infoWantedToChange;
+            registeredEmails.insert(move(oldEmail));
+
+            // Edit the Email in the getUsersData map and the Excel file.
+            tempProfile.email = infoWantedToChange;
+            workSheet.cell(indexUserInFile, colmEmail).value() = infoWantedToChange;
+            break;
+        }
+        case 5: {
+            tempProfile.password = infoWantedToChange;
+            workSheet.cell(indexUserInFile, colmPassword).value() = encryptPassword(infoWantedToChange);
+            break;
+        }
+        default:
+            break;
+    }
+    getUserData[userID] = tempProfile;
+    usersData.save();
+    usersData.close();
+}
+//______________________________________________________________________________________________________________________
+void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood) {
+    // change Blocked Mood in the map.
+    user tempProfile = getUserData[userID];
+    tempProfile.isBlocked = blockedMood;
+    getUserData[userID] = tempProfile;
+
+    // change the Blocked Mood in the file of the users.
+    XLDocument usersData;
+    usersData.open("usersData.xlsx");
+    auto workSheet = usersData.workbook().worksheet("Sheet1");
+
+    workSheet.cell(indexUserInFile, colmBlocked).value() = blockedMood;
+
+    usersData.save();
+    usersData.close();
+}
+//______________________________________________________________________________________________________________________
+bool isYesOrNo(const string& choice) {
+    bool isValidInput = true;
+    if (choice.length() == 1) {
+        if (choice == "y" || choice == "Y" || choice == "n" || choice == "N") return isValidInput;
+    }
+    return !isValidInput;
+}
+//______________________________________________________________________________________________________________________
+void clearScreen() {
+    system("CLS");
+    cout << flush;
+    system("CLS");
+}
+//______________________________________________________________________________________________________________________
+bool isClearScreen() {
+    int isWant = false;
+    string choice;
+    while (!isWant) {
+        cout << "Do you want to clear the screen before continue or not (y)|(n): ";
+        getline(cin, choice);
+        isWant = isYesOrNo(choice);
+        if (!isWant) {
+            cout << "Please enter a choice from (y) or (n) only, Try again.\n";
+        }
+        else {
+            if (choice == "n" || choice == "N") {
+                return !isWant;
+            }
+        }
+    }
+    return isWant;
+}
+//______________________________________________________________________________________________________________________
 string makeLowerCase(string line) {
     for (int i = 0; i < line.length(); i++) line[i] = tolower(line[i]);
     return line;
+}
+//______________________________________________________________________________________________________________________
+bool isvalidID(const string& ID) {
+    regex isValid("^[\\w\\.\\-\\#\\!\\%\\$\\&\\+\\*\\/\\=\\?\\^\\`\\{\\|\\}\\~]*$");
+    return regex_match(ID, isValid);
+}
+//______________________________________________________________________________________________________________________
+string getID() {
+    string ID;
+    while (true) {
+        cout << "ID/Username: ";
+        getline(cin, ID);
+        if (isvalidID(ID)) {
+            ID = makeLowerCase(ID);
+            return ID;
+        }
+        else {
+            cout << "Please enter a valid ID!" << endl;
+            ID = "";
+        }
+    }
+}
+//______________________________________________________________________________________________________________________
+bool isValidFullName(const string& fullName) {
+    regex isValid("^[a-zA-Z]+[ -]?[A-Za-z]*$");
+    return regex_match(fullName, isValid);
+}
+//______________________________________________________________________________________________________________________
+string getFullName() {
+    string fullName;
+    while (true) {
+        cout << "FullName: ";
+        getline(cin, fullName);
+        if (isValidFullName(fullName)) {
+            return fullName;
+        }
+        else {
+            cout << "FullName is not valid please try again!" << endl;
+            fullName = "";
+        }
+    }
 }
 //______________________________________________________________________________________________________________________
 bool isValidEmail(const string& email) {
@@ -119,196 +312,6 @@ string  getPhoneNumber() {
             phoneNumber = "";
         }
     }
-}
-//______________________________________________________________________________________________________________________
-bool isValidFullName(const string& fullName) {
-    regex isValid("^[a-zA-Z]+[ -]?[A-Za-z]*$");
-    return regex_match(fullName, isValid);
-}
-//______________________________________________________________________________________________________________________
-string getFullName() {
-    string fullName;
-    while (true) {
-        cout << "FullName: ";
-        getline(cin, fullName);
-        if (isValidFullName(fullName)) {
-            return fullName;
-        }
-        else {
-            cout << "FullName is not valid please try again!" << endl;
-            fullName = "";
-        }
-    }
-}
-//______________________________________________________________________________________________________________________
-bool isvalidID(const string& ID) {
-    regex isValid("^[\\w\\.\\-\\#\\!\\%\\$\\&\\+\\*\\/\\=\\?\\^\\`\\{\\|\\}\\~]*$");
-    return regex_match(ID, isValid);
-}
-//______________________________________________________________________________________________________________________
-string getID() {
-    string ID;
-    while (true) {
-        cout<<"ID/Username: ";
-        getline(cin,ID);
-        if (isvalidID(ID)) {
-            ID = makeLowerCase(ID);
-            return ID;
-        }
-        else {
-            cout<<"Please enter a valid ID!" << endl;
-            ID = "";
-        }
-    }
-}
-//______________________________________________________________________________________________________________________
-string encryptPassword(const string& plainText) { // At-bash Cipher
-    string cipherText;
-    char cipherLetter;
-    for (auto i: plainText){
-        if (isupper(i)){
-            cipherLetter = i + 25 - 2 * (i - 'A'); // equation to get new cipher letter
-        } else if (islower(i)) {
-            cipherLetter = i + 25 - 2 * (i - 'a');
-        } else {
-            cipherLetter = i;
-        }
-        cipherText += cipherLetter;
-    }
-    return cipherText;
-}
-//______________________________________________________________________________________________________________________
-string decryptPassword(const string& cipherText) {
-    string plainText;
-    char plainLetter;
-    for (auto i: cipherText){
-        if (isupper(i)){
-            plainLetter = i - 25 + 2 * ('Z' - i); // equation to get new plain letter
-        } else if (islower(i)) {
-            plainLetter = i - 25 + 2 * ('z' - i);
-        } else {
-            plainLetter = i;
-        }
-        plainText += plainLetter;
-    }
-    return plainText;
-}
-//______________________________________________________________________________________________________________________
-void fetchXLSXFile() {
-    // get the user data already in file and populate to the map.
-    user userProfile; XLDocument usersData;
-    const string UsersFileData = "usersData.xlsx";
-    usersData.open(UsersFileData);
-    auto workSheet = usersData.workbook().worksheet("Sheet1");
-    int numberOfUsers = workSheet.rowCount();
-
-    for (int index = 2; index <= numberOfUsers; ++index) {
-
-        userProfile.indexUserInFile = index;
-        userProfile.ID = workSheet.cell(index,colmID).value().get<string>();
-        userProfile.fullName = workSheet.cell(index,colmFullName).value().get<string>();
-        userProfile.phoneNumber = workSheet.cell(index,colmPhoneNumber).value().get<string>();
-        userProfile.email = workSheet.cell(index,colmEmail).value().get<string>();
-        userProfile.password = workSheet.cell(index,colmPassword).value().get<string>();
-        userProfile.password = decryptPassword(userProfile.password);
-        userProfile.isBlocked = workSheet.cell(index,colmBlocked).value().get<bool>();
-
-        getUserData.insert({userProfile.ID,userProfile});
-        registeredEmails.insert({userProfile.email, true});
-    }
-}
-//______________________________________________________________________________________________________________________
-void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& infoWantedToChange, const int& colm) {
-    // change the password in the map.
-    XLDocument usersData;
-    usersData.open("usersData.xlsx");
-    auto workSheet = usersData.workbook().worksheet("Sheet1"); // change the password in the file of the users.
-    user tempProfile = getUserData[userID];
-    switch (colm)
-    {
-        case 2: {
-            tempProfile.fullName = infoWantedToChange;
-            workSheet.cell(indexUserInFile, colmFullName).value() = infoWantedToChange;
-            break;
-        }
-        case 3: {
-            tempProfile.phoneNumber = infoWantedToChange;
-            workSheet.cell(indexUserInFile, colmPhoneNumber).value() = infoWantedToChange;
-            break;
-        }
-        case 4: {
-            // Edit the Key -> email, in the registeredEmails map
-            auto oldEmail = registeredEmails.extract(tempProfile.email);
-            oldEmail.key() = infoWantedToChange;
-            registeredEmails.insert(move(oldEmail));
-
-            // Edit the Email in the getUsersData map and the Excel file.
-            tempProfile.email = infoWantedToChange;
-            workSheet.cell(indexUserInFile, colmEmail).value() = infoWantedToChange;
-
-        }
-        case 5: {
-            tempProfile.password = infoWantedToChange;
-            workSheet.cell(indexUserInFile, colmPassword).value() = encryptPassword(infoWantedToChange);
-            break;
-        }
-        default:
-            break;
-    }
-    getUserData[userID] = tempProfile;
-
-    usersData.save();
-    usersData.close();
-}
-//______________________________________________________________________________________________________________________
-void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood ) {
-    // change Blocked Mood in the map.
-    user tempProfile = getUserData[userID];
-    tempProfile.isBlocked = blockedMood;
-    getUserData[userID] = tempProfile;
-
-    // change the Blocked Mood in the file of the users.
-    XLDocument usersData;
-    usersData.open("usersData.xlsx");
-    auto workSheet = usersData.workbook().worksheet("Sheet1");
-
-    workSheet.cell(indexUserInFile,colmBlocked).value() = blockedMood;
-
-    usersData.save();
-    usersData.close();
-}
-//______________________________________________________________________________________________________________________
-bool isYesOrNo(const string& choice) {
-    bool isValidInput = true;
-    if (choice.length() == 1) {
-        if (choice == "y" || choice == "Y" || choice == "n" || choice == "N") return isValidInput;
-    }
-    return !isValidInput;
-}
-//______________________________________________________________________________________________________________________
-void clearScreen() {
-    system("CLS");
-    cout << flush;
-    system("CLS");
-}
-//______________________________________________________________________________________________________________________
-bool isClearScreen() {
-    int isWant = false;
-    string choice;
-    while (!isWant) {
-        cout << "Do you want to clear the screen before continue or not (y)|(n): ";
-        getline(cin, choice);
-        isWant = isYesOrNo(choice);
-        if (!isWant) {
-            cout << "Please enter a choice from (y) or (n) only, Try again.\n";
-        }
-        else {
-            if (choice == "n" || choice == "N") {
-                return !isWant;
-            }
-        }
-    }
-    return isWant;
 }
 //______________________________________________________________________________________________________________________
 bool checkUserChoice(string choice, const int& endRange) {
@@ -353,7 +356,7 @@ bool isValidPassword(const string& password) {
 string getPassword(const string& additionalText = "") {
     // please remove all text regarding what a valid password should contain and add it somewhere else bcz this used even for login // Yusuf B
     char tempChar; string password;
-    cout << additionalText <<"Password: ";
+    cout << additionalText << "Password: ";
     for(int count = 0;;) { //infinite loop
         tempChar = getch(); //stores char typed in tempChar
         if(tempChar >= 32 && tempChar <= 126) { //check if tempChar is numeric , alphabet, special character
@@ -375,22 +378,23 @@ string getPassword(const string& additionalText = "") {
 string getANewPassword(const string& oldPassword = "") {
     string newPassword, repeatNewPassword;
     while(true) {
-        cout << "\nThe password must contain small letters (a,b ..etc), capital letters (A,B ..etc), numbers (0,1 ..etc),\n"
+        cout << "The password must contain small letters (a,b ..etc), capital letters (A,B ..etc), numbers (0,1 ..etc),\n"
                 "special characters (@,# ..etc) and be greater than 7 characters." << endl;
         newPassword = getPassword("Enter ");
         if (!isValidPassword(newPassword)){
-            cout << "The password Must follow the instructions format, try again." << endl;
+            cout << "\n" << "The password Must follow the instructions format, try again." << endl;
             newPassword = "";
             continue;
         }
+        cout << endl;
         repeatNewPassword = getPassword("Confirm ");
         if (newPassword == repeatNewPassword) {
-            cout << "Passwords Match Successfully!" << endl;
+            cout << "\n" << "Passwords Match Successfully!" << endl;
             if (!oldPassword.empty())
             {
                 if (oldPassword == newPassword)
                 {
-                    cout << "The new password must be different from the old one, Try again!" << endl;
+                    cout << "\n" << "The new password must be different from the old one, Try again!" << endl;
                     newPassword = "";
                     continue;
                 }
@@ -483,6 +487,9 @@ void changeFullName(const string& ID) {
         if (tempName == userProfile.fullName) {
             cout << "The new name must be different from the old one, Try again!" << endl;
         }
+        else {
+            break;
+        }
     }
     updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, userProfile.fullName, colmFullName);
     cout << "Changing the Full Name Done Successfully!" << endl;
@@ -496,6 +503,9 @@ void changePhoneNumber(const string& ID) {
         userProfile.phoneNumber = getPhoneNumber();
         if (tempPhoneNumber == userProfile.phoneNumber){
             cout << "The new phone number must be different from the old one, Try again!" << endl;
+        }
+        else {
+            break;
         }
     }
 
@@ -512,6 +522,9 @@ void changeEmail(const string& ID) {
         if (tempEmail == userProfile.email) {
             cout << "The new email must be different from the old one, Try again!" << endl;
         }
+        else {
+            break;
+        }
     }
 
     updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, userProfile.email, colmEmail);
@@ -526,8 +539,10 @@ void changePassword(const string& ID, bool fromOTP = false){
         cout << "Enter your new password: ";
         userProfile.password = getANewPassword();
         updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, userProfile.password, colmPassword);
-    } else {
+    }
+    else {
         user userProfile = getUserData[ID];
+        cout << "\n";
         oldPassword = getPassword("Enter Your Old ");
         if (oldPassword == userProfile.password) {
             newPassword = getANewPassword(oldPassword);
@@ -539,7 +554,6 @@ void changePassword(const string& ID, bool fromOTP = false){
         }
     }
 }
-
 //______________________________________________________________________________________________________________________
 void executeLoginMenu(const int& choice, const string& ID){
     switch (choice) {
@@ -584,7 +598,7 @@ void userLogin() { // password is assumed to be the plain password.
             // dealing with password
             if (!userProfile.isBlocked) {
                 if (inPassword == userProfile.password) {
-                    cout << "Successful Login, welcome back " << userProfile.ID << " your full name is " << userProfile.fullName << endl;
+                    cout << "\n" << "Successful Login, welcome back " << userProfile.ID << " your full name is " << userProfile.fullName << endl;
                     while(true) {
                         printLoginMenu();
                         userChoice = getUserChoice(endRangeLoginMenuList);
@@ -603,7 +617,7 @@ void userLogin() { // password is assumed to be the plain password.
                 }
                 else {
                     failedLoginPasswordAttempts += 1;
-                    cout << "Failed to login! Invalid Password!\n";
+                    cout << "\n" << "Failed to login! Invalid Password!\n";
 
                     if (failedLoginPasswordAttempts >= 3) {
                         cout << "You have been blocked from the system." << endl;
@@ -633,7 +647,8 @@ void authenticateOTPProcess(const string& otp, const string& userID) { // otp se
     }
     if (inOTP == otp) {
         changePassword(userID, true);
-    } else {
+    }
+    else {
         cout << "Your OTP is incorrect, failed forget password attempt;\n";
     }
 }

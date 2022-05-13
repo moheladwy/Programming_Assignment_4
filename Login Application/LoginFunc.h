@@ -18,33 +18,36 @@ using namespace std;
 //______________________________________________________________________________________________________________________
 // general functions for being used in many functions for the project.
 //______________________________________________________________________________________________________________________
+int getUserChoice(const int& endRange); // Done - Mohamed Eladwy.
+
 void printMainMenu(); // Done - Mohamed Eladwy.
 void printLoginMenu(); // Done - Mohamed Eladwy.
 void printEndApp(); // Done - Mohamed Eladwy.
 void clearScreen(); // Done - Mohamed Eladwy.
-bool isClearScreen(); // Done - Mohamed Eladwy.
-bool isYesOrNo(const string& choice); // Done - Mohamed Eladwy.
-string makeLowerCase(string line); // Done - Mohamed Eladwy.
+void fetchXLSXFile(); // Done - Mohamed Eladwy.
+void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& infoWantedToChange, const int& colm); // Done - Mohamed Eladwy.
+void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood ); // Done - Mohamed Eladwy.
+
 bool checkUserChoice(string choice, const int& endRange); // Done - Mohamed Eladwy.
-int getUserChoice(const int& endRange); // Done - Mohamed Eladwy.
-string encryptPassword(const string& plainText); // Done - Yusuf Badr.
-string decryptPassword(const string& cipherText); // Done - Yusuf Badr.
 bool isvalidID(const string& ID); // Done - Amr.
 bool isValidFullName(const string& fullName); // Done - Amr.
 bool isValidPhoneNumber(const string& phoneNumber); //Done by Amr
 bool isValidEmail(const string& email); //Done by Amr
 bool isValidPassword(const string& password); // Done - Mohamed Eladwy.
+bool doesIDExist(const string& inUsername); // Done - Yusuf Badr
+bool doesEmailExists(const string& email); // Done - Mohamed Eladwy.
+bool isClearScreen(); // Done - Mohamed Eladwy.
+bool isYesOrNo(const string& choice); // Done - Mohamed Eladwy.
+
+string makeLowerCase(string line); // Done - Mohamed Eladwy.
+string encryptPassword(const string& plainText); // Done - Yusuf Badr.
+string decryptPassword(const string& cipherText); // Done - Yusuf Badr.
 string getID(); // Done - Amr.
 string getFullName(); // Done - Amr.
 string getPhoneNumber(); //Done by Amr
 string getEmail(); //Done by Amr
 string getPassword(const string& additionalText = ""); // Done - Mohamed Eladwy - Modified - Yusuf Badr.
-string getANewPassword(const string& oldPassword = ""); // Done - Mohamed Eladwy - Modified - Yusuf Badr
-bool doesIDExist(const string& inUsername); // Done - Yusuf Badr
-bool doesEmailExists(const string& email); // Done - Mohamed Eladwy.
-void fetchXLSXFile(); // Done - Mohamed Eladwy.
-void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& infoWantedToChange, const int& colm); // Done - Mohamed Eladwy.
-void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood ); // Done - Mohamed Eladwy.
+string getANewPassword(const string& oldPassword = ""); // Done - Mohamed Eladwy - Modified - Yusuf Badr.
 //______________________________________________________________________________________________________________________
 // The main functions of the project.
 //______________________________________________________________________________________________________________________
