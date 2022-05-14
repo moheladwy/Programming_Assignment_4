@@ -20,7 +20,7 @@ int main()
     int userChoice;
     bool CLS, openSystem = true;
 
-    cout << "Ahlan Ya User Ya Habeby!" << endl;
+    cout << "Welcome in our Login System Application!" << endl;
     fetchXLSXFile();
 
     while(openSystem) {
