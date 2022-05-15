@@ -12,7 +12,6 @@
 #include <iostream>
 #include "LoginFunc.h"
 using namespace std;
-using namespace OpenXLSX;
 //______________________________________________________________________________________________________________________
 int main()
 {
@@ -22,21 +21,24 @@ int main()
     cout << "Welcome in our Login System Application!" << endl;
     fetchXLSXFile();
 
-    while(openSystem) {
+    while(openSystem)
+    {
         printMainMenu();
         userChoice = getUserChoice(4);
-        if (userChoice != 4) {
+
+        if (userChoice != 4)
+        {
             executeMainMenu(userChoice);
             CLS = isClearScreen();
-            if (CLS) {
+            if (CLS)
+            {
                 clearScreen();
             }
         }
-        else {
-            openSystem = false;
-        }
+
+        else openSystem = false;
     }
-    cout << "----------------------------------------------------------------------------------------" << endl;
+
     printEndApp();
     return 0;
 }

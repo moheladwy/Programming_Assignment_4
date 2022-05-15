@@ -13,7 +13,6 @@
 #define LOGIN_APPLICATION_LOGINFUNC_H
 #pragma once
 #include <string>
-#include <unordered_map>
 using namespace std;
 //______________________________________________________________________________________________________________________
 // general functions for being used in many functions for the project.
