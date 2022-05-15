@@ -10,7 +10,6 @@
 // File: This is the CPP file that contain the main algorithm of the program.
 //______________________________________________________________________________________________________________________
 #include <iostream>
-#include "OpenXLSX.hpp"
 #include "LoginFunc.h"
 using namespace std;
 using namespace OpenXLSX;
