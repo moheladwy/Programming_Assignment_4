@@ -28,7 +28,7 @@ void fetchXLSXFile(); // Done - Mohamed Eladwy.
 void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& infoWantedToChange, const int& colm); // Done - Mohamed Eladwy.
 void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood ); // Done - Mohamed Eladwy.
 
-bool checkUserChoice(string choice, const int& endRange); // Done - Mohamed Eladwy.
+bool checkUserChoice(const string& choice, const int& endRange); // Done - Mohamed Eladwy.
 bool isvalidID(const string& ID); // Done - Amr.
 bool isValidFullName(const string& fullName); // Done - Amr.
 bool isValidPhoneNumber(const string& phoneNumber); //Done by Amr
