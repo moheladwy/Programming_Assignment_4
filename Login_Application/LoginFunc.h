@@ -30,34 +30,34 @@ void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool
 bool checkUserChoice(const string& choice, const int& endRange);
 bool isvalidID(const string& ID);
 bool isValidFullName(const string& fullName);
-bool isValidPhoneNumber(const string& phoneNumber); //Done by Amr
-bool isValidEmail(const string& email); //Done by Amr
-bool isValidPassword(const string& password); // Done - Mohamed Eladwy.
-bool doesIDExist(const string& inUsername); // Done - Yusuf Badr
-bool doesEmailExists(const string& email); // Done - Mohamed Eladwy.
-bool isClearScreen(); // Done - Mohamed Eladwy.
-bool isYesOrNo(const string& choice); // Done - Mohamed Eladwy.
+bool isValidPhoneNumber(const string& phoneNumber); 
+bool isValidEmail(const string& email); 
+bool isValidPassword(const string& password);
+bool doesIDExist(const string& inUsername); 
+bool doesEmailExists(const string& email);
+bool isClearScreen();
+bool isYesOrNo(const string& choice);
 
-string makeLowerCase(string line); // Done - Mohamed Eladwy.
-string encryptPassword(const string& plainText); // Done - Yusuf Badr.
-string decryptPassword(const string& cipherText); // Done - Yusuf Badr.
-string getID(); // Done - Amr.
-string getFullName(); // Done - Amr.
-string getPhoneNumber(); //Done by Amr
-string getEmail(); //Done by Amr
-string getPassword(const string& additionalText = ""); // Done - Mohamed Eladwy - Modified - Yusuf Badr.
-string getANewPassword(const string& oldPassword = ""); // Done - Mohamed Eladwy - Modified - Yusuf Badr.
+string makeLowerCase(string line);
+string encryptPassword(const string& plainText); 
+string decryptPassword(const string& cipherText); 
+string getID(); 
+string getFullName(); 
+string getPhoneNumber(); 
+string getEmail(); 
+string getPassword(const string& additionalText = ""); 
+string getANewPassword(const string& oldPassword = ""); 
 //______________________________________________________________________________________________________________________
 // The main functions of the project.
 //______________________________________________________________________________________________________________________
-void userRegister(); // Done - Mohamed Eladwy.
-void userLogin(); // Done - Yusuf Bdr - Modified by - Mohamed Eladwy.
-void showPersonalData(const string& ID); // Done - Mohamed Eladwy.
-void changeFullName(const string& ID); // Done - Mohamed Eladwy.
-void changePhoneNumber(const string& ID); // Done - Mohamed Eladwy.
-void changeEmail(const string& ID); // Done - Mohamed Eladwy.
-void changePassword(const string& ID, bool fromOTP = false); // Done - Yusuf Bdr - Modified by - Mohamed Eladwy.
-void executeLoginMenu(const int& choice, const string& ID); // Done - Mohamed Eladwy.
-void executeMainMenu(const int& choice); // Done - Mohamed Eladwy.
+void userRegister();
+void userLogin(); 
+void showPersonalData(const string& ID);
+void changeFullName(const string& ID);
+void changePhoneNumber(const string& ID);
+void changeEmail(const string& ID);
+void changePassword(const string& ID, bool fromOTP = false); 
+void executeLoginMenu(const int& choice, const string& ID);
+void executeMainMenu(const int& choice);
 //______________________________________________________________________________________________________________________
 #endif //LOGIN_APPLICATION_LOGINFUNC_H
