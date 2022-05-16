@@ -17,19 +17,19 @@ using namespace std;
 //______________________________________________________________________________________________________________________
 // general functions for being used in many functions for the project.
 //______________________________________________________________________________________________________________________
-int getUserChoice(const int& endRange); // Done - Mohamed Eladwy.
+int getUserChoice(const int& endRange);
 
-void printMainMenu(); // Done - Mohamed Eladwy.
-void printLoginMenu(); // Done - Mohamed Eladwy.
-void printEndApp(); // Done - Mohamed Eladwy.
-void clearScreen(); // Done - Mohamed Eladwy.
-void fetchXLSXFile(); // Done - Mohamed Eladwy.
-void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& infoWantedToChange, const int& colm); // Done - Mohamed Eladwy.
-void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood ); // Done - Mohamed Eladwy.
+void printMainMenu();
+void printLoginMenu();
+void printEndApp();
+void clearScreen();
+void fetchXLSXFile();
+void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& infoWantedToChange, const int& colm);
+void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood );
 
-bool checkUserChoice(const string& choice, const int& endRange); // Done - Mohamed Eladwy.
-bool isvalidID(const string& ID); // Done - Amr.
-bool isValidFullName(const string& fullName); // Done - Amr.
+bool checkUserChoice(const string& choice, const int& endRange);
+bool isvalidID(const string& ID);
+bool isValidFullName(const string& fullName);
 bool isValidPhoneNumber(const string& phoneNumber); //Done by Amr
 bool isValidEmail(const string& email); //Done by Amr
 bool isValidPassword(const string& password); // Done - Mohamed Eladwy.
@@ -58,7 +58,6 @@ void changePhoneNumber(const string& ID); // Done - Mohamed Eladwy.
 void changeEmail(const string& ID); // Done - Mohamed Eladwy.
 void changePassword(const string& ID, bool fromOTP = false); // Done - Yusuf Bdr - Modified by - Mohamed Eladwy.
 void executeLoginMenu(const int& choice, const string& ID); // Done - Mohamed Eladwy.
-void authenticateOTPProcess(const string& otp, const string& userID);
-void executeMainMenu(const int& choice);
+void executeMainMenu(const int& choice); // Done - Mohamed Eladwy.
 //______________________________________________________________________________________________________________________
 #endif //LOGIN_APPLICATION_LOGINFUNC_H

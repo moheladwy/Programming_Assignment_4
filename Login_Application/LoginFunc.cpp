@@ -47,8 +47,7 @@ void printMainMenu()
     cout << "--------------------------" << endl;
     cout << "1- Register." << endl;
     cout << "2- Login." << endl;
-    cout << "3- Forget Password." << endl;
-    cout << "4- Exit." << endl;
+    cout << "3- Exit." << endl;
     cout << "----------------------------------------------------------------------------------------" << endl;
 }
 //______________________________________________________________________________________________________________________
@@ -57,12 +56,12 @@ void printLoginMenu()
     cout << "----------------------------------------------------------------------------------------" << endl;
     cout << "Options of the login menu:-" << endl;
     cout << "---------------------------" << endl;
-    cout << "1- Show Personal Data." << endl;
+    cout << "1- Show Your Personal Data." << endl;
     cout << "2- Change Full Name." << endl;
     cout << "3- Change Phone Number." << endl;
     cout << "4- Change Email." << endl;
     cout << "5- Change Password." << endl;
-    cout << "6- Return to the Main Menu." << endl;
+    cout << "6- Logout." << endl;
     cout << "----------------------------------------------------------------------------------------" << endl;
 }
 //______________________________________________________________________________________________________________________
@@ -730,18 +729,6 @@ void userLogin()
     }
 }
 //______________________________________________________________________________________________________________________
-void authenticateOTPProcess(const string& otp, const string& userID)
-{   // otp sent to user // Yusuf B
-    string inOTP;
-    while(inOTP.empty())
-    {
-        cout << "Please enter you OTP that you received on your email: ";
-        getline (cin, inOTP);
-    }
-    if (inOTP == otp) changePassword(userID, true);
-    else cout << "Your OTP is incorrect, failed forget password attempt;\n";
-}
-//______________________________________________________________________________________________________________________
 void executeMainMenu(const int& choice)
 {
     switch (choice)
@@ -752,10 +739,6 @@ void executeMainMenu(const int& choice)
         }
         case 2: {
             userLogin();
-            break;
-        }
-        case 3: {
-//            authenticateOTPProcess();
             break;
         }
         default:

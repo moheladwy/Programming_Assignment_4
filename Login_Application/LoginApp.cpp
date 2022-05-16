@@ -24,9 +24,9 @@ int main()
     while(openSystem)
     {
         printMainMenu();
-        userChoice = getUserChoice(4);
+        userChoice = getUserChoice(3);
 
-        if (userChoice != 4)
+        if (userChoice != 3)
         {
             executeMainMenu(userChoice);
             CLS = isClearScreen();
