@@ -19,7 +19,7 @@
 using namespace std;
 using namespace OpenXLSX;
 //______________________________________________________________________________________________________________________
-struct user {
+struct user {   // Struct of User Profile Data.
     string ID;
     string fullName;
     string phoneNumber;
@@ -30,21 +30,24 @@ struct user {
 };
 const int colmID = 1, colmFullName = 2, colmPhoneNumber = 3, colmEmail = 4, colmPassword = 5, colmBlocked = 6, endRangeLoginMenuList = 6;
 // key: userID, value: struct of this exact user
-unordered_map <string, user> getUserData;
-unordered_map <string, bool> registeredEmails;
+unordered_map <string, user> getUserData; // The ID the Key and struct of the userProfile is the Value.
+unordered_map <string, bool> registeredEmails; // The Email is the Key and the True(bool type) is the value(unused value).
 //______________________________________________________________________________________________________________________
-ostream& operator<<(ostream& out, user& inUser)
+ostream& operator<<(ostream& out, user& inUser) // Overload the << operator to be able to print the struct in simple way.
 {
-    cout << "ID: " << inUser.ID << "\n" << "Email: " << inUser.email << "\n" << "Full Name: " << inUser.fullName << "\n"
-         << "Phone Number: " << inUser.phoneNumber << "\n" << "Password: " << inUser.password << "\n";
+    cout << "ID: " << inUser.ID << "\n" ;
+    cout << "Email: " << inUser.email << "\n" ;
+    cout << "Full Name: " << inUser.fullName << "\n";
+    cout << "Phone Number: " << inUser.phoneNumber << "\n";
+    cout << "Password: " << inUser.password << "\n";
     return out;
 }
 //______________________________________________________________________________________________________________________
 void printMainMenu()
 {
     cout << "----------------------------------------------------------------------------------------" << endl;
-    cout << "Options of the main menu:-" << endl;
-    cout << "--------------------------" << endl;
+    cout << "Choose one of the next main menu options:-" << endl;
+    cout << "------------------------------------------" << endl;
     cout << "1- Register." << endl;
     cout << "2- Login." << endl;
     cout << "3- Exit." << endl;
@@ -54,8 +57,8 @@ void printMainMenu()
 void printLoginMenu()
 {
     cout << "----------------------------------------------------------------------------------------" << endl;
-    cout << "Options of the login menu:-" << endl;
-    cout << "---------------------------" << endl;
+    cout << "Choose one of the next login menu options:-" << endl;
+    cout << "-------------------------------------------" << endl;
     cout << "1- Show Your Personal Data." << endl;
     cout << "2- Change Full Name." << endl;
     cout << "3- Change Phone Number." << endl;
@@ -85,15 +88,15 @@ string encryptPassword(const string& plainText) // At-bash Cipher
     {
         if (isupper(i))
         {
-            cipherLetter = i + 25 - 2 * (i - 'A'); // equation to get new cipher letter
+            cipherLetter = char(int(i) + 25 - 2 * (i - 'A')); // equation to get new cipher letter
         }
         else if (islower(i))
         {
-            cipherLetter = i + 25 - 2 * (i - 'a');
+            cipherLetter = char(int(i) + 25 - 2 * (i - 'a'));
         }
         else
         {
-            cipherLetter = i;
+            cipherLetter = char(int(i) + 1);
         }
         cipherText += cipherLetter;
     }
@@ -116,7 +119,7 @@ string decryptPassword(const string& cipherText)
         }
         else
         {
-            plainLetter = i;
+            plainLetter = i - 1;
         }
         plainText += plainLetter;
     }
@@ -129,20 +132,21 @@ void fetchXLSXFile()
     user userProfile; XLDocument usersData;
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1");
-    int numberOfUsers = workSheet.rowCount();
+    unsigned int numberOfUsers = workSheet.rowCount();
 
-    for (int index = 2; index <= numberOfUsers; ++index)
+    for (int rowNumber = 2; rowNumber <= numberOfUsers; ++rowNumber)
     {
-
-        userProfile.indexUserInFile = index;
-        userProfile.ID = workSheet.cell(index, colmID).value().get<string>();
-        userProfile.fullName = workSheet.cell(index, colmFullName).value().get<string>();
-        userProfile.phoneNumber = workSheet.cell(index, colmPhoneNumber).value().get<string>();
-        userProfile.email = workSheet.cell(index, colmEmail).value().get<string>();
-        userProfile.password = workSheet.cell(index, colmPassword).value().get<string>();
+        // Load the Full Data of the User in the Struct.
+        userProfile.indexUserInFile = rowNumber;
+        userProfile.ID = workSheet.cell(rowNumber, colmID).value().get<string>();
+        userProfile.fullName = workSheet.cell(rowNumber, colmFullName).value().get<string>();
+        userProfile.phoneNumber = workSheet.cell(rowNumber, colmPhoneNumber).value().get<string>();
+        userProfile.email = workSheet.cell(rowNumber, colmEmail).value().get<string>();
+        userProfile.password = workSheet.cell(rowNumber, colmPassword).value().get<string>();
         userProfile.password = decryptPassword(userProfile.password);
-        userProfile.isBlocked = workSheet.cell(index, colmBlocked).value().get<bool>();
+        userProfile.isBlocked = workSheet.cell(rowNumber, colmBlocked).value().get<bool>();
 
+        // Load the Struct of the User Profile in the map.
         getUserData.insert({ userProfile.ID,userProfile });
         registeredEmails.insert({ userProfile.email, true });
     }
@@ -152,8 +156,7 @@ void fetchXLSXFile()
 void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& infoWantedToChange, const int& colm)
 {
     // change the password in the map.
-    user tempProfile = getUserData[userID];
-    XLDocument usersData;
+    user tempProfile = getUserData[userID]; XLDocument usersData;
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1"); // change the password in the file of the users.
 
@@ -213,12 +216,11 @@ void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool
 //______________________________________________________________________________________________________________________
 bool isYesOrNo(const string& choice)
 {
-    bool isValidInput = true;
     if (choice.length() == 1)
     {
-        if (choice == "y" || choice == "Y" || choice == "n" || choice == "N") return isValidInput;
+        if (choice == "y" || choice == "Y" || choice == "n" || choice == "N") return true;
     }
-    return !isValidInput;
+    return false;
 }
 //______________________________________________________________________________________________________________________
 void clearScreen()
@@ -228,7 +230,7 @@ void clearScreen()
     system("CLS");
 }
 //______________________________________________________________________________________________________________________
-bool isClearScreen()
+bool isWantClearScreen()
 {
     int isWant = false;
     string choice;
@@ -239,7 +241,7 @@ bool isClearScreen()
         isWant = isYesOrNo(choice);
         if (!isWant)
         {
-            cout << "Please enter a choice from (y) or (n) only, Try again.\n";
+            cout << "Please enter a choice from (y) or (n) only, Try again." << endl;
         }
         else
         {
@@ -251,13 +253,13 @@ bool isClearScreen()
 //______________________________________________________________________________________________________________________
 string makeLowerCase(string line)
 {
-    for (int i = 0; i < line.length(); i++) line[i] = tolower(line[i]);
+    for (int i = 0; i < line.length(); i++) line[i] = char(tolower(line[i]));
     return line;
 }
 //______________________________________________________________________________________________________________________
 bool isvalidID(const string& ID)
 {
-    regex isValid("^[\\w\\.\\-\\#\\!\\%\\$\\&\\+\\*\\/\\=\\?\\^\\`\\{\\|\\}\\~]*$");
+    regex isValid("^[\\w\\.\\-\\#\\!\\%\\$\\&\\+\\*\\/\\=\\?\\^\\`\\{\\|\\}\\~]+$");
     return regex_match(ID, isValid);
 }
 //______________________________________________________________________________________________________________________
@@ -266,6 +268,7 @@ string getID()
     string ID;
     while (true)
     {
+        cout << "The ID/Username must be Unique and have no spaces." << endl;
         cout << "ID/Username: ";
         getline(cin, ID);
         if (isvalidID(ID))
@@ -275,15 +278,14 @@ string getID()
         }
         else
         {
-            cout << "Please enter a valid ID!" << endl;
-            ID = "";
+            cout << "Please enter a valid ID that follows the instructions!" << endl;
         }
     }
 }
 //______________________________________________________________________________________________________________________
 bool isValidFullName(const string& fullName)
 {
-    regex isValid("^[a-zA-Z]+([ -]?[A-Za-z]*)+$");
+    regex isValid("^[A-Z][a-zA-Z]+([ -]?[A-Za-z]*)+$");
     return regex_match(fullName, isValid);
 }
 //______________________________________________________________________________________________________________________
@@ -292,6 +294,7 @@ string getFullName()
     string fullName;
     while (true)
     {
+        cout << "The Full Name must be 1st Caps and have no Numbers." << endl;
         cout << "FullName: ";
         getline(cin, fullName);
         if (isValidFullName(fullName))
@@ -300,8 +303,7 @@ string getFullName()
         }
         else
         {
-            cout << "FullName is not valid please try again!" << endl;
-            fullName = "";
+            cout << "FullName is not valid please follow the instructions and try again!" << endl;
         }
     }
 }
@@ -317,7 +319,10 @@ string getEmail()
     string email;
     while (true)
     {
-        cout<<"Email: ";
+        cout << "The Email must start with a letter not (Special characters, dots or spaces) ";
+        cout << "and be 63 character before (@) after the (@) You can not have dot after (@) like (@.) ";
+        cout << "and can not have 2 of dots like (..) and must end the email with a letter" << endl;
+        cout << "Email: ";
         getline(cin,email);
         if (isValidEmail(email))
         {
@@ -326,8 +331,7 @@ string getEmail()
         }
         else
         {
-            cout<<"Email is not valid please try again!" << endl;
-            email = "";
+            cout << "Email is not valid please follow the instructions and try again!" << endl;
         }
     }
 }
@@ -343,6 +347,7 @@ string  getPhoneNumber()
     string phoneNumber;
     while (true)
     {
+        cout << "The Phone Number must start with 01 and followed by (0, 1, 2 or 5) then only anther 8 Numbers after that." << endl;
         cout<<"PhoneNumber: ";
         getline(cin,phoneNumber);
         if (isValidPhoneNumber(phoneNumber))
@@ -351,13 +356,12 @@ string  getPhoneNumber()
         }
         else
         {
-            cout<<"PhoneNumber is not valid please try again!" << endl;
-            phoneNumber = "";
+            cout<<"PhoneNumber is not valid please follow the instructions and try again!" << endl;
         }
     }
 }
 //______________________________________________________________________________________________________________________
-bool checkUserChoice(const string& choice, const int& endRange)
+bool isValidUserChoice(const string& choice, const int& endRange)
 {
     if (choice.length() == 1)
     {
@@ -387,7 +391,7 @@ int getUserChoice(const int& endRange)
         {
             getline(cin, getChoice);
         }
-        isValidChoice = checkUserChoice(getChoice, endRange);
+        isValidChoice = isValidUserChoice(getChoice, endRange);
         if (!isValidChoice)
         {
             cout << "The Choice you entered is not an option from the list,	Try again and make sure to enter a valid option from the list." << endl;
@@ -400,50 +404,47 @@ int getUserChoice(const int& endRange)
 //______________________________________________________________________________________________________________________
 bool isValidPassword(const string& password)
 {
-    regex passwordFormat("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#<>=?!+@$%^&*-]).{8,}$");
-    bool strongPassword = regex_match(password, passwordFormat);
-    return strongPassword;
+    regex strongPasswordFormat("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#<>=?!+@$%^&*-]).{8,}$");
+    return regex_match(password, strongPasswordFormat);
 }
 //______________________________________________________________________________________________________________________
 string getPassword(const string& additionalText = "")
 {
-    // please remove all text regarding what a valid password should contain and add it somewhere else bcz this used even for login // Yusuf B
     char tempChar; string password;
     cout << additionalText << "Password: ";
     for(int count = 0;;)
-    { //infinite loop
-        tempChar = getch(); //stores char typed in tempChar
-        if(tempChar >= 32 && tempChar <= 126)
-        { //check if tempChar is numeric , alphabet, special character
-            //stores tempChar in pass
+    {
+        tempChar = char(getch()); // getch() function returns an int, so we convert it to char.
+        if(int(tempChar) >= 32 && int(tempChar) <= 126) // check if tempChar is numeric , alphabet, special character.
+        {
+            // stores tempChar in password.
             password += tempChar;
             ++count;
             cout << "*" ;
         }
-        if(tempChar == '\b' && count >= 1)
-        { //if user typed backspace. count should be greater than 0.
-            cout << "\b \b"; //rub the character behind the cursor.
+        else if(tempChar == '\b' && count >= 1) // if user typed backspace. count should be greater than 0.
+        {
+            cout << "\b \b"; // rub the character behind the cursor.
             --count;
         }
-        if(tempChar == '\r')
-        { //if enter is pressed
-            return password; //break the loop
+        else if(tempChar == '\r') // if Enter is pressed
+        {
+            return password; // return the Password.
         }
     }
 }
 //______________________________________________________________________________________________________________________
-string getANewPassword(const string& oldPassword = "")
+string getNewPassword(const string& oldPassword = "")
 {
     string newPassword, repeatNewPassword;
     while(true)
     {
-        cout << "The password must contain small letters (a,b ..etc), capital letters (A,B ..etc), numbers (0,1 ..etc),\n"
-                "special characters (@,# ..etc) and be greater than 7 characters." << endl;
+        cout << "The password must contain small letters (a,b ..etc), capital letters (A,B ..etc), numbers (0,1 ..etc),";
+        cout << "special characters (@,# ..etc) and be greater than 7 characters." << endl;
         newPassword = getPassword("Enter ");
         if (!isValidPassword(newPassword))
         {
-            cout << "\n" << "The password Must follow the instructions format, try again." << endl;
-            newPassword = "";
+            cout << "\n" << "The password must follow the instructions format, try again." << endl;
             continue;
         }
         cout << endl;
@@ -456,7 +457,6 @@ string getANewPassword(const string& oldPassword = "")
                 if (oldPassword == newPassword)
                 {
                     cout << "\n" << "The new password must be different from the old one, Try again!" << endl;
-                    newPassword = "";
                     continue;
                 }
             }
@@ -464,24 +464,23 @@ string getANewPassword(const string& oldPassword = "")
         }
         else
         {
-            cout << "The passwords doesn't match, Try again!" << endl;
-            repeatNewPassword = "";
+            cout << "\n" << "The passwords doesn't match, Try again!" << endl;
         }
     }
 }
 //______________________________________________________________________________________________________________________
-bool doesIDExist(const string& inUsername)
+bool isIDExist(const string& inUsername)
 {
-    if (getUserData.count(inUsername))
+    if (getUserData.count(inUsername)) // Check if the Key is Unique (Exists ones) in the map.
     {
         return true;
     }
     return false;
 }
 //______________________________________________________________________________________________________________________
-bool doesEmailExists(const string& email)
+bool isEmailExists(const string& email)
 {
-    if (registeredEmails.count(email))
+    if (registeredEmails.count(email)) // Check if the Key is Unique (Exists ones) in the map.
     {
         return true;
     }
@@ -494,31 +493,34 @@ void userRegister()
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1");
 
-    int indexUserInFile = workSheet.rowCount() + 1;
+    int indexUserInFile = workSheet.rowCount() + 1; // The Place of the new user in the file.
     string ID, fullName, phoneNumber, email, password;
 
     while(ID.empty())
     {
-        ID = getID();
-        if (doesIDExist(ID))
+        ID = getID(); // Get the ID from the User.
+        if (isIDExist(ID))
         {
             cout << "The ID is already exists for someone else, Try again with a different ID." << endl;
             ID = "";
         }
     }
+
     fullName = getFullName();
     phoneNumber = getPhoneNumber();
+
     while (email.empty())
     {
-        email = getEmail();
-        if (doesEmailExists(email))
+        email = getEmail(); //Get the Email from the User.
+        if (isEmailExists(email))
         {
             cout << "The email is already exists for someone else, Try again with a different email." << endl;
             email = "";
         }
     }
-    password = getANewPassword();
+    password = getNewPassword();
 
+    // Store the Data of the User in the map.
     newUser.indexUserInFile = indexUserInFile;
     newUser.ID = ID;
     newUser.fullName = fullName;
@@ -530,6 +532,7 @@ void userRegister()
     getUserData.insert({ID, newUser});
     registeredEmails.insert({email, true});
 
+    // Store the Data of the User in the Excel File.
     workSheet.cell(indexUserInFile, colmID).value() = ID;
     workSheet.cell(indexUserInFile, colmFullName).value() = fullName;
     workSheet.cell(indexUserInFile, colmPhoneNumber).value() = phoneNumber;
@@ -539,6 +542,8 @@ void userRegister()
 
     usersData.save();
     usersData.close();
+
+    cout << "You have been registered successfully to the system, You can login now if you want." << endl;
 }
 //______________________________________________________________________________________________________________________
 void showPersonalData(const string& ID)
@@ -563,6 +568,7 @@ void changeFullName(const string& ID)
             cout << "The new name must be different from the old one, Try again!" << endl;
         }
     }
+    // Update the new full name in the file and the map.
     updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, userProfile.fullName, colmFullName);
     cout << "Changing the Full Name Done Successfully!" << endl;
 }
@@ -581,8 +587,9 @@ void changePhoneNumber(const string& ID)
         }
     }
 
+    // Update the phone number in the file and the map.
     updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, userProfile.phoneNumber, colmPhoneNumber);
-    cout << "Changing the Full Name Done Successfully!" << endl;
+    cout << "Changing the Phone Number Done Successfully!" << endl;
 }
 //______________________________________________________________________________________________________________________
 void changeEmail(const string& ID)
@@ -599,34 +606,31 @@ void changeEmail(const string& ID)
         }
     }
 
+    // Update the new email in the file and the maps.
     updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, userProfile.email, colmEmail);
     cout << "Changing the Email Done Successfully!" << endl;
 }
 //______________________________________________________________________________________________________________________
-void changePassword(const string& ID, bool fromOTP = false)
+void changePassword(const string& ID)
 {
     string newPassword, oldPassword;
     user userProfile = getUserData[ID];
 
-    if (fromOTP)
+    while(true)
     {
-        cout << "Enter your new password: ";
-        userProfile.password = getANewPassword();
-        updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, userProfile.password, colmPassword);
-    }
-    else
-    {
-        cout << "\n";
+        cout << endl;
         oldPassword = getPassword("Enter Your Old ");
         if (oldPassword == userProfile.password)
         {
-            newPassword = getANewPassword(oldPassword);
+            newPassword = getNewPassword(oldPassword);
+            // Update the new password in the file and the map.
             updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, newPassword, colmPassword);
             cout << "Password Changed Successfully!\n";
+            break;
         }
         else
         {
-            cout << "Password is not correct; you will be logged out due to security concerns!\n" << "Try again Later.\n";
+            cout << "Password is not correct, Try again!" << endl;
         }
     }
 }
@@ -661,48 +665,52 @@ void executeLoginMenu(const int& choice, const string& ID)
 }
 //______________________________________________________________________________________________________________________
 void userLogin()
-{   // password is assumed to be the plain password.
-    // return username if login is successful, else return ""
-    int failedLoginPasswordAttempts = 0, userChoice = 0;
+{
     string inUsername, inPassword;
-    bool clrScreen;
-    while (true)
+    while (true) // 1st while loop.
     {
         cout << "Inorder to Log in please enter the following!\n";
         inUsername = getID();
         inPassword = getPassword();
-        if (doesIDExist(inUsername))
+
+        if (isIDExist(inUsername)) // 1st if.
         {
             user userProfile;
             userProfile = getUserData[inUsername];
+            int failedLoginPasswordAttempts = 0, userChoice;
 
             // dealing with password
-            if (!userProfile.isBlocked)
+            if (!userProfile.isBlocked) // 2nd if.
             {
-                if (inPassword == userProfile.password)
+                if (inPassword == userProfile.password) // 3rd if.
                 {
+
                     cout << "\n" << "Successful Login, welcome back " << userProfile.ID << " your full name is " << userProfile.fullName << endl;
-                    while(true)
+                    while(true) // 2nd while loop. for getting user choices from the login menu.
                     {
+
                         printLoginMenu();
                         userChoice = getUserChoice(endRangeLoginMenuList);
-                        if (userChoice != endRangeLoginMenuList)
+
+                        // if the user doesn't want to log out.
+                        if (userChoice != endRangeLoginMenuList) // 1st if for the 2nd while loop.
                         {
                             executeLoginMenu(userChoice, userProfile.ID);
-                            clrScreen = isClearScreen();
-                            if (clrScreen)
+                            if (isWantClearScreen()) // 2nd if for the 2nd while loop.
                             {
                                 clearScreen();
                             }
                         }
-                        else
+
+                        else // for 1st if of the 2nd while loop.
                         {
                             cout << "You will logout now!" << endl;
-                            return;
+                            return; // close the login function.
                         }
                     }
                 }
-                else
+
+                else // for the 3rd if.
                 {
                     failedLoginPasswordAttempts += 1;
                     cout << "\n" << "Failed to login! Invalid Password!\n";
@@ -711,38 +719,37 @@ void userLogin()
                     {
                         cout << "You have been blocked from the system." << endl;
                         updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, true); //blocked mode = true
-                        break;
+                        break; // for the 1st while loop.
                     }
                 }
             }
-            else
+
+            else // for the 2nd if.
             {
                 cout << "You are already blocked from the system\n";
-                break;
+                break; // for the 1st while loop.
             }
         }
-        else
+
+        else // for the 1st if.
         {
             cout << "Username is not Found, Please try again later or Register with new account!\n";
-            break;
+            break; // for the 1st while loop.
         }
     }
 }
 //______________________________________________________________________________________________________________________
 void executeMainMenu(const int& choice)
 {
-    switch (choice)
+
+    if (choice == 1)
     {
-        case 1: {
-            userRegister();
-            break;
-        }
-        case 2: {
-            userLogin();
-            break;
-        }
-        default:
-            break;
+        userRegister();
+    }
+
+    else
+    {
+        userLogin();
     }
 }
 //______________________________________________________________________________________________________________________

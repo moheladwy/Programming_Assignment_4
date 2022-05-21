@@ -27,15 +27,15 @@ void fetchXLSXFile();
 void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& infoWantedToChange, const int& colm);
 void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood );
 
-bool checkUserChoice(const string& choice, const int& endRange);
+bool isValidUserChoice(const string& choice, const int& endRange);
 bool isvalidID(const string& ID);
 bool isValidFullName(const string& fullName);
 bool isValidPhoneNumber(const string& phoneNumber); 
 bool isValidEmail(const string& email); 
 bool isValidPassword(const string& password);
-bool doesIDExist(const string& inUsername); 
-bool doesEmailExists(const string& email);
-bool isClearScreen();
+bool isIDExist(const string& inUsername);
+bool isEmailExists(const string& email);
+bool isWantClearScreen();
 bool isYesOrNo(const string& choice);
 
 string makeLowerCase(string line);
@@ -46,7 +46,7 @@ string getFullName();
 string getPhoneNumber(); 
 string getEmail(); 
 string getPassword(const string& additionalText = ""); 
-string getANewPassword(const string& oldPassword = ""); 
+string getNewPassword(const string& oldPassword = "");
 //______________________________________________________________________________________________________________________
 // The main functions of the project.
 //______________________________________________________________________________________________________________________
@@ -56,7 +56,7 @@ void showPersonalData(const string& ID);
 void changeFullName(const string& ID);
 void changePhoneNumber(const string& ID);
 void changeEmail(const string& ID);
-void changePassword(const string& ID, bool fromOTP = false); 
+void changePassword(const string& ID);
 void executeLoginMenu(const int& choice, const string& ID);
 void executeMainMenu(const int& choice);
 //______________________________________________________________________________________________________________________
