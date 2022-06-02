@@ -1,3 +1,4 @@
+//____________________________________________________________________________________________
 // FCAI – Programming 1 – 2022 - Assignment 4
 // Program Name: Text Editor Application
 // Last Modification Date: xx/05/2022
@@ -7,44 +8,46 @@
 // Teaching Assistant: Eng.Hagar Aly
 // Purpose: Allow the user to open text files with write and reading from.
 // File: This is the Header file that contain the prototype of the Functions and its parameters. 
-
+//____________________________________________________________________________________________
 #pragma once
 using namespace std;
 //____________________________________________________________________________________________
-// general Functions for the program that used many times in many different functions.
-string getAValidFileName(string turn); 
-bool checkValidFile(string fileName); 
-void printMainMenu(); 
-void printEndProgram();
-bool checkUserChoice(string choice); 
-int getUserChoice(); 
-bool isEmptyFile(string fileName); 
-void executeUserChoice(int choice, string fileName, string originalFileName); 
-void createOriginalFile(string fileName); 
-void clearScreen();
+// general Functions for the program that used many times in many functions.
+//____________________________________________________________________________________________
+bool isValidYesOrNo(const string &choice);
+bool isValidFile(const string &fileName);
+bool isValidUserChoice(const string &choice);
+bool isEmptyFile(const string &fileName);
 bool isClearScreen();
-string createTempOfOriginalFile(string originalFileName);
+
+int getUserChoice();
+
+void printMainMenu();
+void printEndProgram();
+void createOriginalFile(const string &fileName);
+void clearScreen();
+
+string getValidFileName(const string &turn);
+string createTempOfOriginalFile(const string &originalFileName);
 string makeWordLowerCase(string word); 
 string getWordForSearching();
 //____________________________________________________________________________________________
-// Amr Khalied Elsayed Elhennawy Functions from 1 to 5.
-void addingContent(string fileName);
-void displayContent(string fileName);
-void emptyFileContent(string fileName);
-void encryptFileContent(string fileName);
-void decryptFileContent(string fileName);
+// Main Functions of the Program.
 //____________________________________________________________________________________________
-// Mohamed Hussein Hassan Eladwy Functions from 6 to 10.
-void mergeAnotherFile(string fileName); 
-void countNumberOfWords(string fileName); 
-void countNumberOfCharacters(string fileName); 
-void countNumberOfLines(string fileName);  
-void searchForWordInFile(string fileName); 
-//____________________________________________________________________________________________
-// Yusuf Elsayed Abdelrahman Bdr Functions from 11 to 15.
-void countWordOccurences(string filename); 
-void allFileToUpperCase(string filename); 
-void allFileToLowerCase(string filename); 
-void allFileToFirstCaps(string filename); 
-void saveFile(string originalFileName, string tempOriginalFileName); 
+void addingContent(const string &fileName);
+void displayContent(const string &fileName);
+void emptyFileContent(const string &fileName);
+void encryptFileContent(const string &fileName);
+void decryptFileContent(const string &fileName);
+void mergeAnotherFile(const string &fileName);
+void countNumberOfWords(const string &fileName);
+void countNumberOfCharacters(const string &fileName);
+void countNumberOfLines(const string &fileName);
+void searchForWordInFile(const string &fileName);
+void countWordOccurrences(const string &fileName);
+void allFileToUpperCase(const string &fileName);
+void allFileToLowerCase(const string &fileName);
+void allFileToFirstCaps(const string &fileName);
+void saveFile(const string &originalFileName, const string &tempOriginalFileName);
+void executeUserChoice(int choice, const string &fileName, const string &originalFileName);
 //____________________________________________________________________________________________
