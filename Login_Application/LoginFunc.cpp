@@ -652,8 +652,7 @@ void changePassword(const string &ID)
             nTry++;
             if (nTry == 3)
             {
-                cout << "Password is not correct; you will be logged out due to security concerns!\n"
-                     << "Try again Later.\n";
+                cout << "Password is not correct; you will be logged out due to security concerns! Try again Later." << endl;
             }
             else
             {
