@@ -9,55 +9,50 @@
 // Purpose: .......
 // File: This is the Header file that contain the prototype of the Functions and its parameters.
 //______________________________________________________________________________________________________________________
-#ifndef LOGIN_APPLICATION_LOGINFUNC_H
-#define LOGIN_APPLICATION_LOGINFUNC_H
 #pragma once
 #include <string>
 using namespace std;
 //______________________________________________________________________________________________________________________
 // general functions for being used in many functions for the project.
 //______________________________________________________________________________________________________________________
-int getUserChoice(const int& endRange);
+int getUserChoice(const int &endRange);
 
 void printMainMenu();
 void printLoginMenu();
 void printEndApp();
 void clearScreen();
 void fetchXLSXFile();
-void updateXLSXFile(const int& indexUserInFile, const string& userID, const string& infoWantedToChange, const int& colm);
-void updateXLSXFile(const int& indexUserInFile, const string& userID, const bool& blockedMood );
+void makeLowerCase(string &line);
+void updateXLSXFile(const int &indexUserInFile, const string &userID, const string &infoWantedToChange, const int &colm);
+void updateXLSXFile(const int &indexUserInFile, const string &userID, const bool &blockedMood);
 
-bool isValidUserChoice(const string& choice, const int& endRange);
-bool isvalidID(const string& ID);
-bool isValidFullName(const string& fullName);
-bool isValidPhoneNumber(const string& phoneNumber); 
-bool isValidEmail(const string& email); 
-bool isValidPassword(const string& password);
-bool isIDExist(const string& inUsername);
-bool isEmailExists(const string& email);
-bool isWantClearScreen();
-bool isYesOrNo(const string& choice);
+bool checkUserChoice(const string &choice, const int &endRange);
+bool isvalidID(const string &ID);
+bool isValidFullName(const string &fullName);
+bool isValidPhoneNumber(const string &phoneNumber);
+bool isValidEmail(const string &email);
+bool isValidPassword(const string &password);
+bool isClearScreen();
+bool isYesOrNo(const string &choice);
 
-string makeLowerCase(string line);
-string encryptPassword(const string& plainText); 
-string decryptPassword(const string& cipherText); 
-string getID(); 
-string getFullName(); 
-string getPhoneNumber(); 
-string getEmail(); 
-string getPassword(const string& additionalText = ""); 
-string getNewPassword(const string& oldPassword = "");
+string encryptPassword(const string &plainText);
+string decryptPassword(const string &cipherText);
+string getID();
+string getFullName();
+string getPhoneNumber();
+string getEmail();
+string getPassword(const string &additionalText = "");
+string getANewPassword(const string &oldPassword = "");
 //______________________________________________________________________________________________________________________
 // The main functions of the project.
 //______________________________________________________________________________________________________________________
 void userRegister();
-void userLogin(); 
-void showPersonalData(const string& ID);
-void changeFullName(const string& ID);
-void changePhoneNumber(const string& ID);
-void changeEmail(const string& ID);
-void changePassword(const string& ID);
-void executeLoginMenu(const int& choice, const string& ID);
-void executeMainMenu(const int& choice);
+void userLogin();
+void showPersonalData(const string &ID);
+void changeFullName(const string &ID);
+void changePhoneNumber(const string &ID);
+void changeEmail(const string &ID);
+void changePassword(const string &ID);
+void executeLoginMenu(const int &choice, const string &ID);
+void executeMainMenu(const int &choice);
 //______________________________________________________________________________________________________________________
-#endif //LOGIN_APPLICATION_LOGINFUNC_H
