@@ -449,6 +449,7 @@ string getPassword(const string &additionalText = "")
         }
         else if (tempChar == '\r') // if Enter is pressed
         {
+            cout << endl;
             return password; // return the Password.
         }
     }
@@ -459,6 +460,7 @@ string getANewPassword(const string &oldPassword = "")
     string newPassword, repeatNewPassword;
     while (true)
     {
+        cout << "--------------------------------------------------------" << endl;
         cout << "The password must contain:" << endl;
         cout << "--------------------------" << endl;
         cout << "1- Small letters (a, b ..etc)." << endl;
@@ -492,7 +494,6 @@ string getANewPassword(const string &oldPassword = "")
         else
         {
             cout << "The passwords doesn't match, Try again!" << endl;
-            repeatNewPassword = "";
         }
     }
 }
@@ -737,6 +738,7 @@ void userLogin()
                         else // for 1st if of the 2nd while loop.
                         {
                             cout << "You will logout now!" << endl;
+                            cout << "----------------------------------------------------------------------------------------" << endl;
                             return; // close the login function.
                         }
                     }
@@ -746,10 +748,12 @@ void userLogin()
                 {
                     failedLoginPasswordAttempts += 1;
                     cout << "Failed to login! Invalid Password!" << endl;
+                    cout << "----------------------------------------------------------------------------------------" << endl;
 
                     if (failedLoginPasswordAttempts >= 3)
                     {
                         cout << "You have been blocked from the system." << endl;
+                        cout << "----------------------------------------------------------------------------------------" << endl;
                         updateXLSXFile(userProfile.indexUserInFile, userProfile.ID, true); // blocked mode = true
                         break;                                                             // for the 1st while loop.
                     }
@@ -759,6 +763,7 @@ void userLogin()
             else // for the 2nd if.
             {
                 cout << "You are already blocked from the system" << endl;
+                cout << "----------------------------------------------------------------------------------------" << endl;
                 break; // for the 1st while loop.
             }
         }
@@ -766,6 +771,7 @@ void userLogin()
         else // for the 1st if.
         {
             cout << "Username is not Found, Please try again later or Register with new account!" << endl;
+            cout << "----------------------------------------------------------------------------------------" << endl;
             break; // for the 1st while loop.
         }
     }
