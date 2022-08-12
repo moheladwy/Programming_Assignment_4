@@ -16,24 +16,28 @@ using namespace std;
 int main()
 {
     int userChoice;
-    bool openSystem = true;
+    bool CLS, openSystem = true;
+
     cout << "Welcome in our Login System Application!" << endl;
     fetchXLSXFile();
 
-    while(openSystem)
+    while (openSystem)
     {
         printMainMenu();
         userChoice = getUserChoice(3);
 
-        if (userChoice != 3) // if the user doesn't want to exit.
+        if (userChoice != 3)
         {
             executeMainMenu(userChoice);
-            if (isWantClearScreen())
+            CLS = isClearScreen();
+            if (CLS)
             {
                 clearScreen();
             }
         }
-        else openSystem = false;
+
+        else
+            openSystem = false;
     }
 
     printEndApp();
