@@ -14,12 +14,12 @@ Projects:
 
 Login System:
 
-    A- Language used: C++ 
-    B- Tools used: Cmake 
-    C- External library used: OpenXLSX (for controling the database the excel file)
+    Language used: C++ 
+    Tools used: Cmake 
+    External library used: OpenXLSX (for controling the database the excel file)
 
 Text Editor:
 
-        A- Language used: C++
-        B- Tools used: NULL
-        C- External library used: NULL
+    Language used: C++
+    Tools used: NULL
+    External library used: NULL
