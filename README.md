@@ -1,9 +1,10 @@
-# Programming_Assignment_4
+# Programming 1 Assignment 4
 This's the repository of the assignment 4 for Programming 1 course with Dr.Mohamed El-Ramly.
 
 Authers:
 
     1- Mohamed Hussein Eladwy. 
+            Email: mohamed.h.eladwy@gmail.com
     2- Yusuf Badr Elsayad. 
     3- Amr Khaled Elhenawey.
 
@@ -14,12 +15,12 @@ Projects:
 
 Login System:
 
-    A- Language used: C++ 
-    B- Tools used: Cmake 
-    C- External library used: OpenXLSX (for controling the database the excel file)
+    Language used: C++ 
+    Tools used: Cmake 
+    External library used: OpenXLSX (for controling the database the excel file)
 
 Text Editor:
 
-        A- Language used: C++
-        B- Tools used: NULL
-        C- External library used: NULL
+    Language used: C++
+    Tools used: NULL
+    External library used: NULL
