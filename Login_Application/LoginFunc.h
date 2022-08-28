@@ -23,10 +23,12 @@ void printEndApp();
 void clearScreen();
 void fetchXLSXFile();
 void makeLowerCase(string &line);
+void encryptPassword(string &plainText);
+void decryptPassword(string &cipherText);
 void updateXLSXFile(const int &indexUserInFile, const string &userID, const string &infoWantedToChange, const int &colm);
 void updateXLSXFile(const int &indexUserInFile, const string &userID, const bool &blockedMood);
 
-bool checkUserChoice(const string &choice, const int &endRange);
+bool isValidChoice(const string &choice, const int &endRange);
 bool isvalidID(const string &ID);
 bool isValidFullName(const string &fullName);
 bool isValidPhoneNumber(const string &phoneNumber);
@@ -35,8 +37,6 @@ bool isValidPassword(const string &password);
 bool isClearScreen();
 bool isYesOrNo(const string &choice);
 
-string encryptPassword(const string &plainText);
-string decryptPassword(const string &cipherText);
 string getID();
 string getFullName();
 string getPhoneNumber();
@@ -46,8 +46,8 @@ string getANewPassword(const string &oldPassword = "");
 //______________________________________________________________________________________________________________________
 // The main functions of the project.
 //______________________________________________________________________________________________________________________
-void userRegister();
-void userLogin();
+void Register();
+void Login();
 void showPersonalData(const string &ID);
 void changeFullName(const string &ID);
 void changePhoneNumber(const string &ID);

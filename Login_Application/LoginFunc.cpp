@@ -32,7 +32,7 @@ struct user
     bool isBlocked = false;
 };
 const int colmID = 1, colmFullName = 2, colmPhoneNumber = 3, colmEmail = 4, colmPassword = 5, colmBlocked = 6, endLoginMenu = 6;
-unordered_map<string, user> getUserData;      // key: userID, value: struct of this exact user
+unordered_map<string, user> database;         // key: userID, value: struct of this exact user
 unordered_set<string> registeredEmails;       // Value: Emails of the users from the struct.
 unordered_set<string> registeredPhoneNumbers; // Value: Phone Numbers of the users from the struct.
 //______________________________________________________________________________________________________________________
@@ -84,50 +84,34 @@ void printEndApp()
     cout << "----------------------------------------------------------------------------------------" << endl;
 }
 //______________________________________________________________________________________________________________________
-string encryptPassword(const string &plainText) // At-bash Cipher
+void encryptPassword(string &plainText) // At-bash Cipher
 {
-    string cipherText;
-    char cipherLetter;
-    for (auto i : plainText)
+    for (char &i : plainText)
     {
         if (isupper(i))
         {
-            cipherLetter = i + 25 - 2 * (i - 'A'); // equation to get new cipher letter
+            i = i + 25 - 2 * (i - 'A'); // equation to get new cipher letter
         }
         else if (islower(i))
         {
-            cipherLetter = i + 25 - 2 * (i - 'a');
+            i = i + 25 - 2 * (i - 'a');
         }
-        else
-        {
-            cipherLetter = i;
-        }
-        cipherText += cipherLetter;
     }
-    return cipherText;
 }
 //______________________________________________________________________________________________________________________
-string decryptPassword(const string &cipherText)
+void decryptPassword(string &cipherText)
 {
-    string plainText;
-    char plainLetter;
-    for (auto i : cipherText)
+    for (auto &i : cipherText)
     {
         if (isupper(i))
         {
-            plainLetter = i - 25 + 2 * ('Z' - i); // equation to get new plain letter
+            i = i - 25 + 2 * ('Z' - i); // equation to get new plain letter
         }
         else if (islower(i))
         {
-            plainLetter = i - 25 + 2 * ('z' - i);
+            i = i - 25 + 2 * ('z' - i);
         }
-        else
-        {
-            plainLetter = i;
-        }
-        plainText += plainLetter;
     }
-    return plainText;
 }
 //______________________________________________________________________________________________________________________
 void fetchXLSXFile()
@@ -148,11 +132,11 @@ void fetchXLSXFile()
         userProfile.phoneNumber = workSheet.cell(index, colmPhoneNumber).value().get<string>();
         userProfile.email = workSheet.cell(index, colmEmail).value().get<string>();
         userProfile.password = workSheet.cell(index, colmPassword).value().get<string>();
-        userProfile.password = decryptPassword(userProfile.password);
+        decryptPassword(userProfile.password);
         userProfile.isBlocked = workSheet.cell(index, colmBlocked).value().get<bool>();
 
         // Load the Struct of the User Profile in the map.
-        getUserData.insert({userProfile.ID, userProfile});
+        database.insert({userProfile.ID, userProfile});
         // Load the email and the phone number of the user in the set.
         registeredEmails.insert(userProfile.email);
         registeredPhoneNumbers.insert(userProfile.phoneNumber);
@@ -160,9 +144,9 @@ void fetchXLSXFile()
     usersData.close();
 }
 //______________________________________________________________________________________________________________________
-void updateXLSXFile(const int &indexUserInFile, const string &userID, const string &infoWantedToChange, const int &colm)
+void updateXLSXFile(const int &indexUserInFile, const string &userID, string &infoWantedToChange, const int &colm)
 {
-    user tempProfile = getUserData[userID];
+    user tempProfile = database[userID];
     XLDocument usersData;
     usersData.open("usersData.xlsx");
     auto workSheet = usersData.workbook().worksheet("Sheet1");
@@ -202,13 +186,14 @@ void updateXLSXFile(const int &indexUserInFile, const string &userID, const stri
     case 5:
     {
         tempProfile.password = infoWantedToChange;
-        workSheet.cell(indexUserInFile, colmPassword).value() = encryptPassword(infoWantedToChange);
+        encryptPassword(infoWantedToChange);
+        workSheet.cell(indexUserInFile, colmPassword).value() = infoWantedToChange;
         break;
     }
     default:
         break;
     }
-    getUserData[userID] = tempProfile;
+    database[userID] = tempProfile;
     usersData.save();
     usersData.close();
 }
@@ -216,9 +201,9 @@ void updateXLSXFile(const int &indexUserInFile, const string &userID, const stri
 void updateXLSXFile(const int &indexUserInFile, const string &userID, const bool &blockedMood)
 {
     // change Blocked Mood in the map.
-    user tempProfile = getUserData[userID];
+    user tempProfile = database[userID];
     tempProfile.isBlocked = blockedMood;
-    getUserData[userID] = tempProfile;
+    database[userID] = tempProfile;
 
     // change the Blocked Mood in the file of the users.
     XLDocument usersData;
@@ -379,7 +364,7 @@ string getPhoneNumber()
     }
 }
 //______________________________________________________________________________________________________________________
-bool checkUserChoice(const string &choice, const int &endRange)
+bool isValidChoice(const string &choice, const int &endRange)
 {
     if (choice.length() == 1)
     {
@@ -400,8 +385,8 @@ int getUserChoice(const int &endRange)
 {
     string getChoice;
     int setChoice;
-    bool isValidChoice = false;
-    while (!isValidChoice)
+    bool validChoice = false;
+    while (!validChoice)
     {
         cout << "Enter your choice from the list above: ";
         getChoice = "";
@@ -409,8 +394,8 @@ int getUserChoice(const int &endRange)
         {
             getline(cin, getChoice);
         }
-        isValidChoice = checkUserChoice(getChoice, endRange);
-        if (!isValidChoice)
+        validChoice = isValidChoice(getChoice, endRange);
+        if (!validChoice)
         {
             cout << "The Choice you entered is not an option from the list,	Try again and make sure to enter a valid option from the list." << endl;
         }
@@ -423,8 +408,7 @@ int getUserChoice(const int &endRange)
 bool isValidPassword(const string &password)
 {
     regex passwordFormat("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#<>=?!+@$%^&*-]).{8,256}$");
-    bool strongPassword = regex_match(password, passwordFormat);
-    return strongPassword;
+    return regex_match(password, passwordFormat);
 }
 //______________________________________________________________________________________________________________________
 string getPassword(const string &additionalText = "")
@@ -498,7 +482,7 @@ string getANewPassword(const string &oldPassword = "")
     }
 }
 //______________________________________________________________________________________________________________________
-void userRegister()
+void Register()
 {
     XLDocument usersData;
     user newUser, tempProfile;
@@ -513,7 +497,7 @@ void userRegister()
     while (ID.empty())
     {
         ID = getID();
-        if (getUserData.count(ID))
+        if (database.count(ID))
         {
             cout << "The ID is already exists for someone else, Try again with a different ID." << endl;
             ID = "";
@@ -548,16 +532,17 @@ void userRegister()
     newUser.password = password;
     newUser.isBlocked = false;
 
-    getUserData.insert({ID, newUser});
+    database.insert({ID, newUser});
     registeredEmails.insert(email);
     registeredPhoneNumbers.insert(phoneNumber);
+    encryptPassword(password); // Encrypting the password that will be stored in the file.
 
     // Store the Data of the User in the Excel File.
     workSheet.cell(indexUserInFile, colmID).value() = ID;
     workSheet.cell(indexUserInFile, colmFullName).value() = fullName;
     workSheet.cell(indexUserInFile, colmPhoneNumber).value() = phoneNumber;
     workSheet.cell(indexUserInFile, colmEmail).value() = email;
-    workSheet.cell(indexUserInFile, colmPassword).value() = encryptPassword(password); // Encrypting the password that will be stored in the file.
+    workSheet.cell(indexUserInFile, colmPassword).value() = password;
     workSheet.cell(indexUserInFile, colmBlocked).value() = false;
 
     usersData.save();
@@ -568,7 +553,7 @@ void userRegister()
 //______________________________________________________________________________________________________________________
 void showPersonalData(const string &ID)
 {
-    user userProfile = getUserData[ID];
+    user userProfile = database[ID];
     cout << "Your Personal Data:-" << endl;
     cout << "--------------------" << endl;
     cout << userProfile;
@@ -577,7 +562,7 @@ void showPersonalData(const string &ID)
 //______________________________________________________________________________________________________________________
 void changeFullName(const string &ID)
 {
-    user userProfile = getUserData[ID];
+    user userProfile = database[ID];
     string tempName = userProfile.fullName;
 
     while (tempName == userProfile.fullName)
@@ -595,7 +580,7 @@ void changeFullName(const string &ID)
 //______________________________________________________________________________________________________________________
 void changePhoneNumber(const string &ID)
 {
-    user userProfile = getUserData[ID];
+    user userProfile = database[ID];
     string tempPhoneNumber = userProfile.phoneNumber;
 
     while (tempPhoneNumber == userProfile.phoneNumber)
@@ -613,7 +598,7 @@ void changePhoneNumber(const string &ID)
 //______________________________________________________________________________________________________________________
 void changeEmail(const string &ID)
 {
-    user userProfile = getUserData[ID];
+    user userProfile = database[ID];
     string tempEmail = userProfile.email;
 
     while (tempEmail == userProfile.email)
@@ -632,7 +617,7 @@ void changeEmail(const string &ID)
 void changePassword(const string &ID)
 {
     string newPassword, oldPassword;
-    user userProfile = getUserData[ID];
+    user userProfile = database[ID];
     int nTry = 0;
 
     cout << "You have 3 trails only to enter the password." << endl;
@@ -696,7 +681,7 @@ void executeLoginMenu(const int &choice, const string &ID)
     }
 }
 //______________________________________________________________________________________________________________________
-void userLogin()
+void Login()
 {
     string inUsername, inPassword;
     while (true) // 1st while loop.
@@ -705,10 +690,10 @@ void userLogin()
         inUsername = getID();
         inPassword = getPassword();
 
-        if (getUserData.count(inUsername)) // 1st if.
+        if (database.count(inUsername)) // 1st if.
         {
             user userProfile;
-            userProfile = getUserData[inUsername];
+            userProfile = database[inUsername];
             int failedLoginPasswordAttempts = 0, userChoice;
 
             // dealing with password
@@ -779,8 +764,8 @@ void userLogin()
 void executeMainMenu(const int &choice)
 {
     if (choice == 1)
-        userRegister();
+        Register();
     else
-        userLogin();
+        Login();
 }
 //______________________________________________________________________________________________________________________

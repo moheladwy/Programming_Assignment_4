@@ -1,0 +1,117 @@
+[
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build",
+  "command": "C:/MinGW/bin/g++.exe -DOPENXLSX_STATIC_DEFINE @CMakeFiles/Login_Application.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -std=gnu++2a -o CMakeFiles/Login_Application.dir/LoginApp.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/LoginApp.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/LoginApp.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build",
+  "command": "C:/MinGW/bin/g++.exe -DOPENXLSX_STATIC_DEFINE @CMakeFiles/Login_Application.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -std=gnu++2a -o CMakeFiles/Login_Application.dir/LoginFunc.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/LoginFunc.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/LoginFunc.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLCell.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLCell.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLCell.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLCellIterator.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLCellIterator.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLCellIterator.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLCellRange.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLCellRange.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLCellRange.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLCellReference.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLCellReference.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLCellReference.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLCellValue.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLCellValue.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLCellValue.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLColor.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLColor.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLColor.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLColumn.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLColumn.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLColumn.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLContentTypes.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLContentTypes.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLContentTypes.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLDateTime.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLDateTime.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLDateTime.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLDocument.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLDocument.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLDocument.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLFormula.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLFormula.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLFormula.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLProperties.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLProperties.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLProperties.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLRelationships.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLRelationships.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLRelationships.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLRow.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLRow.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLRow.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLRowData.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLRowData.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLRowData.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLSharedStrings.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLSharedStrings.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLSharedStrings.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLSheet.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLSheet.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLSheet.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLWorkbook.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLWorkbook.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLWorkbook.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLXmlData.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLXmlData.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLXmlData.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLXmlFile.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLXmlFile.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLXmlFile.cpp"
+},
+{
+  "directory": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/build/OpenXLSX/OpenXLSX",
+  "command": "C:/MinGW/bin/g++.exe -DCHARCONV_ENABLED -DOPENXLSX_STATIC_DEFINE @CMakeFiles/OpenXLSX.dir/includes_CXX.rsp  -static-libstdc++ -static-libgcc -g -fvisibility=hidden -fno-keep-inline-dllexport -Wmisleading-indentation -Wduplicated-cond -Wduplicated-branches -Wlogical-op -Wnull-dereference -std=c++17 -o CMakeFiles/OpenXLSX.dir/sources/XLZipArchive.cpp.obj -c \"E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLZipArchive.cpp\"",
+  "file": "E:/Faculty-Content/2nd Semester/Structured Programming 1/Assighnments/Assignment 4/Programming_Assignment_4/Login_Application/OpenXLSX/OpenXLSX/sources/XLZipArchive.cpp"
+}
+]
